@@ -1,0 +1,72 @@
+[phase]
+id        = "01-site-shell"
+title     = "Site shell"
+milestone = "v0.1"
+
+[[criteria]]
+id   = "c-1"
+text = "A persistent header (brand + nav) and footer render on every route."
+
+[[criteria]]
+id   = "c-2"
+text = "A light/dark toggle switches theme, persists across reloads, and respects OS prefers-color-scheme on first visit with no flash of the wrong theme."
+
+[[criteria]]
+id   = "c-3"
+text = "Responsive: nav collapses to a mobile menu below a breakpoint; the shell holds from ~320px to desktop."
+
+[[criteria]]
+id   = "c-4"
+text = "The shell makes zero third-party network requests; fonts are referenced only from self-hosted /fonts."
+
+[[criteria]]
+id   = "c-5"
+text = "Keyboard-navigable: a skip-to-content link and visible focus states; WCAG AA contrast in both themes."
+
+[[criteria]]
+id   = "c-6"
+text = "Reusable base components exist (e.g. Button variants) matching the styleguide patterns."
+
+[[decisions]]
+key    = "nav_items"
+choice = "Header right-side: Features (anchor to landing #features; /#features from other routes), Docs, GitHub icon-link, and a primary Download CTA button."
+why    = "Surfaces the pitch path (features -> docs -> download) and keeps the source-of-truth link (GitHub) globally reachable."
+locked = true
+
+[[decisions]]
+key    = "mobile_nav"
+choice = "Below the breakpoint, a hamburger opens a focus-trapped slide-over drawer (off-canvas from the right) holding the links, Download CTA, and theme toggle."
+why    = "Polished app-like pattern; the focus-trap is what satisfies the keyboard-nav bar in c-5."
+locked = true
+
+[[decisions]]
+key    = "footer_scope"
+choice = "Minimal single row: brand + Docs, GitHub, F-Droid, and License links + copyright."
+why    = "Matches a lean v0.1 landing+docs site; a richer columned footer is deferred."
+locked = true
+
+[[decisions]]
+key    = "brand_mark"
+choice = "Wordmark 'Equerry' in the display font plus a self-made placeholder geometric SVG mark, used in header and footer."
+why    = "Ships now without blocking on a real logo asset; the placeholder is swapped later."
+locked = true
+
+[[deferred]]
+text = "Richer columned footer (community / donate / legal columns)."
+why  = "Minimal row suffices for v0.1."
+
+[[deferred]]
+text = "Real brand logo SVG to replace the placeholder mark."
+why  = "Design a proper logo in a later phase."
+
+[[deferred]]
+text = "Donate / Sponsor link in nav or footer."
+why  = "Revisit alongside the tip-jar work; not needed for launch."
+
+[[deferred]]
+text = "Cookie / consent banner."
+why  = "The site is cookieless (no cookies set), so none is needed."
+
+[[deferred]]
+text = "Visible language switcher in the shell."
+why  = "v0.1 is English-only (milestone non-goal)."

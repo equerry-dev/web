@@ -1,8 +1,10 @@
 {
   "version": "0.1.0.0",
   "current_milestone": "v0.1",
-  "last_activity": "2026-06-09T13:26:09.988962Z",
-  "last_action": "scoped milestone v0.1: 5 criteria, 5 phases",
+  "current_phase": "01-site-shell",
+  "current_phase_status": "created",
+  "last_activity": "2026-06-09T13:39:01.161522Z",
+  "last_action": "spec locked: 01-site-shell",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -19,6 +21,18 @@
     {
       "at": "2026-06-09T13:26:09.988962Z",
       "action": "scoped milestone v0.1: 5 criteria, 5 phases"
+    },
+    {
+      "at": "2026-06-09T13:27:51.731191Z",
+      "action": "created 01-site-shell"
+    },
+    {
+      "at": "2026-06-09T13:39:01.155515Z",
+      "action": "set current_phase=01-site-shell"
+    },
+    {
+      "at": "2026-06-09T13:39:01.161522Z",
+      "action": "spec locked: 01-site-shell"
     }
   ]
 }
