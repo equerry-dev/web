@@ -1,7 +1,8 @@
 {
   "version": "0.1.0.0",
-  "last_activity": "2026-06-09T11:42:47.890414Z",
-  "last_action": "init complete",
+  "current_milestone": "v0.1",
+  "last_activity": "2026-06-09T13:26:09.988962Z",
+  "last_action": "scoped milestone v0.1: 5 criteria, 5 phases",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -10,6 +11,14 @@
     {
       "at": "2026-06-09T11:42:47.890414Z",
       "action": "init complete"
+    },
+    {
+      "at": "2026-06-09T13:26:09.982011Z",
+      "action": "set current_milestone=v0.1"
+    },
+    {
+      "at": "2026-06-09T13:26:09.988962Z",
+      "action": "scoped milestone v0.1: 5 criteria, 5 phases"
     }
   ]
 }

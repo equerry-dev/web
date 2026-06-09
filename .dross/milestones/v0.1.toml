@@ -1,0 +1,11 @@
+phases = ["01-site-shell", "02-landing-page", "03-docs-system", "04-setup-docs", "05-polish-deploy"]
+
+[milestone]
+  version = "v0.1"
+  title = "Public v1: landing + setup docs live"
+  status = "active"
+  started = "2026-06-09"
+
+[scope]
+  success_criteria = ["Landing page communicates the three differentiators (BYO-backend / Capability-Slot, privacy-is-the-product, FOSS-GPL-F-Droid) and its download CTAs link to the real Google Play and F-Droid listings.", "Docs take a new user from install to setting Equerry as the default assistant to configuring one provider via a Capability-Slot, with steps that match actual app behaviour (rule r-03).", "pnpm build produces a fully static prerendered bundle that serves correctly from a plain static host — every route reachable, no server runtime.", "The site is responsive and renders correctly in light and dark across mobile and desktop, is keyboard-navigable, and meets WCAG AA contrast.", "Zero third-party network requests at runtime — fonts and analytics self-hosted — verifiable in browser devtools."]
+  non_goals = ["English-only copy in v0.1 — Paraglide is scaffolded, but actual translations (Spanish/other) are deferred to a later milestone.", "No interactive config generator — docs explain provider / Capability-Slot setup manually in v0.1."]
