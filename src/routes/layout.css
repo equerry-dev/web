@@ -1,2 +1,228 @@
+/* ============================================================================
+   Equerry — Design Tokens · Tailwind CSS v4 (CSS-first @theme config)
+   Direction: "Field Guide" — warm, calm, privacy-green. Light-first; dark ships.
+   Drop this in app.css (or theme.css) and `@import` it once.
+   All typefaces are libre (OFL) and self-hosted — no Google Fonts CDN.
+   ============================================================================ */
+
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+/* Class-based dark mode — toggle <html class="dark"> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ----------------------------------------------------------------------------
+   1. Self-hosted faces. Put .woff2 files in /static/fonts and declare them.
+      Hanken Grotesk (display) · Inter (body) · IBM Plex Mono (labels/code).
+      Variable fonts keep the payload small; subset to latin for less weight.
+---------------------------------------------------------------------------- */
+@font-face {
+	font-family: 'Hanken Grotesk';
+	src: url('/fonts/HankenGrotesk-Variable.woff2') format('woff2');
+	font-weight: 400 800;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Inter';
+	src: url('/fonts/Inter-Variable.woff2') format('woff2');
+	font-weight: 400 600;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url('/fonts/IBMPlexMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'IBM Plex Mono';
+	src: url('/fonts/IBMPlexMono-Medium.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* ----------------------------------------------------------------------------
+   2. Semantic color variables. These flip on .dark — components reference them
+      via Tailwind utilities (bg-bg, text-text, border-border, …) thanks to the
+      `@theme inline` mapping below.
+---------------------------------------------------------------------------- */
+:root {
+	--bg: #f5f3ec; /* page background — warm paper            */
+	--surface: #ffffff; /* cards, nav, raised surfaces             */
+	--surface-2: #fbfaf5; /* sunken insets: code, table stripes      */
+	--text: #20211c; /* primary ink                            */
+	--muted: #736e60; /* secondary text, captions, metadata      */
+	--primary: #3a7d5c; /* brand green — CTAs, links, active       */
+	--primary-hover: #31694e; /* hover/pressed                          */
+	--primary-ink: #ffffff; /* text/icon on primary fills              */
+	--accent: #2a6347; /* deep green — emphasis, headings on wash */
+	--wash: #eaf1ea; /* soft green tint — callouts, highlights  */
+	--border: #e8e3d7; /* default hairline borders                */
+	--hair: #efebe0; /* lighter dividers / inner rules          */
+	--success: #3a7d5c;
+	--warn: #b07a2a;
+	--danger: #b0452a;
+	--ring: #3a7d5c; /* focus ring                              */
+}
+.dark {
+	--bg: #141611;
+	--surface: #1c1f18;
+	--surface-2: #232720;
+	--text: #f1efe7;
+	--muted: #9c978a;
+	--primary: #62b98c;
+	--primary-hover: #74c79b;
+	--primary-ink: #0a150f;
+	--accent: #86d2ac;
+	--wash: #1b2a20;
+	--border: #2d3128;
+	--hair: #252920;
+	--success: #62b98c;
+	--warn: #d6a559;
+	--danger: #e0795c;
+	--ring: #62b98c;
+}
+
+/* ----------------------------------------------------------------------------
+   3. Theme mapping. `inline` makes utilities read the live CSS vars, so every
+      color flips automatically under .dark with no duplicate utility classes.
+---------------------------------------------------------------------------- */
+@theme inline {
+	/* — color roles → bg-bg, text-muted, bg-primary, border-border, … — */
+	--color-bg: var(--bg);
+	--color-surface: var(--surface);
+	--color-surface-2: var(--surface-2);
+	--color-text: var(--text);
+	--color-muted: var(--muted);
+	--color-primary: var(--primary);
+	--color-primary-hover: var(--primary-hover);
+	--color-primary-ink: var(--primary-ink);
+	--color-accent: var(--accent);
+	--color-wash: var(--wash);
+	--color-border: var(--border);
+	--color-hair: var(--hair);
+	--color-success: var(--success);
+	--color-warn: var(--warn);
+	--color-danger: var(--danger);
+
+	/* — type families → font-display, font-sans, font-mono — */
+	--font-display: 'Hanken Grotesk', 'Inter', system-ui, sans-serif;
+	--font-sans: 'Inter', system-ui, sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+	/* — modular type scale (size / line-height); ~1.22 ratio, looser display — */
+	--text-caption: 0.8125rem;
+	--text-caption--line-height: 1.5; /* 13px metadata   */
+	--text-sm: 0.875rem;
+	--text-sm--line-height: 1.6; /* 14px small      */
+	--text-base: 1rem;
+	--text-base--line-height: 1.65; /* 16px UI body    */
+	--text-lg: 1.125rem;
+	--text-lg--line-height: 1.6; /* 18px lead       */
+	--text-xl: 1.375rem;
+	--text-xl--line-height: 1.3; /* 22px h4/h3      */
+	--text-2xl: 1.75rem;
+	--text-2xl--line-height: 1.2; /* 28px h2         */
+	--text-3xl: 2.25rem;
+	--text-3xl--line-height: 1.1; /* 36px h1         */
+	--text-4xl: 2.75rem;
+	--text-4xl--line-height: 1.05; /* 44px display    */
+	--text-5xl: 3.75rem;
+	--text-5xl--line-height: 1; /* 60px hero       */
+
+	/* — radius (soft, Field-Guide) — */
+	--radius-sm: 8px;
+	--radius-md: 11px;
+	--radius-lg: 14px; /* default card radius */
+	--radius-xl: 20px;
+	--radius-pill: 999px;
+
+	/* — elevation (light). In dark, prefer borders; shadows fade to near-zero — */
+	--shadow-sm: 0 1px 2px rgba(20, 18, 12, 0.05);
+	--shadow-card: 0 1px 3px rgba(20, 18, 12, 0.05), 0 12px 28px -20px rgba(20, 18, 12, 0.25);
+	--shadow-pop: 0 16px 44px -14px rgba(20, 18, 12, 0.3);
+
+	/* — layout containers — */
+	--container-landing: 1200px; /* marketing sections        */
+	--container-docs: 1280px; /* docs 3-col shell          */
+	--container-prose: 46rem; /* ~720px / ~70ch reading col */
+}
+
+/* ----------------------------------------------------------------------------
+   4. Base element defaults.
+---------------------------------------------------------------------------- */
+@layer base {
+	html {
+		color-scheme: light;
+	}
+	html.dark {
+		color-scheme: dark;
+	}
+	body {
+		background: var(--bg);
+		color: var(--text);
+		font-family: var(--font-sans);
+		-webkit-font-smoothing: antialiased;
+	}
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-family: var(--font-display);
+		letter-spacing: -0.02em;
+	}
+	::selection {
+		background: color-mix(in oklab, var(--primary) 22%, transparent);
+	}
+	:focus-visible {
+		outline: 2px solid var(--ring);
+		outline-offset: 2px;
+		border-radius: 4px;
+	}
+}
+
+/* ----------------------------------------------------------------------------
+   5. Docs prose — @tailwindcss/typography wired to the tokens.
+      Apply `class="prose"` to the rendered markdown column.
+---------------------------------------------------------------------------- */
+@layer components {
+	.prose {
+		--tw-prose-body: var(--text);
+		--tw-prose-headings: var(--text);
+		--tw-prose-lead: var(--muted);
+		--tw-prose-links: var(--primary);
+		--tw-prose-bold: var(--text);
+		--tw-prose-counters: var(--muted);
+		--tw-prose-bullets: var(--border);
+		--tw-prose-hr: var(--hair);
+		--tw-prose-quotes: var(--text);
+		--tw-prose-quote-borders: var(--primary);
+		--tw-prose-captions: var(--muted);
+		--tw-prose-code: var(--text);
+		--tw-prose-pre-code: var(--text);
+		--tw-prose-pre-bg: var(--surface-2);
+		--tw-prose-th-borders: var(--border);
+		--tw-prose-td-borders: var(--hair);
+
+		max-width: var(--container-prose);
+		font-size: 1.0625rem; /* 17px reading body */
+		line-height: 1.75;
+	}
+	/* inline code gets a soft wash chip */
+	.prose :where(code):not(pre code) {
+		background: var(--wash);
+		color: var(--accent);
+		font-weight: 500;
+		padding: 0.15em 0.4em;
+		border-radius: 6px;
+		font-size: 0.9em;
+	}
+	.prose :where(code):not(pre code)::before,
+	.prose :where(code):not(pre code)::after {
+		content: '';
+	} /* kill backticks */
+}

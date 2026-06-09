@@ -14,3 +14,4 @@ bun.lockb
 /.dross/
 /src/lib/paraglide/
 /project.inlang/
+/design/

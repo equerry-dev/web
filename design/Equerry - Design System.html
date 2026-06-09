@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Equerry — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styleguide.css" />
+</head>
+<body>
+
+<!-- ===================== TOP BAR ===================== -->
+<div class="topbar">
+  <div class="inner">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect x="1.5" y="1.5" width="29" height="29" rx="8.5" fill="var(--primary)"/>
+        <circle cx="16" cy="15" r="6.5" fill="none" stroke="var(--primary-ink)" stroke-width="2.2"/>
+        <line x1="20.4" y1="19.4" x2="24.5" y2="23.5" stroke="var(--primary-ink)" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      Equerry
+    </div>
+    <span class="ver">Design System · v1.0</span>
+    <div class="spacer"></div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark">
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
+      <span class="lbl">Theme</span>
+    </button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ===================== COVER ===================== -->
+  <header class="cover">
+    <span class="eyebrow"><span class="dot"></span>Equerry Web · Field Guide direction</span>
+    <h1>A calm system<br />for a <em>private</em> assistant.</h1>
+    <p class="lede"><b>Tone &amp; mood.</b> Editorial restraint over startup gloss: warm paper surfaces, a single trustworthy green, generous space, and humanist type. No gradients, no neon, no dark-pattern urgency — the craft <em>is</em> the trust signal. Equerry should feel like a well-made field manual that happens to live on your phone: quiet, legible, and honest about what it does. This page is the living reference — flip the theme, top-right, to see every token and component in light and dark.</p>
+  </header>
+
+  <!-- ===================== COLOR ===================== -->
+  <section class="block" id="color">
+    <div class="sec-head"><span class="n">01</span><h2>Color</h2><p>Semantic roles, not raw hues. Components reference <code style="font-family:var(--font-mono);font-size:12px">--bg</code>, <code style="font-family:var(--font-mono);font-size:12px">--primary</code>, <code style="font-family:var(--font-mono);font-size:12px">--border</code> … which flip under <code style="font-family:var(--font-mono);font-size:12px">.dark</code>. One green carries the brand; warm neutrals do the rest.</p></div>
+
+    <div class="subhead">Surfaces &amp; ink</div>
+    <div class="demo">
+      <div class="swgrid">
+        <div class="swatch"><div class="chip" style="background:var(--bg)"></div><div class="meta"><div class="role">bg</div><div class="hex" id="hx-bg">#F5F3EC</div><div class="use">Page background</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface)"></div><div class="meta"><div class="role">surface</div><div class="hex" id="hx-surface">#FFFFFF</div><div class="use">Cards, nav</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface-2)"></div><div class="meta"><div class="role">surface-2</div><div class="hex" id="hx-surface2">#FBFAF5</div><div class="use">Code, insets</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--text)"></div><div class="meta"><div class="role">text</div><div class="hex" id="hx-text">#20211C</div><div class="use">Primary ink</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--muted)"></div><div class="meta"><div class="role">muted</div><div class="hex" id="hx-muted">#736E60</div><div class="use">Secondary, meta</div></div></div>
+      </div>
+    </div>
+
+    <div class="subhead">Brand &amp; emphasis</div>
+    <div class="demo">
+      <div class="swgrid">
+        <div class="swatch"><div class="chip" style="background:var(--primary)"></div><div class="meta"><div class="role">primary</div><div class="hex" id="hx-primary">#3A7D5C</div><div class="use">CTAs, links, active</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--primary-hover)"></div><div class="meta"><div class="role">primary-hover</div><div class="hex" id="hx-primaryh">#31694E</div><div class="use">Hover / pressed</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--accent)"></div><div class="meta"><div class="role">accent</div><div class="hex" id="hx-accent">#2A6347</div><div class="use">Deep emphasis</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--wash)"></div><div class="meta"><div class="role">wash</div><div class="hex" id="hx-wash">#EAF1EA</div><div class="use">Tint, highlights</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--primary-ink)"></div><div class="meta"><div class="role">primary-ink</div><div class="hex" id="hx-pink">#FFFFFF</div><div class="use">Text on fills</div></div></div>
+      </div>
+    </div>
+
+    <div class="subhead">Borders &amp; feedback</div>
+    <div class="demo">
+      <div class="swgrid">
+        <div class="swatch"><div class="chip" style="background:var(--border)"></div><div class="meta"><div class="role">border</div><div class="hex" id="hx-border">#E8E3D7</div><div class="use">Hairlines</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--hair)"></div><div class="meta"><div class="role">hair</div><div class="hex" id="hx-hair">#EFEBE0</div><div class="use">Inner dividers</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--success)"></div><div class="meta"><div class="role">success</div><div class="hex" id="hx-success">#3A7D5C</div><div class="use">Confirmed</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--warn)"></div><div class="meta"><div class="role">warn</div><div class="hex" id="hx-warn">#B07A2A</div><div class="use">Caution</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--danger)"></div><div class="meta"><div class="role">danger</div><div class="hex" id="hx-danger">#B0452A</div><div class="use">Destructive</div></div></div>
+      </div>
+      <p class="note-inline">Hex values update live with the theme toggle — these are the resolved <code style="font-family:var(--font-mono)">.dark</code> overrides when dark is on.</p>
+    </div>
+  </section>
+
+  <!-- ===================== TYPE ===================== -->
+  <section class="block" id="type">
+    <div class="sec-head"><span class="n">02</span><h2>Typography</h2><p>Three libre families, all self-hosted. Hanken Grotesk gives headings a warm, humanist edge; Inter keeps UI &amp; body neutral and legible; IBM Plex Mono carries the technical voice — labels, metadata, code.</p></div>
+
+    <div class="demo">
+      <div class="famrow">
+        <div class="fam"><div class="big" style="font-family:var(--font-display);font-weight:800">Hanken</div><div class="nm">--font-display</div><div class="dsc">Hanken Grotesk · 400–800. Display &amp; headings. Soft humanist grotesk.</div><div class="glyphs">Aa Bb Gg Qq 0123 &amp;?</div></div>
+        <div class="fam"><div class="big" style="font-family:var(--font-sans);font-weight:500">Inter</div><div class="nm">--font-sans</div><div class="dsc">Inter · 400–600. UI &amp; body copy. Quiet, screen-optimised.</div><div class="glyphs">Aa Bb Gg Qq 0123 &amp;?</div></div>
+        <div class="fam"><div class="big" style="font-family:var(--font-mono);font-weight:500">Plex</div><div class="nm">--font-mono</div><div class="dsc">IBM Plex Mono · 400–600. Labels, code, metadata.</div><div class="glyphs">Aa Bb Gg Qq 0123 &amp;?</div></div>
+      </div>
+    </div>
+
+    <div class="subhead">Modular scale</div>
+    <div class="demo">
+      <div class="tscale">
+        <div class="row"><div class="tok"><b>text-5xl</b>60 / 1.0 / 800</div><div class="ex" style="font-size:46px;font-weight:800">Just ask.</div></div>
+        <div class="row"><div class="tok"><b>text-4xl</b>44 / 1.05 / 700</div><div class="ex" style="font-size:38px;font-weight:700">Capability-Slots</div></div>
+        <div class="row"><div class="tok"><b>text-3xl</b>36 / 1.1 / 700</div><div class="ex" style="font-size:32px;font-weight:700">Privacy is the product</div></div>
+        <div class="row"><div class="tok"><b>text-2xl</b>28 / 1.2 / 600</div><div class="ex" style="font-size:26px;font-weight:600">Bring your own backend</div></div>
+        <div class="row"><div class="tok"><b>text-xl</b>22 / 1.3 / 600</div><div class="ex" style="font-size:21px;font-weight:600">On-device by default</div></div>
+        <div class="row"><div class="tok"><b>text-lg</b>18 / 1.6 / 400</div><div class="ex body" style="font-size:18px">Lead paragraph — sets up a section with a touch more size and air.</div></div>
+        <div class="row"><div class="tok"><b>text-base</b>16 / 1.65 / 400</div><div class="ex body" style="font-size:16px">UI body. Equerry reads the screen via the sanctioned Assist API, and never sends without your confirmation.</div></div>
+        <div class="row"><div class="tok"><b>text-sm</b>14 / 1.6 / 400</div><div class="ex body" style="font-size:14px;color:var(--muted)">Secondary copy and helper text sit a notch down in size and contrast.</div></div>
+        <div class="row"><div class="tok"><b>mono / label</b>12 / 0.14em</div><div class="ex mono" style="font-size:12px;color:var(--primary)">PRIVACY-FIRST · ANDROID</div></div>
+      </div>
+    </div>
+
+    <div class="subhead">Docs prose · @tailwindcss/typography</div>
+    <div class="demo">
+      <div style="max-width:46rem">
+        <h3 style="font-family:var(--font-display);font-size:25px;font-weight:700;letter-spacing:-0.02em;margin-bottom:10px">Reading column settings</h3>
+        <p style="font-size:17px;line-height:1.75;margin-bottom:14px">Long-form docs render at <strong>17px / 1.75</strong> on a <strong>~70-character</strong> measure (<span class="inlinecode">--container-prose: 46rem</span>). Links take the brand green; <a href="#" style="color:var(--primary);text-decoration:underline;text-underline-offset:3px">like this one</a>. Inline code such as <span class="inlinecode">slot.chat</span> gets a soft green wash chip rather than a hard box.</p>
+        <p style="font-size:17px;line-height:1.75;color:var(--muted)">Muted lead/aside text steps down in contrast while holding the same measure, so the rhythm of the column never breaks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SPACING / RADIUS / SHADOW ===================== -->
+  <section class="block" id="tokens">
+    <div class="sec-head"><span class="n">03</span><h2>Spacing, radius &amp; elevation</h2><p>A 4px-based spacing rhythm (Tailwind's default scale), soft Field-Guide radii, and restrained shadows that lean on borders — especially in dark, where shadow nearly disappears.</p></div>
+
+    <div class="subhead">Spacing scale · 4px base</div>
+    <div class="demo">
+      <div class="scale-strip">
+        <div class="sp"><div class="bar" style="height:4px"></div><div class="lab"><b>1</b>4px</div></div>
+        <div class="sp"><div class="bar" style="height:8px"></div><div class="lab"><b>2</b>8px</div></div>
+        <div class="sp"><div class="bar" style="height:12px"></div><div class="lab"><b>3</b>12px</div></div>
+        <div class="sp"><div class="bar" style="height:16px"></div><div class="lab"><b>4</b>16px</div></div>
+        <div class="sp"><div class="bar" style="height:24px"></div><div class="lab"><b>6</b>24px</div></div>
+        <div class="sp"><div class="bar" style="height:32px"></div><div class="lab"><b>8</b>32px</div></div>
+        <div class="sp"><div class="bar" style="height:48px"></div><div class="lab"><b>12</b>48px</div></div>
+        <div class="sp"><div class="bar" style="height:64px"></div><div class="lab"><b>16</b>64px</div></div>
+        <div class="sp"><div class="bar" style="height:96px"></div><div class="lab"><b>24</b>96px</div></div>
+      </div>
+    </div>
+
+    <div class="subhead">Radius</div>
+    <div class="demo">
+      <div class="radrow">
+        <div class="raddemo" style="border-radius:8px"><span>sm · 8</span></div>
+        <div class="raddemo" style="border-radius:11px"><span>md · 11</span></div>
+        <div class="raddemo" style="border-radius:14px"><span>lg · 14</span></div>
+        <div class="raddemo" style="border-radius:20px"><span>xl · 20</span></div>
+        <div class="raddemo" style="border-radius:999px;width:72px"><span>pill</span></div>
+      </div>
+    </div>
+
+    <div class="subhead">Elevation</div>
+    <div class="demo">
+      <div class="shadowrow">
+        <div class="shdemo" style="box-shadow:var(--shadow-sm)"><span>shadow-sm</span></div>
+        <div class="shdemo" style="box-shadow:var(--shadow-card)"><span>shadow-card</span></div>
+        <div class="shdemo" style="box-shadow:var(--shadow-pop)"><span>shadow-pop</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LAYOUT GRID ===================== -->
+  <section class="block" id="layout">
+    <div class="sec-head"><span class="n">04</span><h2>Layout grid</h2><p>Two container widths. Marketing breathes wide; docs use a fixed three-column shell with a capped reading measure so prose never sprawls.</p></div>
+
+    <div class="demo">
+      <div class="subhead" style="margin-top:0">Landing · max 1200px</div>
+      <div class="gbar">
+        <div class="gseg" style="flex:1"><span><b>Centered content · max-width 1200px</b>24–32px gutters · 12-col fluid · sections breathe full-bleed where imagery leads</span></div>
+      </div>
+
+      <div class="subhead">Docs · max 1280px</div>
+      <div class="gbar">
+        <div class="gseg" style="width:208px;flex:none"><b>Sidebar</b>208–264px<br/>sticky</div>
+        <div class="gseg" style="flex:1"><b>Prose column</b>≤ 46rem (~70ch)<br/>17px / 1.75 · scrolls</div>
+        <div class="gseg" style="width:168px;flex:none"><b>On-page nav</b>168–220px<br/>sticky TOC</div>
+      </div>
+      <p class="note-inline">Below ~820px the TOC drops and the sidebar collapses into a drawer; prose goes full width.</p>
+    </div>
+  </section>
+
+  <!-- ===================== COMPONENTS ===================== -->
+  <section class="block" id="components">
+    <div class="sec-head"><span class="n">05</span><h2>Components</h2><p>The load-bearing pieces, each with example Tailwind classes. Everything below is live — toggle the theme to verify both modes.</p></div>
+
+    <!-- Buttons -->
+    <div class="subhead">Buttons &amp; CTAs</div>
+    <div class="demo">
+      <div class="btnrow" style="margin-bottom:16px">
+        <a class="eq-btn eq-btn--primary" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg>Get Equerry</a>
+        <a class="eq-btn eq-btn--ghost" href="#">Read the docs</a>
+        <a class="eq-btn eq-btn--quiet" href="#">View on GitHub →</a>
+        <span class="eq-btn eq-btn--primary" aria-disabled="true">Disabled</span>
+      </div>
+      <div class="btnrow">
+        <a class="eq-btn eq-btn--primary eq-btn--sm" href="#">Small</a>
+        <a class="eq-btn eq-btn--primary" href="#">Default</a>
+        <a class="eq-btn eq-btn--primary eq-btn--lg" href="#">Large</a>
+      </div>
+      <div class="codeblock" style="margin-top:18px">
+        <div class="cb-head"><span class="d"></span>button — primary</div>
+        <pre><span class="cm">&lt;!-- primary CTA --&gt;</span>
+&lt;a class=<span class="st">"inline-flex items-center gap-2 rounded-md px-5 py-3
+   font-semibold bg-primary text-primary-ink
+   hover:bg-primary-hover hover:-translate-y-px
+   shadow-sm transition"</span>&gt;Get Equerry&lt;/a&gt;
+
+<span class="cm">&lt;!-- ghost / secondary --&gt;</span>
+&lt;a class=<span class="st">"rounded-md px-5 py-3 font-semibold border
+   border-border text-text hover:border-muted"</span>&gt;Read the docs&lt;/a&gt;</pre>
+      </div>
+    </div>
+
+    <!-- Download badges + trust -->
+    <div class="subhead">Download badges &amp; trust signals</div>
+    <div class="demo">
+      <div class="dlrow" style="margin-bottom:16px">
+        <a class="badge" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l16 9-16 9V3z"/></svg><span class="bt"><small>Get it on</small><strong>Google Play</strong></span></a>
+        <a class="badge alt" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg><span class="bt"><small>Get it on</small><strong>F-Droid</strong></span></a>
+      </div>
+      <div class="chiprow">
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>No accounts</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>No telemetry</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>GPL-3.0</span>
+        <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Assist API · never scraped</span>
+      </div>
+      <p class="note-inline">Store badges are styled placeholders — swap in Google &amp; F-Droid's official artwork at build. Trust chips use mono for a quiet "spec-sheet" credibility.</p>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="subhead">Feature cards · lead with Capability-Slots</div>
+    <div class="demo">
+      <div class="cardgrid">
+        <div class="fcard wash">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg></div>
+          <h3>Capability-Slot system</h3>
+          <p>Wire different jobs to different backends — each capability is a labelled socket you plug a model into.</p>
+          <div class="slotmap">
+            <div class="slot"><span class="k">chat</span><span class="v">ollama · llama3.1</span></div>
+            <div class="slot"><span class="k">vision</span><span class="v">anthropic · claude</span></div>
+          </div>
+        </div>
+        <div class="fcard">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>Privacy is the product</h3>
+          <p>No accounts, no telemetry, no first-party data. Reads the screen via the sanctioned Assist API — and you confirm every send.</p>
+        </div>
+        <div class="fcard">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+          <h3>FOSS · GPL-3.0</h3>
+          <p>On F-Droid and Google Play. Every fork stays open — openness <em>is</em> the privacy guarantee.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Callouts -->
+    <div class="subhead">Callouts / admonitions</div>
+    <div class="demo">
+      <div class="calls">
+        <div class="callout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><div class="body"><div class="t">Note</div><p>Equerry registers as your system assistant. You can switch back to any other assistant at any time in Android settings.</p></div></div>
+        <div class="callout tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c.7.7 1 1.3 1 2h6c0-.7.3-1.3 1-2a6 6 0 0 0-4-10z"/></svg><div class="body"><div class="t">Tip</div><p>Point the <span class="inlinecode">chat</span> slot at a local Ollama model to keep everyday queries entirely on-device.</p></div></div>
+        <div class="callout warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.8 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.8a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><div class="body"><div class="t">Caution</div><p>Cloud backends send your prompt to a third party. Equerry shows the destination and asks before every send — but the choice of provider is yours.</p></div></div>
+        <div class="callout danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg><div class="body"><div class="t">Danger</div><p>Removing the default-assistant role disables screen-reading entirely until it is re-granted.</p></div></div>
+      </div>
+    </div>
+
+    <!-- Code block -->
+    <div class="subhead">Code blocks</div>
+    <div class="demo">
+      <div class="codeblock">
+        <div class="cb-head"><span class="d"></span>~/.config/equerry.toml<span class="copy">copy</span></div>
+        <pre><span class="cm"># capability slots — bring your own backend</span>
+<span class="kw">[slots]</span>
+chat      = <span class="st">"ollama://llama3.1"</span>      <span class="cm"># local, private</span>
+vision    = <span class="st">"anthropic://claude"</span>     <span class="cm"># screen-reading</span>
+summarize = <span class="st">"openrouter://auto"</span>
+
+<span class="kw">[privacy]</span>
+confirm_before_send = <span class="st">true</span>
+telemetry           = <span class="st">"off"</span></pre>
+      </div>
+    </div>
+
+    <!-- Docs nav -->
+    <div class="subhead">Docs sidebar, prose &amp; on-page nav</div>
+    <div class="docsmock">
+      <div class="side">
+        <div class="searchbox"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input placeholder="Search docs" /><span class="kbd">/</span></div>
+        <div class="navgroup">
+          <div class="gl">Getting started</div>
+          <a class="navlink" href="#">Introduction</a>
+          <a class="navlink active" href="#">Install &amp; set up</a>
+          <a class="navlink" href="#">First query</a>
+        </div>
+        <div class="navgroup">
+          <div class="gl">Capability slots</div>
+          <a class="navlink" href="#">Concepts</a>
+          <a class="navlink" href="#">Backends</a>
+          <a class="navlink" href="#">Routing rules</a>
+        </div>
+        <div class="navgroup">
+          <div class="gl">Privacy</div>
+          <a class="navlink" href="#">Data model</a>
+          <a class="navlink" href="#">Permissions</a>
+        </div>
+      </div>
+      <div class="doc">
+        <div class="crumb">Docs / Getting started / Install &amp; set up</div>
+        <h3>Install &amp; set up</h3>
+        <div class="sub">Get Equerry running as your default assistant in three steps.</div>
+        <p class="pr">Install from <span class="inlinecode">F-Droid</span> or Google Play, then open Equerry and grant the default-assistant role. Equerry only reads the screen when you explicitly invoke it through the Assist API.</p>
+        <div class="callout" style="margin:6px 0 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><div class="body"><div class="t">Note</div><p>You confirm every send. Nothing leaves the device without a tap.</p></div></div>
+        <p class="pr">Next, wire your first <span class="inlinecode">chat</span> slot to a backend in <span class="inlinecode">equerry.toml</span> and you're ready to ask.</p>
+      </div>
+      <div class="toc">
+        <div class="tl">On this page</div>
+        <a href="#" class="active">Install</a>
+        <a href="#">Grant the role</a>
+        <a href="#">First slot</a>
+        <a href="#">Troubleshooting</a>
+      </div>
+    </div>
+    <p class="note-inline">Active states: sidebar item takes brand green + an inset left rule; the TOC marks the section in view with a green border-left. Both are the same green at <code style="font-family:var(--font-mono)">--primary</code>.</p>
+  </section>
+
+  <!-- ===================== WIREFRAMES ===================== -->
+  <section class="block" id="wireframes">
+    <div class="sec-head"><span class="n">06</span><h2>Wireframes</h2><p>Low-fidelity skeletons for the two surfaces, annotated with the tokens and components above.</p></div>
+
+    <div class="subhead">A · Landing page</div>
+    <div class="wire">
+      <div class="cap">landing — max-width 1200px · centered · 24–32px gutters</div>
+      <pre>┌──────────────────────────────────────────────────────────────────────┐
+│  ◆ Equerry          Features   Docs   GitHub          [ Download ]     │  sticky nav · hairline base
+├──────────────────────────────────────────────────────────────────────┤
+│                                                                        │
+│   PRIVACY-FIRST · ANDROID ASSISTANT                  ← mono eyebrow     │
+│                                                                        │
+│   Equerry — pronounced E-query.                      ← display 5xl     │
+│   Just ask.                                            (green "E-query")│
+│                                                                        │
+│   A default assistant that routes requests to the AI backends          │
+│   you choose. No accounts. No telemetry.             ← lead, muted      │
+│                                                                        │
+│   [ Get Equerry ↓ ]   [ Read the docs ]              ← primary + ghost  │
+│                                                                        │
+│   ✓ No accounts   ✓ No telemetry   ⬡ GPL-3.0   ⬡ Assist API           │  ← trust chips (mono)
+│                                                                        │
+├──────────────────────────────────────────────────────────────────────┤
+│   FEATURES — lead with the Capability-Slot idea                        │
+│   ┌────────────────────┐ ┌──────────────────┐ ┌──────────────────┐     │
+│   │ ▥ Capability-Slot  │ │ ⛉ Privacy is the │ │ ⟨/⟩ FOSS · GPL-3 │     │  ← 3-up card grid
+│   │   chat → ollama    │ │    product       │ │  F-Droid + Play  │     │     (slot card on wash)
+│   │   vision → claude  │ │                  │ │                  │     │
+│   └────────────────────┘ └──────────────────┘ └──────────────────┘     │
+│                                                                        │
+│   DIFFERENTIATORS — "vs Gemini" · BYO-backend · openness = privacy     │
+│   ───────────────────────────────────────────────────────────────     │
+│                                                                        │
+│   ┌──────────────────────  DUAL DOWNLOAD  ──────────────────────┐      │
+│   │   [ ▶ Google Play ]      [ ⬡ F-Droid ]                      │      │  ← store badges
+│   └─────────────────────────────────────────────────────────────┘      │
+│                                                                        │
+│   FOOTER · Docs · GitHub · F-Droid · Donate · cookieless analytics     │
+└──────────────────────────────────────────────────────────────────────┘</pre>
+    </div>
+
+    <div class="subhead">B · Docs page</div>
+    <div class="wire">
+      <div class="cap">docs — max-width 1280px · sticky sidebar + sticky TOC · prose ≤ 46rem</div>
+      <pre>┌──────────────────────────────────────────────────────────────────────┐
+│  ◆ Equerry  Docs          [ ⌕ Search docs        / ]    GitHub  ◐      │  sticky
+├────────────────┬────────────────────────────────────┬─────────────────┤
+│  SIDEBAR 208px │  PROSE COLUMN  ≤ 46rem (~70ch)      │  ON THIS PAGE   │
+│  (sticky)      │  17px / 1.75                        │  168px (sticky) │
+│                │                                     │                 │
+│  GETTING       │  Docs / Getting started / Install   │  • Install      │
+│   STARTED      │                                     │  • Grant role   │
+│  Introduction  │  Install & set up        ← h1       │  • First slot   │
+│ ▌Install ●     │  ─────────────────────              │  • Trouble…     │
+│  First query   │  Get Equerry running as your        │                 │
+│                │  default assistant in three steps.  │  active item =  │
+│  CAPABILITY    │                                     │  green + left   │
+│   SLOTS        │  ┌ NOTE ─────────────────────────┐  │  border rule    │
+│  Concepts      │  │ ⓘ You confirm every send.     │  │                 │
+│  Backends      │  └───────────────────────────────┘  │                 │
+│  Routing rules │                                     │                 │
+│                │  Wire your first `chat` slot in     │  ← inline code  │
+│  PRIVACY       │  `equerry.toml`:                    │     = wash chip │
+│  Data model    │  ┌ equerry.toml ────────────────┐   │                 │
+│  Permissions   │  │ [slots]                       │   │                 │
+│                │  │ chat = "ollama://llama3.1"    │   │  ← code block   │
+│ (active item = │  └───────────────────────────────┘   │     surface-2   │
+│  green + inset │                                     │                 │
+│  left rule)    │  [ ← Introduction ]  [ First query →]│  ← prev / next  │
+└────────────────┴────────────────────────────────────┴─────────────────┘</pre>
+    </div>
+  </section>
+
+  <!-- ===================== TOKEN FILE ===================== -->
+  <section class="block" id="tailwind">
+    <div class="sec-head"><span class="n">07</span><h2>Tailwind v4 <code style="font-family:var(--font-mono);font-size:22px">@theme</code></h2><p>The copy-paste token file ships alongside this page as <code style="font-family:var(--font-mono);font-size:12px">equerry-theme.css</code>. Semantic colors map with <code style="font-family:var(--font-mono);font-size:12px">@theme inline</code> so utilities flip automatically under <code style="font-family:var(--font-mono);font-size:12px">.dark</code> — no duplicate classes.</p></div>
+    <div class="demo">
+      <div class="codeblock">
+        <div class="cb-head"><span class="d"></span>equerry-theme.css · excerpt</div>
+        <pre><span class="kw">@import</span> <span class="st">"tailwindcss"</span>;
+<span class="kw">@plugin</span> <span class="st">"@tailwindcss/typography"</span>;
+<span class="kw">@custom-variant</span> dark (&amp;:where(.dark, .dark *));
+
+<span class="cm">/* semantic vars flip on .dark */</span>
+:root {
+  --bg:#F5F3EC; --surface:#FFFFFF; --text:#20211C; --muted:#736E60;
+  --primary:#3A7D5C; --wash:#EAF1EA; --border:#E8E3D7;
+}
+.dark {
+  --bg:#141611; --surface:#1C1F18; --text:#F1EFE7; --muted:#9C978A;
+  --primary:#62B98C; --wash:#1B2A20; --border:#2D3128;
+}
+
+<span class="cm">/* map → utilities (bg-bg, text-muted, bg-primary, …) */</span>
+<span class="kw">@theme inline</span> {
+  --color-bg: <span class="kw">var</span>(--bg);
+  --color-primary: <span class="kw">var</span>(--primary);
+  --color-border: <span class="kw">var</span>(--border);
+  --font-display: <span class="st">"Hanken Grotesk"</span>, sans-serif;
+  --radius-lg: 14px;
+  --container-prose: 46rem;
+}</pre>
+      </div>
+      <p class="note-inline">Full file includes @font-face blocks, the complete palette, type scale, radius/shadow/container tokens, and the prose mapping for <code style="font-family:var(--font-mono)">@tailwindcss/typography</code>.</p>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <p><b style="color:var(--text)">Files in this delivery:</b> <code>Equerry — Design System.html</code> (this living styleguide) · <code>styleguide.css</code> (its component reference) · <code>equerry-theme.css</code> (the Tailwind v4 <code>@theme</code> token file you drop into the SvelteKit app).</p>
+    <p style="margin-top:10px">Typefaces — Hanken Grotesk, Inter, IBM Plex Mono — are all libre (OFL) and self-hostable. The Google Fonts link here is preview-only; the shipped static site self-hosts <code>.woff2</code> from <code>/static/fonts</code> with <code>@font-face</code>, per the no-CDN constraint. Store badges shown are placeholders for the official Google Play &amp; F-Droid artwork.</p>
+    <div class="links">
+      <a href="equerry-theme.css">↗ equerry-theme.css</a>
+      <a href="#color">Color</a>
+      <a href="#type">Type</a>
+      <a href="#components">Components</a>
+      <a href="#wireframes">Wireframes</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var root = document.documentElement;
+    var KEY = "equerry-theme";
+    var saved = localStorage.getItem(KEY);
+    if (saved === "dark") root.classList.add("dark");
+
+    var hexIds = {
+      "--bg":"hx-bg","--surface":"hx-surface","--surface-2":"hx-surface2","--text":"hx-text",
+      "--muted":"hx-muted","--primary":"hx-primary","--primary-hover":"hx-primaryh","--accent":"hx-accent",
+      "--wash":"hx-wash","--primary-ink":"hx-pink","--border":"hx-border","--hair":"hx-hair",
+      "--success":"hx-success","--warn":"hx-warn","--danger":"hx-danger"
+    };
+    function syncHex(){
+      var cs = getComputedStyle(root);
+      for (var v in hexIds){
+        var el = document.getElementById(hexIds[v]);
+        if(!el) continue;
+        var raw = cs.getPropertyValue(v).trim();
+        if(raw) el.textContent = raw.toUpperCase();
+      }
+    }
+    document.getElementById("themeToggle").addEventListener("click", function(){
+      root.classList.toggle("dark");
+      localStorage.setItem(KEY, root.classList.contains("dark") ? "dark" : "light");
+      setTimeout(syncHex, 30);
+    });
+    syncHex();
+  })();
+</script>
+
+</body>
+</html>

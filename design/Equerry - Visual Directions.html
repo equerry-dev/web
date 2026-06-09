@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Equerry — Visual Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ============ PAGE SHELL ============ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body {
+    background: #e9e8e4;
+    color: #1c1b18;
+    font-family: "Inter", system-ui, sans-serif;
+    line-height: 1.5;
+    padding: 56px clamp(20px, 5vw, 80px) 120px;
+  }
+  .page-head { max-width: 1180px; margin: 0 auto 56px; }
+  .kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: #6c6a62; margin-bottom: 18px;
+  }
+  .page-head h1 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(30px, 4vw, 46px); font-weight: 600; letter-spacing: -0.02em;
+    line-height: 1.05; margin-bottom: 18px;
+  }
+  .page-head p.lede {
+    font-size: 17px; color: #46443d; max-width: 70ch; line-height: 1.6;
+  }
+  .decisions {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px;
+  }
+  .decisions span {
+    font-family: "IBM Plex Mono", monospace; font-size: 11.5px; letter-spacing: 0.02em;
+    background: #fff; border: 1px solid #d3d1c9; border-radius: 999px;
+    padding: 6px 12px; color: #38362f;
+  }
+  .decisions span b { color: #2f6b4f; font-weight: 600; }
+
+  /* ============ FRAME (one direction) ============ */
+  .frame { max-width: 1180px; margin: 0 auto 64px; }
+  .frame-label {
+    display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .frame-label .num {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.14em;
+    color: #6c6a62; text-transform: uppercase;
+  }
+  .frame-label .name {
+    font-family: "Space Grotesk", sans-serif; font-size: 23px; font-weight: 600; letter-spacing: -0.01em;
+  }
+  .frame-label .tag { font-size: 14px; color: #5b594f; }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(20,18,12,0.04), 0 18px 40px -28px rgba(20,18,12,0.35);
+  }
+
+  /* ============ DIRECTION TOKENS ============ */
+  /* D1 — Ledger */
+  .dir1 {
+    --bg:#FBFAF7; --surface:#FFFFFF; --text:#16140F; --muted:#6B6557;
+    --primary:#2F6B4F; --primary-ink:#FFFFFF; --accent:#1F5138;
+    --border:#E7E3D9; --hair:#ECE8DE; --success:#2F6B4F; --warn:#B5862F;
+    --radius:8px; --font-display:"Space Grotesk", sans-serif; --font-body:"Inter", sans-serif;
+    --font-mono:"IBM Plex Mono", monospace;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  }
+  .dir1 .dark {
+    --bg:#121311; --surface:#1A1C19; --text:#F2F0EA; --muted:#9A968B;
+    --primary:#5FB089; --primary-ink:#0C140F; --accent:#7FC9A2;
+    --border:#2C2E2A; --hair:#24261F; --success:#5FB089; --warn:#D6A84E;
+  }
+
+  /* D2 — Schematic */
+  .dir2 {
+    --bg:#F6F8F6; --surface:#FFFFFF; --text:#121815; --muted:#5E6A62;
+    --primary:#1F5A41; --primary-ink:#FFFFFF; --accent:#0E3E2B;
+    --border:#DCE3DC; --hair:#E4EAE3; --success:#1F5A41; --warn:#9A6B1E;
+    --radius:4px; --font-display:"Space Grotesk", sans-serif; --font-body:"Inter", sans-serif;
+    --font-mono:"JetBrains Mono", monospace;
+    --grid: 22px;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='none' stroke='%231f5a41' stroke-width='0.5' opacity='0.06'%3E%3Cpath d='M0 0H44V44'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .dir2 .dark {
+    --bg:#0E1311; --surface:#141C18; --text:#EAF0EC; --muted:#8FA096;
+    --primary:#4FC58E; --primary-ink:#06140D; --accent:#7FE0B4;
+    --border:#21302A; --hair:#1A2520; --success:#4FC58E; --warn:#D4A24C;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44'%3E%3Cg fill='none' stroke='%234fc58e' stroke-width='0.5' opacity='0.07'%3E%3Cpath d='M0 0H44V44'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* D3 — Field Guide */
+  .dir3 {
+    --bg:#F5F3EC; --surface:#FFFFFF; --text:#20211C; --muted:#736E60;
+    --primary:#3A7D5C; --primary-ink:#FFFFFF; --accent:#2A6347; --wash:#EAF1EA;
+    --border:#E8E3D7; --hair:#EFEBE0; --success:#3A7D5C; --warn:#B07A2A;
+    --radius:14px; --font-display:"Hanken Grotesk", sans-serif; --font-body:"Inter", sans-serif;
+    --font-mono:"IBM Plex Mono", monospace;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+  .dir3 .dark {
+    --bg:#141611; --surface:#1C1F18; --text:#F1EFE7; --muted:#9C978A;
+    --primary:#62B98C; --primary-ink:#0A150F; --accent:#86D2AC; --wash:#1B2A20;
+    --border:#2D3128; --hair:#252920; --success:#62B98C; --warn:#D6A559;
+  }
+
+  /* ============ STAGE (bg with grain) ============ */
+  .stage {
+    background: var(--bg);
+    background-image: var(--grain);
+    color: var(--text);
+    font-family: var(--font-body);
+    padding: 32px clamp(20px, 3vw, 40px) 38px;
+  }
+  .stage + .stage { border-top: 1px solid var(--border); }
+  .stage.dark { color: var(--text); }
+  .stage-tag {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
+  }
+  .stage-tag::after { content:""; flex:1; height:1px; background: var(--hair); }
+
+  /* ============ PALETTE ============ */
+  .pal-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 28px; margin-bottom: 8px; }
+  .pal { }
+  .pal h4 {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px; font-weight: 500;
+  }
+  .swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .sw { border-radius: 6px; overflow: hidden; border: 1px solid var(--hair); }
+  .sw .chip { height: 40px; }
+  .sw .lab {
+    font-family: var(--font-mono); font-size: 8.5px; line-height: 1.25; padding: 5px 5px 6px;
+    color: var(--muted); background: var(--surface); border-top: 1px solid var(--hair);
+  }
+  .sw .lab b { display:block; color: var(--text); font-weight: 600; font-size: 9px; letter-spacing: 0.01em; }
+
+  /* ============ MAIN GRID ============ */
+  .grid2 { display: grid; grid-template-columns: 1.15fr 1fr; gap: 30px; align-items: start; }
+  @media (max-width: 860px){ .grid2 { grid-template-columns: 1fr; } }
+
+  /* ---- Type specimen ---- */
+  .type-spec .big {
+    font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; line-height: 1;
+    font-size: 52px; margin-bottom: 4px;
+  }
+  .dir3 .type-spec .big { font-weight: 700; }
+  .type-spec .scale-row { display: flex; align-items: baseline; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--hair); }
+  .type-spec .scale-row .tok { font-family: var(--font-mono); font-size: 10px; color: var(--muted); width: 64px; flex: none; }
+  .type-spec .scale-row .ex { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.01em; color: var(--text); }
+  .type-spec .body-sample { margin-top: 16px; font-size: 14.5px; color: var(--muted); line-height: 1.62; max-width: 46ch; }
+  .type-spec .body-sample b { color: var(--text); font-weight: 600; }
+  .type-spec .mono-sample { margin-top: 14px; font-family: var(--font-mono); font-size: 12.5px; color: var(--text); }
+  .type-spec .mono-sample span { color: var(--primary); }
+  .fontline { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); margin-top: 16px; letter-spacing: 0.01em; }
+  .fontline b { color: var(--text); }
+
+  /* ---- Hero mock ---- */
+  .hero { }
+  .hero .eyebrow {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--primary); margin-bottom: 16px; display: inline-flex; align-items:center; gap: 8px;
+  }
+  .hero .eyebrow .dot { width:6px;height:6px;border-radius:999px;background:var(--primary); }
+  .hero h2 {
+    font-family: var(--font-display); font-weight: 600; letter-spacing: -0.025em; line-height: 1.02;
+    font-size: clamp(30px, 3.4vw, 40px); color: var(--text); margin-bottom: 16px;
+  }
+  .dir3 .hero h2 { font-weight: 700; letter-spacing: -0.02em; }
+  .hero h2 em { font-style: normal; color: var(--primary); }
+  .hero p.sub { font-size: 15.5px; color: var(--muted); line-height: 1.6; max-width: 44ch; margin-bottom: 24px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+
+  .btn {
+    font-family: var(--font-body); font-size: 14.5px; font-weight: 600; letter-spacing: -0.005em;
+    padding: 11px 20px; border-radius: var(--radius); cursor: pointer; border: 1px solid transparent;
+    display: inline-flex; align-items: center; gap: 9px; transition: transform .12s ease, box-shadow .12s ease;
+    text-decoration: none;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--primary); color: var(--primary-ink); box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+  .btn-primary:hover { box-shadow: 0 6px 18px -8px var(--primary); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-ghost:hover { border-color: var(--muted); }
+  .btn svg { width: 16px; height: 16px; }
+
+  .trust { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.01em;
+    display: inline-flex; align-items: center; gap: 7px; color: var(--text);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 6px 11px 6px 9px;
+  }
+  .dir2 .chip { border-radius: 4px; border-style: solid; }
+  .chip svg { width: 13px; height: 13px; color: var(--primary); flex: none; }
+
+  /* ---- Component strip ---- */
+  .comp-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 18px; }
+  @media (max-width: 860px){ .comp-grid { grid-template-columns: 1fr; } }
+
+  .fcard {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px; position: relative;
+  }
+  .dir2 .fcard { border-style: solid; box-shadow: none; }
+  .fcard .ic {
+    width: 34px; height: 34px; border-radius: calc(var(--radius) - 2px); display: grid; place-items: center;
+    background: color-mix(in oklab, var(--primary) 14%, transparent); color: var(--primary); margin-bottom: 14px;
+  }
+  .fcard .ic svg { width: 18px; height: 18px; }
+  .fcard h3 { font-family: var(--font-display); font-size: 17px; font-weight: 600; letter-spacing:-0.01em; color: var(--text); margin-bottom: 7px; }
+  .fcard p { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+  /* schematic mini diagram */
+  .slotmap { margin-top: 16px; display: grid; gap: 7px; }
+  .slot { display: grid; grid-template-columns: 78px 1fr; align-items: center; gap: 10px; }
+  .slot .k { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); }
+  .slot .v {
+    font-family: var(--font-mono); font-size: 10.5px; color: var(--text);
+    background: var(--bg); border: 1px dashed var(--border); border-radius: 5px; padding: 4px 9px;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .slot .v::before { content:""; width:5px; height:5px; border-radius:999px; background: var(--primary); }
+
+  .callout {
+    border: 1px solid var(--border); border-left: 3px solid var(--primary);
+    border-radius: var(--radius); background: color-mix(in oklab, var(--primary) 6%, var(--surface));
+    padding: 14px 16px; display: flex; gap: 11px; align-items: flex-start;
+  }
+  .dir2 .callout { border-left-width: 3px; }
+  .callout svg { width: 16px; height: 16px; color: var(--primary); flex: none; margin-top: 2px; }
+  .callout .ct { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .callout .ct b { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); display:block; margin-bottom: 3px; }
+
+  .codeblock {
+    margin-top: 18px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; grid-column: 1 / -1;
+  }
+  .codeblock .cb-head {
+    display: flex; align-items: center; gap: 8px; padding: 9px 14px; border-bottom: 1px solid var(--hair);
+    font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); letter-spacing: 0.04em;
+  }
+  .codeblock .cb-head .d { width: 9px; height: 9px; border-radius: 999px; border: 1px solid var(--border); }
+  .codeblock pre {
+    padding: 14px 16px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.7; color: var(--text);
+    overflow-x: auto;
+  }
+  .codeblock .cm { color: var(--muted); }
+  .codeblock .kw { color: var(--primary); }
+  .codeblock .st { color: var(--accent); }
+
+  /* ---- download badges ---- */
+  .dl-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; align-items: center; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    background: var(--text); color: var(--bg); border-radius: var(--radius); padding: 9px 16px 9px 13px;
+    border: 1px solid var(--text);
+  }
+  .badge.alt { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .badge svg { width: 22px; height: 22px; flex:none; }
+  .badge .bt { display: flex; flex-direction: column; line-height: 1.1; }
+  .badge .bt small { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; }
+  .badge .bt strong { font-family: var(--font-display); font-size: 15px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
+  .badge .bt small { white-space: nowrap; }
+  .ph-note { font-family: var(--font-mono); font-size: 10px; color: var(--muted); }
+
+  /* dark stage tweaks */
+  .stage.dark .badge { box-shadow: none; }
+
+  .why { margin-top: 22px; font-size: 13.5px; color: var(--muted); line-height: 1.6; max-width: 76ch; }
+  .why b { color: var(--text); font-weight: 600; }
+
+  .foot { max-width: 1180px; margin: 70px auto 0; font-size: 13px; color: #5b594f; line-height: 1.6; }
+  .foot b { color:#1c1b18; }
+  .foot code { font-family: "IBM Plex Mono", monospace; font-size: 12px; background:#fff; border:1px solid #d3d1c9; padding: 1px 6px; border-radius: 5px; }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="kicker">Equerry Web · Visual System · Round 1 — Direction</div>
+  <h1>Three takes on calm, credible privacy.</h1>
+  <p class="lede">All three share the DNA you chose — <b>Editorial Swiss</b>: an airy baseline grid, strong geometric type, one privacy-green accent, and trust signalled through restraint rather than gradients. They differ in <b>temperature, green shade, mono prominence, and craft intensity</b>. Each is shown as a working mini-styleguide: palette (light + dark), type scale, a hero, and the load-bearing components. Pick one — or mix attributes across them — and I'll build the full living styleguide plus the Tailwind v4 <code style="font-family:'IBM Plex Mono';font-size:13px">@theme</code> token file.</p>
+  <div class="decisions">
+    <span>Aesthetic · <b>Editorial Swiss</b></span>
+    <span>Accent · <b>Privacy green</b></span>
+    <span>Type · <b>Geometric + grotesk</b></span>
+    <span>Mono · <b>Medium</b></span>
+    <span>Craft · <b>Subtle</b></span>
+    <span>Mode · <b>Light-first, dark ships</b></span>
+  </div>
+</header>
+
+<!-- =================== DIRECTION 1 =================== -->
+<section class="frame dir1">
+  <div class="frame-label">
+    <span class="num">Direction 01</span>
+    <span class="name">Ledger</span>
+    <span class="tag">Warm-neutral, classical, quiet. The refined baseline.</span>
+  </div>
+  <div class="panel">
+
+    <!-- light stage -->
+    <div class="stage">
+      <div class="stage-tag">Light · primary</div>
+
+      <!-- palette -->
+      <div class="pal-wrap">
+        <div class="pal">
+          <h4>Surfaces &amp; ink</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#FBFAF7"></div><div class="lab"><b>bg</b>#FBFAF7</div></div>
+            <div class="sw"><div class="chip" style="background:#FFFFFF"></div><div class="lab"><b>surface</b>#FFFFFF</div></div>
+            <div class="sw"><div class="chip" style="background:#16140F"></div><div class="lab"><b>text</b>#16140F</div></div>
+            <div class="sw"><div class="chip" style="background:#6B6557"></div><div class="lab"><b>muted</b>#6B6557</div></div>
+          </div>
+        </div>
+        <div class="pal">
+          <h4>Accent &amp; state</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#2F6B4F"></div><div class="lab"><b>primary</b>#2F6B4F</div></div>
+            <div class="sw"><div class="chip" style="background:#1F5138"></div><div class="lab"><b>accent</b>#1F5138</div></div>
+            <div class="sw"><div class="chip" style="background:#E7E3D9"></div><div class="lab"><b>border</b>#E7E3D9</div></div>
+            <div class="sw"><div class="chip" style="background:#B5862F"></div><div class="lab"><b>warn</b>#B5862F</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:30px">
+        <!-- hero -->
+        <div class="hero">
+          <span class="eyebrow"><span class="dot"></span>Privacy-first · Android assistant</span>
+          <h2>Equerry — pronounced <em>E-query</em>. Just ask.</h2>
+          <p class="sub">A default digital assistant that routes your requests to the AI backends you choose. No accounts. No telemetry. Open source.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg>
+              Download Equerry
+            </a>
+            <a class="btn btn-ghost" href="#">Read the docs</a>
+          </div>
+          <div class="trust">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>No accounts</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>No telemetry</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>GPL-3.0</span>
+          </div>
+        </div>
+
+        <!-- type spec -->
+        <div class="type-spec">
+          <div class="big">Aa</div>
+          <div class="scale-row"><span class="tok">display/3xl</span><span class="ex" style="font-size:24px">Just ask.</span></div>
+          <div class="scale-row"><span class="tok">heading/xl</span><span class="ex" style="font-size:19px">Capability-Slots</span></div>
+          <div class="scale-row"><span class="tok">body/base</span><span class="ex" style="font-size:15px;font-weight:400;font-family:var(--font-body)">Routes to the model you pick.</span></div>
+          <p class="body-sample">Body copy in Inter at a comfortable measure. <b>Equerry reads the screen via the sanctioned Assist API</b> — and never touches it without your confirmation.</p>
+          <div class="mono-sample">slot.chat = <span>ollama://llama3.1</span></div>
+          <div class="fontline"><b>Space Grotesk</b> display · <b>Inter</b> body · <b>IBM Plex Mono</b> labels</div>
+        </div>
+      </div>
+
+      <!-- components -->
+      <div class="comp-grid" style="margin-top:32px">
+        <div class="fcard">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg></div>
+          <h3>Capability-Slot system</h3>
+          <p>Wire different jobs to different backends — local chat, multimodal screen-reading — each in its own slot.</p>
+          <div class="slotmap">
+            <div class="slot"><span class="k">chat</span><span class="v">ollama · llama3.1</span></div>
+            <div class="slot"><span class="k">vision</span><span class="v">anthropic · claude</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="callout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+            <div class="ct"><b>Privacy note</b>Equerry reads the screen via Android's Assist API — and you confirm every send.</div>
+          </div>
+          <div class="dl-row">
+            <a class="badge" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l16 9-16 9V3z"/></svg><span class="bt"><small>Get it on</small><strong>Google Play</strong></span></a>
+            <a class="badge alt" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg><span class="bt"><small>Get it on</small><strong>F-Droid</strong></span></a>
+          </div>
+          <div class="ph-note" style="margin-top:8px">↑ placeholders for the official store badges</div>
+        </div>
+        <div class="codeblock">
+          <div class="cb-head"><span class="d"></span>equerry.toml</div>
+          <pre><span class="cm"># capability slots — bring your own backend</span>
+<span class="kw">[slots]</span>
+chat      = <span class="st">"ollama://llama3.1"</span>      <span class="cm"># local, private</span>
+vision    = <span class="st">"anthropic://claude"</span>     <span class="cm"># screen-reading</span>
+summarize = <span class="st">"openrouter://auto"</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- dark stage -->
+    <div class="stage dark">
+      <div class="stage-tag">Dark · ships</div>
+      <div class="pal-wrap">
+        <div class="pal">
+          <h4>Surfaces &amp; ink</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#121311"></div><div class="lab"><b>bg</b>#121311</div></div>
+            <div class="sw"><div class="chip" style="background:#1A1C19"></div><div class="lab"><b>surface</b>#1A1C19</div></div>
+            <div class="sw"><div class="chip" style="background:#F2F0EA"></div><div class="lab"><b>text</b>#F2F0EA</div></div>
+            <div class="sw"><div class="chip" style="background:#9A968B"></div><div class="lab"><b>muted</b>#9A968B</div></div>
+          </div>
+        </div>
+        <div class="pal">
+          <h4>Accent &amp; state</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#5FB089"></div><div class="lab"><b>primary</b>#5FB089</div></div>
+            <div class="sw"><div class="chip" style="background:#7FC9A2"></div><div class="lab"><b>accent</b>#7FC9A2</div></div>
+            <div class="sw"><div class="chip" style="background:#2C2E2A"></div><div class="lab"><b>border</b>#2C2E2A</div></div>
+            <div class="sw"><div class="chip" style="background:#D6A84E"></div><div class="lab"><b>warn</b>#D6A84E</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero" style="margin-top:28px">
+        <span class="eyebrow"><span class="dot"></span>Privacy-first · Android assistant</span>
+        <h2>Equerry — pronounced <em>E-query</em>. Just ask.</h2>
+        <div class="cta-row" style="margin-bottom:0">
+          <a class="btn btn-primary" href="#">Download Equerry</a>
+          <a class="btn btn-ghost" href="#">Read the docs</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p class="why"><b>Why Ledger:</b> warm paper tones and a muted forest green read as honest and established — closer to a field manual than a startup. Lowest-risk, highest-timelessness. Best if you want Equerry to feel <b>trustworthy and unflashy</b>.</p>
+</section>
+
+<!-- =================== DIRECTION 2 =================== -->
+<section class="frame dir2">
+  <div class="frame-label">
+    <span class="num">Direction 02</span>
+    <span class="name">Schematic</span>
+    <span class="tag">Cool, engineered, mono-forward. Credible to the docs crowd.</span>
+  </div>
+  <div class="panel">
+    <div class="stage">
+      <div class="stage-tag">Light · primary</div>
+      <div class="pal-wrap">
+        <div class="pal">
+          <h4>Surfaces &amp; ink</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#F6F8F6"></div><div class="lab"><b>bg</b>#F6F8F6</div></div>
+            <div class="sw"><div class="chip" style="background:#FFFFFF"></div><div class="lab"><b>surface</b>#FFFFFF</div></div>
+            <div class="sw"><div class="chip" style="background:#121815"></div><div class="lab"><b>text</b>#121815</div></div>
+            <div class="sw"><div class="chip" style="background:#5E6A62"></div><div class="lab"><b>muted</b>#5E6A62</div></div>
+          </div>
+        </div>
+        <div class="pal">
+          <h4>Accent &amp; state</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#1F5A41"></div><div class="lab"><b>primary</b>#1F5A41</div></div>
+            <div class="sw"><div class="chip" style="background:#0E3E2B"></div><div class="lab"><b>accent</b>#0E3E2B</div></div>
+            <div class="sw"><div class="chip" style="background:#DCE3DC"></div><div class="lab"><b>border</b>#DCE3DC</div></div>
+            <div class="sw"><div class="chip" style="background:#9A6B1E"></div><div class="lab"><b>warn</b>#9A6B1E</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:30px">
+        <div class="hero">
+          <span class="eyebrow"><span class="dot"></span>SYS · default.assistant</span>
+          <h2>Equerry — pronounced <em>E-query</em>. Just ask.</h2>
+          <p class="sub">Register as the system assistant. Route requests to the backends you wire up. No accounts, no telemetry, no Gemini.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg>
+              Download
+            </a>
+            <a class="btn btn-ghost" href="#">$ read the docs</a>
+          </div>
+          <div class="trust">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>no_accounts</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>no_telemetry</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>GPL-3.0</span>
+          </div>
+        </div>
+        <div class="type-spec">
+          <div class="big">Aa</div>
+          <div class="scale-row"><span class="tok">display/3xl</span><span class="ex" style="font-size:24px">Just ask.</span></div>
+          <div class="scale-row"><span class="tok">heading/xl</span><span class="ex" style="font-size:19px">Capability-Slots</span></div>
+          <div class="scale-row"><span class="tok">mono/label</span><span class="ex" style="font-size:13px;font-family:var(--font-mono);color:var(--primary)">SLOT · VISION</span></div>
+          <p class="body-sample">Body in Inter, but the voice is mono. <b>Eyebrows, labels, metadata and badges all run in JetBrains Mono</b> — the interface reads like a well-documented config.</p>
+          <div class="mono-sample">slot.chat = <span>ollama://llama3.1</span></div>
+          <div class="fontline"><b>Space Grotesk</b> display · <b>Inter</b> body · <b>JetBrains Mono</b> labels</div>
+        </div>
+      </div>
+
+      <div class="comp-grid" style="margin-top:32px">
+        <div class="fcard">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg></div>
+          <h3>Capability-Slot system</h3>
+          <p>Each capability is a labelled socket. Plug a backend in; swap it without touching the rest.</p>
+          <div class="slotmap">
+            <div class="slot"><span class="k">chat</span><span class="v">ollama · llama3.1</span></div>
+            <div class="slot"><span class="k">vision</span><span class="v">anthropic · claude</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="callout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+            <div class="ct"><b>NOTE · privacy</b>Reads the screen via the Assist API. You confirm every send — nothing leaves without a tap.</div>
+          </div>
+          <div class="dl-row">
+            <a class="badge" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l16 9-16 9V3z"/></svg><span class="bt"><small>Get it on</small><strong>Google Play</strong></span></a>
+            <a class="badge alt" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg><span class="bt"><small>Get it on</small><strong>F-Droid</strong></span></a>
+          </div>
+          <div class="ph-note" style="margin-top:8px">↑ placeholders for the official store badges</div>
+        </div>
+        <div class="codeblock">
+          <div class="cb-head"><span class="d"></span>~/.config/equerry.toml</div>
+          <pre><span class="cm"># capability slots — bring your own backend</span>
+<span class="kw">[slots]</span>
+chat      = <span class="st">"ollama://llama3.1"</span>      <span class="cm"># local, private</span>
+vision    = <span class="st">"anthropic://claude"</span>     <span class="cm"># screen-reading</span>
+summarize = <span class="st">"openrouter://auto"</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage dark">
+      <div class="stage-tag">Dark · ships</div>
+      <div class="pal-wrap">
+        <div class="pal">
+          <h4>Surfaces &amp; ink</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#0E1311"></div><div class="lab"><b>bg</b>#0E1311</div></div>
+            <div class="sw"><div class="chip" style="background:#141C18"></div><div class="lab"><b>surface</b>#141C18</div></div>
+            <div class="sw"><div class="chip" style="background:#EAF0EC"></div><div class="lab"><b>text</b>#EAF0EC</div></div>
+            <div class="sw"><div class="chip" style="background:#8FA096"></div><div class="lab"><b>muted</b>#8FA096</div></div>
+          </div>
+        </div>
+        <div class="pal">
+          <h4>Accent &amp; state</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#4FC58E"></div><div class="lab"><b>primary</b>#4FC58E</div></div>
+            <div class="sw"><div class="chip" style="background:#7FE0B4"></div><div class="lab"><b>accent</b>#7FE0B4</div></div>
+            <div class="sw"><div class="chip" style="background:#21302A"></div><div class="lab"><b>border</b>#21302A</div></div>
+            <div class="sw"><div class="chip" style="background:#D4A24C"></div><div class="lab"><b>warn</b>#D4A24C</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero" style="margin-top:28px">
+        <span class="eyebrow"><span class="dot"></span>SYS · default.assistant</span>
+        <h2>Equerry — pronounced <em>E-query</em>. Just ask.</h2>
+        <div class="cta-row" style="margin-bottom:0">
+          <a class="btn btn-primary" href="#">Download</a>
+          <a class="btn btn-ghost" href="#">$ read the docs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="why"><b>Why Schematic:</b> the faint grid, sharp 4px corners and mono-everywhere voice say "engineered, inspectable, open." It earns instant credibility with the technical readers who'll live in the docs. Best if you want Equerry to feel <b>precise and hacker-trustworthy</b>.</p>
+</section>
+
+<!-- =================== DIRECTION 3 =================== -->
+<section class="frame dir3">
+  <div class="frame-label">
+    <span class="num">Direction 03</span>
+    <span class="name">Field Guide</span>
+    <span class="tag">Warmer, softer, roomier. Calm and never intimidating.</span>
+  </div>
+  <div class="panel">
+    <div class="stage">
+      <div class="stage-tag">Light · primary</div>
+      <div class="pal-wrap">
+        <div class="pal">
+          <h4>Surfaces &amp; ink</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#F5F3EC"></div><div class="lab"><b>bg</b>#F5F3EC</div></div>
+            <div class="sw"><div class="chip" style="background:#FFFFFF"></div><div class="lab"><b>surface</b>#FFFFFF</div></div>
+            <div class="sw"><div class="chip" style="background:#20211C"></div><div class="lab"><b>text</b>#20211C</div></div>
+            <div class="sw"><div class="chip" style="background:#736E60"></div><div class="lab"><b>muted</b>#736E60</div></div>
+          </div>
+        </div>
+        <div class="pal">
+          <h4>Accent &amp; state</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#3A7D5C"></div><div class="lab"><b>primary</b>#3A7D5C</div></div>
+            <div class="sw"><div class="chip" style="background:#EAF1EA"></div><div class="lab"><b>wash</b>#EAF1EA</div></div>
+            <div class="sw"><div class="chip" style="background:#E8E3D7"></div><div class="lab"><b>border</b>#E8E3D7</div></div>
+            <div class="sw"><div class="chip" style="background:#B07A2A"></div><div class="lab"><b>warn</b>#B07A2A</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid2" style="margin-top:30px">
+        <div class="hero">
+          <span class="eyebrow"><span class="dot"></span>Privacy-first · Android assistant</span>
+          <h2>Equerry — pronounced <em>E-query</em>. Just ask.</h2>
+          <p class="sub">Your phone's assistant, on your terms. Pick the AI that answers. Keep your data yours. Calm, private, and open to everyone.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg>
+              Get Equerry
+            </a>
+            <a class="btn btn-ghost" href="#">Read the docs</a>
+          </div>
+          <div class="trust">
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>No accounts</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>No telemetry</span>
+            <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>GPL-3.0</span>
+          </div>
+        </div>
+        <div class="type-spec">
+          <div class="big">Aa</div>
+          <div class="scale-row"><span class="tok">display/3xl</span><span class="ex" style="font-size:24px">Just ask.</span></div>
+          <div class="scale-row"><span class="tok">heading/xl</span><span class="ex" style="font-size:19px">Capability-Slots</span></div>
+          <div class="scale-row"><span class="tok">body/base</span><span class="ex" style="font-size:15px;font-weight:400;font-family:var(--font-body)">Friendly, roomy, readable.</span></div>
+          <p class="body-sample">Softer Hanken Grotesk headings, generous line-height, gentle green washes behind highlights. <b>Reads as human and unintimidating</b> for a non-technical audience.</p>
+          <div class="mono-sample">slot.chat = <span>ollama://llama3.1</span></div>
+          <div class="fontline"><b>Hanken Grotesk</b> display · <b>Inter</b> body · <b>IBM Plex Mono</b> labels</div>
+        </div>
+      </div>
+
+      <div class="comp-grid" style="margin-top:32px">
+        <div class="fcard" style="background:var(--wash);border-color:transparent">
+          <div class="ic" style="background:#fff"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M17.5 14v7M14 17.5h7"/></svg></div>
+          <h3>Capability-Slot system</h3>
+          <p>Tell Equerry which AI to use for which task. Chat with one, read your screen with another — all your choice.</p>
+          <div class="slotmap">
+            <div class="slot"><span class="k">chat</span><span class="v" style="background:#fff">ollama · llama3.1</span></div>
+            <div class="slot"><span class="k">vision</span><span class="v" style="background:#fff">anthropic · claude</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="callout">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+            <div class="ct"><b>Good to know</b>Equerry reads the screen through Android's official Assist API — and always asks before sending anything.</div>
+          </div>
+          <div class="dl-row">
+            <a class="badge" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l16 9-16 9V3z"/></svg><span class="bt"><small>Get it on</small><strong>Google Play</strong></span></a>
+            <a class="badge alt" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M12 22V12M3 7l9 5 9-5"/></svg><span class="bt"><small>Get it on</small><strong>F-Droid</strong></span></a>
+          </div>
+          <div class="ph-note" style="margin-top:8px">↑ placeholders for the official store badges</div>
+        </div>
+        <div class="codeblock">
+          <div class="cb-head"><span class="d"></span>equerry.toml</div>
+          <pre><span class="cm"># capability slots — bring your own backend</span>
+<span class="kw">[slots]</span>
+chat      = <span class="st">"ollama://llama3.1"</span>      <span class="cm"># local, private</span>
+vision    = <span class="st">"anthropic://claude"</span>     <span class="cm"># screen-reading</span>
+summarize = <span class="st">"openrouter://auto"</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage dark">
+      <div class="stage-tag">Dark · ships</div>
+      <div class="pal-wrap">
+        <div class="pal">
+          <h4>Surfaces &amp; ink</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#141611"></div><div class="lab"><b>bg</b>#141611</div></div>
+            <div class="sw"><div class="chip" style="background:#1C1F18"></div><div class="lab"><b>surface</b>#1C1F18</div></div>
+            <div class="sw"><div class="chip" style="background:#F1EFE7"></div><div class="lab"><b>text</b>#F1EFE7</div></div>
+            <div class="sw"><div class="chip" style="background:#9C978A"></div><div class="lab"><b>muted</b>#9C978A</div></div>
+          </div>
+        </div>
+        <div class="pal">
+          <h4>Accent &amp; state</h4>
+          <div class="swatches">
+            <div class="sw"><div class="chip" style="background:#62B98C"></div><div class="lab"><b>primary</b>#62B98C</div></div>
+            <div class="sw"><div class="chip" style="background:#1B2A20"></div><div class="lab"><b>wash</b>#1B2A20</div></div>
+            <div class="sw"><div class="chip" style="background:#2D3128"></div><div class="lab"><b>border</b>#2D3128</div></div>
+            <div class="sw"><div class="chip" style="background:#D6A559"></div><div class="lab"><b>warn</b>#D6A559</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero" style="margin-top:28px">
+        <span class="eyebrow"><span class="dot"></span>Privacy-first · Android assistant</span>
+        <h2>Equerry — pronounced <em>E-query</em>. Just ask.</h2>
+        <div class="cta-row" style="margin-bottom:0">
+          <a class="btn btn-primary" href="#">Get Equerry</a>
+          <a class="btn btn-ghost" href="#">Read the docs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="why"><b>Why Field Guide:</b> larger radii, soft green washes and a humanist display face lower the temperature — the most welcoming to non-technical privacy-seekers while staying clean. Best if you want Equerry to feel <b>approachable and reassuring</b>.</p>
+</section>
+
+<footer class="foot">
+  <p><b>How to respond:</b> tell me a direction number — or mix freely (e.g. "Ledger's palette, Schematic's mono labels, Field Guide's radii"). Once you pick, I'll deliver the full <b>living styleguide</b> (every component in light + dark), the copy-paste <b>Tailwind v4 <code>@theme</code></b> token file, and the two ASCII wireframes (landing hero + docs).</p>
+  <p style="margin-top:10px">Fonts shown — Space Grotesk, Hanken Grotesk, Inter, IBM Plex Mono, JetBrains Mono — are all libre (OFL) and self-hostable; the CDN here is preview-only. The shipped SvelteKit site self-hosts them as required.</p>
+</footer>
+
+</body>
+</html>
