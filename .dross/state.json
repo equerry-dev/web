@@ -2,9 +2,9 @@
   "version": "0.1.0.0",
   "current_milestone": "v0.1",
   "current_phase": "01-site-shell",
-  "current_phase_status": "complete",
-  "last_activity": "2026-06-09T14:27:21.616083Z",
-  "last_action": "phase 01-site-shell executed (7/7 done)",
+  "current_phase_status": "verified",
+  "last_activity": "2026-06-09T14:36:51.128018Z",
+  "last_action": "verified 01-site-shell: partial (6/6 covered, mutation skipped)",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -81,6 +81,14 @@
     {
       "at": "2026-06-09T14:27:21.616083Z",
       "action": "phase 01-site-shell executed (7/7 done)"
+    },
+    {
+      "at": "2026-06-09T14:36:51.120472Z",
+      "action": "set current_phase_status=verified"
+    },
+    {
+      "at": "2026-06-09T14:36:51.128018Z",
+      "action": "verified 01-site-shell: partial (6/6 covered, mutation skipped)"
     }
   ]
 }
