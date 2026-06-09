@@ -1,0 +1,23 @@
+version: 2
+updates:
+  # App dependencies (pnpm-lock.yaml). Updates are gated by the CI test job.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      dev-dependencies:
+        dependency-type: development
+
+  # Keep the SHA-pinned GitHub Actions current.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+
+  # Keep the digest-pinned Docker base images current.
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly

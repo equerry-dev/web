@@ -1,9 +1,11 @@
-name: Build and publish image
+name: CI
 
 on:
   push:
     branches: [main]
     tags: ['v*']
+  pull_request:
+    branches: [main]
 
 # Least privilege at workflow level; the publish job adds packages:write.
 permissions:
@@ -49,6 +51,8 @@ jobs:
 
   build-and-push:
     needs: test
+    # Publish only on main / tags — never on pull requests.
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -86,3 +90,31 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  # Informational on PRs (non-blocking until the landing page + fonts land,
+  # since the shell still 404s the woff2 fonts which dings best-practices/perf).
+  lighthouse:
+    needs: test
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.14.0'
+
+      - name: Install pnpm
+        run: npm install -g pnpm@10.33.4 --ignore-scripts
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Build
+        run: pnpm build
+
+      - name: Lighthouse CI
+        run: pnpm exec lhci autorun
