@@ -27,6 +27,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
 
+      # Paraglide output (src/lib/paraglide) is gitignored and only produced by the
+      # Vite build/plugin — generate it so typecheck and tests can resolve it.
+      - name: Generate Paraglide messages
+        run: pnpm exec paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide
+
       - name: Install Playwright Chromium
         run: pnpm exec playwright install --with-deps chromium
 
