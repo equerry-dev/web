@@ -4,105 +4,125 @@ id = "01-site-shell"
 [[task]]
 id            = "t-1"
 wave          = 1
-title         = "Theme store + no-flash bootstrap"
-files         = ["src/lib/theme.svelte.ts", "src/app.html"]
+title         = "Component test harness"
+files         = ["vite.config.ts", "package.json"]
 description   = """
-Theme state ('light' | 'dark'): initialise from localStorage, else OS prefers-color-scheme.
-Toggle applies the .dark class on <html> and persists. Add a pre-paint inline script in
-app.html that sets the class before first paint to avoid FOUC.
+Add a browser Vitest 'client' project (vitest-browser-svelte + @vitest/browser playwright
+provider) matching src/**/*.svelte.{test,spec}.ts, so Svelte component tests run. Add
+@axe-core/playwright for the shell e2e a11y scan. Infra that t-3..t-7 rely on.
 """
-covers        = ["c-2"]
+covers        = []
 test_contract = [
-  "if the pre-paint inline script in app.html is removed, an e2e assertion that <html> carries the stored theme class on first load fails (FOUC)",
-  "if the toggle does not write localStorage, an e2e reload test that the chosen theme persists fails",
-  "with empty storage and prefers-color-scheme:dark, if OS preference is not honored the first-visit-dark e2e assertion fails",
+  "if the browser 'client' Vitest project is not registered in vite.config.ts, *.svelte.test.ts component tests are not discovered (the run reports zero component tests)",
+  "if @axe-core/playwright is not installed, importing it in e2e/shell.e2e.ts fails to resolve",
 ]
 status        = "pending"
 
 [[task]]
 id            = "t-2"
 wave          = 1
-title         = "Base components: Button + BrandMark"
-files         = ["src/lib/components/Button.svelte", "src/lib/components/BrandMark.svelte"]
+title         = "Theme store + no-flash bootstrap"
+files         = ["src/lib/theme.svelte.ts", "src/lib/theme.spec.ts", "src/app.html", "e2e/theme.e2e.ts"]
 description   = """
-Button with variant prop (primary / ghost) mapping to the Field Guide theme utilities.
-BrandMark: wordmark 'Equerry' in the display font plus a self-made placeholder geometric SVG mark.
+Theme state ('light' | 'dark') with a pure resolveInitialTheme(storage, prefersDark) helper:
+init from localStorage, else OS prefers-color-scheme. Toggle applies .dark on <html> and
+persists. Pre-paint inline script in app.html sets the class before first paint (no FOUC).
 """
-covers        = ["c-6"]
+covers        = ["c-2"]
 test_contract = [
-  "if the Button variant prop stops mapping primary/ghost to distinct classes, the Button unit test fails",
-  "if BrandMark omits the 'Equerry' wordmark text, its render test fails",
+  "if resolveInitialTheme ignores OS preference when storage is empty, theme.spec.ts (node unit) fails",
+  "if the pre-paint inline script in app.html is removed, e2e/theme.e2e.ts assertion that <html> carries the stored theme class on first load fails (FOUC)",
+  "if the toggle does not write localStorage, the e2e reload-persists-theme assertion fails",
 ]
 status        = "pending"
 
 [[task]]
 id            = "t-3"
 wave          = 2
-depends_on    = ["t-1", "t-2"]
-title         = "Header: desktop nav + toggle + CTA + hamburger"
-files         = ["src/lib/components/Header.svelte", "src/lib/components/ThemeToggle.svelte"]
+depends_on    = ["t-1"]
+title         = "Base components: Button + BrandMark"
+files         = ["src/lib/components/Button.svelte", "src/lib/components/Button.svelte.test.ts", "src/lib/components/BrandMark.svelte", "src/lib/components/BrandMark.svelte.test.ts"]
 description   = """
-Persistent header: brand left; right-side Features (#features / /#features), Docs, GitHub
-icon-link (inline SVG), a primary Download CTA, the theme toggle, and a hamburger button
-(controls the mobile drawer added in t-5). Responsive: full nav on desktop, hamburger below breakpoint.
+Button with a variant prop (primary / ghost) mapping to Field Guide theme utilities.
+BrandMark: wordmark 'Equerry' in the display font plus a self-made placeholder geometric SVG mark.
 """
-covers        = ["c-1", "c-3"]
+covers        = ["c-6"]
 test_contract = [
-  "if any of the Features/Docs/GitHub/Download nav items is dropped, the Header render test asserting their hrefs fails",
-  "if the Download CTA href is wrong, the Header test fails",
+  "if Button's variant prop stops mapping primary/ghost to distinct classes, Button.svelte.test.ts (component) fails",
+  "if BrandMark omits the 'Equerry' wordmark text, BrandMark.svelte.test.ts fails",
 ]
 status        = "pending"
 
 [[task]]
 id            = "t-4"
 wave          = 2
-depends_on    = ["t-2"]
-title         = "Footer: minimal row"
-files         = ["src/lib/components/Footer.svelte"]
+depends_on    = ["t-1", "t-2"]
+title         = "ThemeToggle component"
+files         = ["src/lib/components/ThemeToggle.svelte", "src/lib/components/ThemeToggle.svelte.test.ts"]
 description   = """
-Minimal single-row footer: brand + Docs, GitHub, F-Droid, and License links + copyright.
-GitHub/F-Droid icons are inline SVG (no external requests).
+Toggle button bound to the theme store: shows sun/dark state, flips theme on click,
+reflects current state via aria-pressed. Inline SVG icons (no external requests).
 """
-covers        = ["c-1"]
+covers        = ["c-6"]
 test_contract = [
-  "if a footer link (Docs/GitHub/F-Droid/License) or the copyright is removed, the Footer render test fails",
+  "if clicking ThemeToggle does not flip the store value (and aria-pressed), ThemeToggle.svelte.test.ts fails",
 ]
 status        = "pending"
 
 [[task]]
 id            = "t-5"
 wave          = 3
-depends_on    = ["t-3"]
-title         = "Mobile slide-over drawer + focus-trap"
-files         = ["src/lib/components/MobileNav.svelte"]
+depends_on    = ["t-3", "t-4"]
+title         = "Header + mobile slide-over drawer"
+files         = ["src/lib/components/Header.svelte", "src/lib/components/Header.svelte.test.ts", "src/lib/components/MobileNav.svelte", "src/lib/components/MobileNav.svelte.test.ts"]
 description   = """
-Off-canvas slide-over drawer (from the right) opened by the header hamburger; holds the nav
-links, Download CTA, and theme toggle. Focus-trapped while open; Esc closes and restores focus.
+Header: brand left; right-side Features (#features / /#features), Docs, GitHub icon-link
+(inline SVG), Download CTA, ThemeToggle, and a hamburger below the breakpoint. The hamburger
+opens MobileNav: an off-canvas slide-over drawer (from the right) with the links + CTA + toggle,
+focus-trapped while open; Esc closes and restores focus to the hamburger.
 """
-covers        = ["c-3", "c-5"]
+covers        = ["c-1", "c-3", "c-5"]
 test_contract = [
-  "if focus is not trapped, an e2e test where Tab past the last drawer item should wrap to the first fails",
-  "if Esc does not close the drawer and restore focus to the hamburger, the e2e test fails",
-  "if aria-expanded on the hamburger does not reflect the open state, the e2e test fails",
+  "if any of the Features/Docs/GitHub/Download items is dropped, Header.svelte.test.ts (href assertions) fails",
+  "if focus is not trapped, MobileNav.svelte.test.ts where Tab past the last drawer item should wrap to the first fails",
+  "if Esc does not close the drawer and restore focus to the hamburger, MobileNav.svelte.test.ts fails",
+  "if aria-expanded on the hamburger does not reflect the open state, the test fails",
 ]
 status        = "pending"
 
 [[task]]
 id            = "t-6"
+wave          = 3
+depends_on    = ["t-3"]
+title         = "Footer: minimal row"
+files         = ["src/lib/components/Footer.svelte", "src/lib/components/Footer.svelte.test.ts"]
+description   = """
+Minimal single-row footer: brand + Docs, GitHub, F-Droid, and License links + copyright.
+GitHub/F-Droid icons are inline SVG (no external requests).
+"""
+covers        = ["c-1"]
+test_contract = [
+  "if a footer link (Docs/GitHub/F-Droid/License) or the copyright is removed, Footer.svelte.test.ts fails",
+]
+status        = "pending"
+
+[[task]]
+id            = "t-7"
 wave          = 4
-depends_on    = ["t-3", "t-4", "t-5"]
-title         = "Assemble shell in layout + a11y + privacy checks"
-files         = ["src/routes/+layout.svelte", "src/routes/+page.svelte", "src/routes/layout.css", "e2e/shell.test.ts"]
+depends_on    = ["t-5", "t-6"]
+title         = "Assemble shell in layout + privacy/a11y e2e"
+files         = ["src/routes/+layout.svelte", "src/routes/+page.svelte", "src/routes/layout.css", "e2e/shell.e2e.ts"]
 description   = """
 Wrap all routes with Header + Footer in +layout.svelte; add a skip-to-content link and a
-<main> landmark. Replace the placeholder home page so it renders within the shell. Add e2e
-covering skip-link, zero third-party requests, and an axe scan.
+<main> landmark. Replace the placeholder home page so it renders within the shell. Add
+e2e covering skip-link, zero third-party requests, and an axe scan. (Fonts fall back to
+system-ui until the .woff2 files are added to static/fonts — c-4 is about no external requests.)
 """
 covers        = ["c-1", "c-4", "c-5"]
 test_contract = [
-  "if the skip-link is not the first focusable element or does not move focus to <main>, the e2e test fails",
-  "if loading / or a second route issues any non-same-origin network request, the zero-third-party e2e test fails",
-  "if an axe-core scan of / reports violations (landmarks or AA contrast), the e2e test fails",
-  "if the header or footer is missing on any route, the e2e test fails",
+  "if the skip-link is not the first focusable element or does not move focus to <main>, e2e/shell.e2e.ts fails",
+  "if loading / or a second route issues any non-same-origin network request, the zero-third-party e2e assertion fails",
+  "if an axe-core scan of / reports violations (landmarks or AA contrast), the e2e assertion fails",
+  "if the header or footer is missing on any route, the e2e assertion fails",
 ]
 status        = "pending"
