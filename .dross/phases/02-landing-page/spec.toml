@@ -1,0 +1,64 @@
+[phase]
+id        = "02-landing-page"
+title     = "Landing page"
+milestone = "v0.1"
+
+[[criteria]]
+id   = "c-1"
+text = "A hero section presents Equerry's one-line pitch and primary CTAs (Download + a secondary How-it-works/Docs link) above the fold."
+
+[[criteria]]
+id   = "c-2"
+text = "A #features section (matching the shell's nav anchor) communicates all three differentiators, each with a heading and short explanation."
+
+[[criteria]]
+id   = "c-3"
+text = "Download CTAs read store URLs from a single source-of-truth config; an unset URL renders a clear coming-soon/disabled state, never a dead link."
+
+[[criteria]]
+id   = "c-4"
+text = "The landing page is responsive from ~320px to desktop and renders correctly in light and dark with WCAG AA contrast."
+
+[[criteria]]
+id   = "c-5"
+text = "The page makes zero third-party network requests at runtime, verifiable in browser devtools."
+
+[[criteria]]
+id   = "c-6"
+text = "The page prerenders fully static via pnpm build; every CTA and anchor target is reachable."
+
+[[decisions]]
+key    = "hero_framing"
+choice = "Trust-first hero: a credibility-led headline (private AI assistant that never sees your data) with subcopy and a dual CTA. Reserve space for a real app screenshot/device mockup, shipping a placeholder now and swapping it later."
+why    = "Trust-first tone matches the privacy-is-the-product pitch and the Bitwarden exemplar; the screenshot placeholder follows phase 01's brand-mark pattern so the hero ships without blocking on a real asset."
+locked = true
+
+[[decisions]]
+key    = "features_layout"
+choice = "Each differentiator gets a full-width row, alternating text-left/text-right with a per-row visual (placeholders allowed). Order: Capability-Slot, then Privacy, then FOSS/F-Droid."
+why    = "Alternating editorial rows give the three differentiators room to breathe; differentiation-first order leads with the unique mechanism nobody else has, then why it's private, then the openness guarantee."
+locked = true
+
+[[decisions]]
+key    = "capability_slot_depth"
+choice = "Explain Capability-Slot in its row with a short tagline plus one concrete example (e.g. local model for transcription, cloud model for reasoning), with a learn-more link to docs for full detail."
+why    = "Capability-Slot is the headline differentiator but the most abstract; a concrete example makes it click on the landing without a diagram, while docs carry the depth."
+locked = true
+
+[[decisions]]
+key    = "download_cta"
+choice = "Self-hosted official Google Play / F-Droid badge images, appearing in the hero and repeated in a closing CTA section at page bottom. Badges honor the coming-soon/disabled state from c-3 when a store URL is unset."
+why    = "Official badges are familiar and recognizable; repeating at the bottom recovers conversion after the user scrolls the features. Badge images must be self-hosted (not loaded from Google/F-Droid CDNs) to satisfy rule r-01."
+locked = true
+
+[[deferred]]
+text = "Real app screenshot/device mockup asset for the hero."
+why  = "Ship a placeholder this phase; swap in a real screenshot later."
+
+[[deferred]]
+text = "Real Google Play and F-Droid store URLs."
+why  = "Listings aren't live yet; the c-3 config switch flips them on without a code change once they exist."
+
+[[deferred]]
+text = "Social-proof / testimonials block (Bitwarden-style)."
+why  = "Not needed for v0.1; revisit once there's real social proof to show."

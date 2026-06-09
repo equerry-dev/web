@@ -1,0 +1,58 @@
+{
+  "phase": "02-landing-page",
+  "tasks": {
+    "t-1": {
+      "files": [
+        "src/lib/config/site.ts",
+        "src/lib/components/StoreBadges.svelte",
+        "src/lib/components/StoreBadges.svelte.test.ts",
+        "static/badges/google-play.svg",
+        "static/badges/f-droid.svg"
+      ],
+      "commit": "4de4016",
+      "completed_at": "2026-06-09T18:36:35.194667Z"
+    },
+    "t-2": {
+      "files": [
+        "src/lib/components/Hero.svelte",
+        "src/lib/components/Hero.svelte.test.ts",
+        "static/screenshots/app-placeholder.svg"
+      ],
+      "commit": "225f61c",
+      "completed_at": "2026-06-09T18:38:45.206284Z"
+    },
+    "t-3": {
+      "files": [
+        "src/lib/components/FeatureRow.svelte",
+        "src/lib/components/FeatureRow.svelte.test.ts",
+        "src/lib/components/Features.svelte",
+        "src/lib/components/Features.svelte.test.ts"
+      ],
+      "commit": "4533afb",
+      "completed_at": "2026-06-09T18:42:18.16894Z"
+    },
+    "t-4": {
+      "files": [
+        "src/lib/components/DownloadCta.svelte",
+        "src/lib/components/DownloadCta.svelte.test.ts"
+      ],
+      "commit": "d045aa6",
+      "completed_at": "2026-06-09T18:43:15.94861Z"
+    },
+    "t-5": {
+      "files": [
+        "src/routes/+page.svelte"
+      ],
+      "commit": "fcefba3",
+      "completed_at": "2026-06-09T18:44:50.952089Z"
+    },
+    "t-6": {
+      "files": [
+        "e2e/landing.e2e.ts",
+        "src/routes/layout.css"
+      ],
+      "commit": "39483b9",
+      "completed_at": "2026-06-09T18:49:49.112194Z"
+    }
+  }
+}

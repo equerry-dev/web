@@ -1,0 +1,66 @@
+[phase]
+  id = "02-landing-page"
+
+[[task]]
+  id = "t-1"
+  wave = 1
+  title = "Store-URL config + self-hosted store badges"
+  files = ["src/lib/config/site.ts", "src/lib/components/StoreBadges.svelte", "src/lib/components/StoreBadges.svelte.test.ts", "static/badges/google-play.svg", "static/badges/f-droid.svg"]
+  description = "Add a single source-of-truth config (site.ts) holding the Play and F-Droid store\nURLs (unset by default). StoreBadges renders self-hosted official badge images,\nlinking when a URL is set and showing a disabled coming-soon state when it isn't.\n"
+  covers = ["c-3", "c-5"]
+  test_contract = ["if an unset store URL still renders a link, the test asserting a disabled coming-soon badge with no href fails", "if a set store URL renders a wrong/empty href, the test asserting the anchor href equals the configured URL fails", "if a badge img points at an external origin, the test asserting img src is a local /badges/* path fails"]
+  status = "done"
+
+[[task]]
+  id = "t-2"
+  wave = 2
+  title = "Hero section (trust-first)"
+  files = ["src/lib/components/Hero.svelte", "src/lib/components/Hero.svelte.test.ts", "static/screenshots/app-placeholder.svg"]
+  description = "Trust-first hero: credibility-led headline + subcopy, a dual CTA (StoreBadges\ndownload + a secondary link to /docs), and a reserved app-screenshot placeholder\nto swap for a real screenshot later.\n"
+  covers = ["c-1"]
+  depends_on = ["t-1"]
+  test_contract = ["if the hero drops the Download CTA, the test asserting StoreBadges renders inside the hero fails", "if the secondary /docs link is missing, the test asserting a link to /docs in the hero fails", "if the screenshot placeholder element is removed, the test asserting its presence fails"]
+  status = "done"
+
+[[task]]
+  id = "t-3"
+  wave = 2
+  title = "Features section (3 alternating rows)"
+  files = ["src/lib/components/Features.svelte", "src/lib/components/Features.svelte.test.ts", "src/lib/components/FeatureRow.svelte", "src/lib/components/FeatureRow.svelte.test.ts"]
+  description = "Features section assembling three alternating full-width FeatureRows in order\nCapability-Slot, Privacy, FOSS, each with a per-row visual placeholder. The\nCapability-Slot row carries a tagline, a concrete example, and a learn-more link\nto docs.\n"
+  covers = ["c-2"]
+  test_contract = ["if the row order or count changes, the test asserting exactly three rows in order Capability-Slot, Privacy, FOSS fails", "if two consecutive rows render the visual on the same side, the test asserting alternating sides fails", "if the Capability-Slot row loses its concrete example or its /docs learn-more link, the test asserting both are present fails"]
+  status = "done"
+
+[[task]]
+  id = "t-4"
+  wave = 2
+  title = "Closing download CTA section"
+  files = ["src/lib/components/DownloadCta.svelte", "src/lib/components/DownloadCta.svelte.test.ts"]
+  description = "Closing call-to-action section repeating the download badges (via StoreBadges)\nat the bottom of the page; carries the id=\"download\" anchor target the header\nCTA points at.\n"
+  covers = ["c-3"]
+  depends_on = ["t-1"]
+  test_contract = ["if StoreBadges is dropped from the closing section, the test asserting both store badges render fails", "if the id=\"download\" anchor target is missing, the test asserting the section exposes id=download fails"]
+  status = "done"
+
+[[task]]
+  id = "t-5"
+  wave = 3
+  title = "Assemble landing page"
+  files = ["src/routes/+page.svelte"]
+  description = "Replace the skeleton +page.svelte with the composed landing: Hero, then the\n#features section (Features), then the #download section (DownloadCta), in order.\nKeep the header's #features and #download anchor targets valid.\n"
+  covers = ["c-1", "c-2", "c-6"]
+  depends_on = ["t-2", "t-3", "t-4"]
+  test_contract = ["if a section is missing or out of order, the test asserting hero then #features then #download in document order fails", "if the #features or #download anchor target no longer exists on the page, the test asserting both targets are present fails", "if the route stops prerendering, pnpm build fails to emit a static / with no server runtime"]
+  status = "done"
+
+[[task]]
+  id = "t-6"
+  wave = 4
+  title = "Landing e2e: responsive + theme + zero-3rd-party"
+  files = ["e2e/landing.e2e.ts"]
+  description = "End-to-end coverage for the landing page mirroring the shell e2e mechanisms:\nresponsive at 320px and desktop, axe AA in light and dark, zero third-party\nrequests, and reachable in-page anchors.\n"
+  covers = ["c-4", "c-5", "c-6"]
+  depends_on = ["t-5"]
+  test_contract = ["if a differentiator heading or a CTA is hidden at 320px or desktop, the visibility assertions at both viewports fail", "if any element drops below AA contrast in light or dark, the AxeBuilder no-violations assertion fails", "if a runtime request hits a non-localhost origin, the page.on('request') host-check assertion fails", "if the #features or #download anchor target does not resolve on the page, the anchor-resolution assertion fails"]
+  status = "done"
