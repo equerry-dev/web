@@ -40,4 +40,31 @@ test.describe('site shell', () => {
 		const results = await new AxeBuilder({ page }).analyze();
 		expect(results.violations).toEqual([]);
 	});
+
+	test('home page has no axe violations in dark theme', async ({ page }) => {
+		await page.addInitScript(() => localStorage.setItem('equerry-theme', 'dark'));
+		await page.goto('/');
+		await expect(page.locator('html')).toHaveClass(/dark/);
+		const results = await new AxeBuilder({ page }).analyze();
+		expect(results.violations).toEqual([]);
+	});
+
+	test('a keyboard-focused element shows a visible focus ring', async ({ page }) => {
+		await page.goto('/');
+		await page.keyboard.press('Tab');
+		const outlineStyle = await page.evaluate(
+			() => getComputedStyle(document.activeElement as Element).outlineStyle
+		);
+		expect(outlineStyle).toBe('solid');
+	});
+
+	test('layout holds at 320px with no horizontal overflow', async ({ page }) => {
+		await page.setViewportSize({ width: 320, height: 720 });
+		await page.goto('/');
+		await expect(page.getByRole('button', { name: 'Open menu' })).toBeVisible();
+		const overflow = await page.evaluate(
+			() => document.documentElement.scrollWidth - document.documentElement.clientWidth
+		);
+		expect(overflow).toBeLessThanOrEqual(1);
+	});
 });
