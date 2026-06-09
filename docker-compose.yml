@@ -1,0 +1,17 @@
+# Local build + run:  docker compose up --build   → http://localhost:8080
+#
+# On the deployment server, pull the published image instead of building:
+#   services:
+#     web:
+#       image: ghcr.io/equerry-dev/web:latest
+#       ports: ["8080:80"]
+#       restart: unless-stopped
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/equerry-dev/web:local
+    ports:
+      - "8080:80"
+    restart: unless-stopped
