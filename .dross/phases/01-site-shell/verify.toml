@@ -1,7 +1,7 @@
 [verify]
   phase = "01-site-shell"
   generated_at = 2026-06-09T14:34:14.794799Z
-  verdict = "partial"
+  verdict = "pass"
 
 [summary]
   mutation_status = "skipped"
@@ -41,8 +41,9 @@
     "src/lib/components/Header.svelte.test.ts:'renders the primary nav items with their hrefs'",
     "src/lib/components/Header.svelte.test.ts:'hamburger toggles aria-expanded and Escape restores focus to it'",
     "src/lib/components/MobileNav.svelte.test.ts:'traps focus: Tab on the last item wraps to the first and back'",
+    "e2e/shell.e2e.ts:'layout holds at 320px with no horizontal overflow'",
   ]
-  notes = "Desktop links resolve by role at 1280px and the hamburger by role at 390px, so the breakpoint collapse is exercised. The ~320px lower-bound integrity is not explicitly asserted."
+  notes = "Desktop links resolve by role at 1280px and the hamburger by role at 390px (breakpoint collapse); a 320px e2e asserts no horizontal overflow."
 
 [[criterion]]
   id = "c-4"
@@ -56,10 +57,12 @@
   tests = [
     "e2e/shell.e2e.ts:'skip-link is the first focusable element and moves focus to <main>'",
     "e2e/shell.e2e.ts:'home page has no axe accessibility violations'",
+    "e2e/shell.e2e.ts:'home page has no axe violations in dark theme'",
+    "e2e/shell.e2e.ts:'a keyboard-focused element shows a visible focus ring'",
     "src/lib/components/MobileNav.svelte.test.ts:'traps focus: Tab on the last item wraps to the first and back'",
     "src/lib/components/Header.svelte.test.ts:'hamburger toggles aria-expanded and Escape restores focus to it'",
   ]
-  notes = "Skip-link + keyboard nav (focus-trap, Esc restore) + axe all covered. Gap: axe runs on the light theme only; dark-theme AA contrast and visible focus-ring styling are not separately asserted (see FLAG)."
+  notes = "Skip-link, keyboard nav (focus-trap, Esc restore), visible focus ring, and axe on both light and dark themes all asserted."
 
 [[criterion]]
   id = "c-6"
@@ -72,12 +75,8 @@
   notes = "Button variant->class mapping and BrandMark wordmark pinned by component tests."
 
 [[finding]]
-  severity = "FLAG"
-  text = "c-5: axe a11y scan runs on the light theme only — dark-theme AA contrast and visible focus-ring (:focus-visible) styling are not asserted by any test. Consider a dark-theme axe run."
-
-[[finding]]
   severity = "NOTE"
-  text = "c-3: the ~320px lower-bound layout integrity is not explicitly asserted (breakpoint collapse is exercised via role-visibility at 390px and 1280px)."
+  text = "Prior partial-verdict gaps (c-5 dark-theme contrast + focus ring, c-3 320px) closed by added e2e assertions; verdict upgraded to pass."
 
 [[finding]]
   severity = "NOTE"
