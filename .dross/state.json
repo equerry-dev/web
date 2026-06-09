@@ -1,10 +1,8 @@
 {
   "version": "0.1.0.0",
   "current_milestone": "v0.1",
-  "current_phase": "01-site-shell",
-  "current_phase_status": "verified",
-  "last_activity": "2026-06-09T14:39:53.064368Z",
-  "last_action": "re-verified 01-site-shell: pass (6/6 covered, gaps closed)",
+  "last_activity": "2026-06-09T14:57:26.638235Z",
+  "last_action": "completed 01-site-shell",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -93,6 +91,10 @@
     {
       "at": "2026-06-09T14:39:53.064368Z",
       "action": "re-verified 01-site-shell: pass (6/6 covered, gaps closed)"
+    },
+    {
+      "at": "2026-06-09T14:57:26.638235Z",
+      "action": "completed 01-site-shell"
     }
   ]
 }
