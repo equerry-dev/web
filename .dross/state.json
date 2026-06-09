@@ -1,8 +1,10 @@
 {
   "version": "0.1.0.1",
   "current_milestone": "v0.1",
-  "last_activity": "2026-06-09T15:03:17.990717Z",
-  "last_action": "quick: wire in real favicon/PWA icon set + logo (light + dark)",
+  "current_phase": "02-landing-page",
+  "current_phase_status": "created",
+  "last_activity": "2026-06-09T18:14:33.192158Z",
+  "last_action": "spec locked: 02-landing-page",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -103,6 +105,18 @@
     {
       "at": "2026-06-09T15:03:17.990717Z",
       "action": "quick: wire in real favicon/PWA icon set + logo (light + dark)"
+    },
+    {
+      "at": "2026-06-09T17:48:01.226017Z",
+      "action": "created 02-landing-page"
+    },
+    {
+      "at": "2026-06-09T18:14:33.186256Z",
+      "action": "set current_phase=02-landing-page"
+    },
+    {
+      "at": "2026-06-09T18:14:33.192158Z",
+      "action": "spec locked: 02-landing-page"
     }
   ]
 }
