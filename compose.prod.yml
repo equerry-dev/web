@@ -1,0 +1,22 @@
+# Production: pull + run the published image on the server. No build.
+#
+#   # one-time, only if the GHCR package is private:
+#   echo "$GHCR_TOKEN" | docker login ghcr.io -u <user> --password-stdin
+#
+#   docker compose -f compose.prod.yml pull
+#   docker compose -f compose.prod.yml up -d
+#
+# Put this behind your reverse proxy (it listens on :8080 by default).
+# Pin to a specific :sha tag instead of :latest for reproducible deploys.
+services:
+  web:
+    image: ghcr.io/equerry-dev/web:latest
+    ports:
+      - '8080:80'
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost/']
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
