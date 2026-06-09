@@ -1,8 +1,8 @@
 {
-  "version": "0.1.0.1",
+  "version": "0.1.0.2",
   "current_milestone": "v0.1",
-  "last_activity": "2026-06-09T19:35:53.916347Z",
-  "last_action": "completed 02-landing-page",
+  "last_activity": "2026-06-09T19:46:20.8021Z",
+  "last_action": "quick: add self-hosted latin woff2 fonts",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -171,6 +171,14 @@
     {
       "at": "2026-06-09T19:35:53.916347Z",
       "action": "completed 02-landing-page"
+    },
+    {
+      "at": "2026-06-09T19:46:20.79247Z",
+      "action": "bump internal 0.1.0.1 → 0.1.0.2"
+    },
+    {
+      "at": "2026-06-09T19:46:20.8021Z",
+      "action": "quick: add self-hosted latin woff2 fonts"
     }
   ]
 }
