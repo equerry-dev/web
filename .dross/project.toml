@@ -46,7 +46,7 @@
   squash_merge = false
 
 [remote]
-  url = "https://github.com/equerry-dev/equerry-web"
+  url = "https://github.com/equerry-dev/web"
   provider = "github"
   public = true
   api_base = "https://api.github.com"
