@@ -5,14 +5,49 @@ on:
     branches: [main]
     tags: ['v*']
 
-# Least privilege: read the repo, write the GHCR package. Nothing else.
+# Least privilege at workflow level; the publish job adds packages:write.
 permissions:
   contents: read
-  packages: write
 
 jobs:
-  build-and-push:
+  test:
     runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24.14.0'
+
+      - name: Install pnpm
+        run: npm install -g pnpm@10.33.4 --ignore-scripts
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
+
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm check
+
+      - name: Unit + component tests
+        run: pnpm test:unit -- --run
+
+      - name: E2E tests
+        run: pnpm exec playwright test
+
+  build-and-push:
+    needs: test
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
