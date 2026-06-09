@@ -1,0 +1,15 @@
+.git
+.github
+.dross
+node_modules
+.svelte-kit
+build
+e2e
+test-results
+playwright-report
+design
+.env
+.env.*
+*.log
+.DS_Store
+.vscode
