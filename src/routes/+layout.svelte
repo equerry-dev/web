@@ -4,7 +4,6 @@
 	import { page } from '$app/state';
 	import { locales, localizeHref } from '$lib/paraglide/runtime';
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 
@@ -13,7 +12,6 @@
 
 <svelte:head>
 	<title>Equerry — privacy-first, bring-your-own-backend Android assistant</title>
-	<link rel="icon" href={favicon} />
 </svelte:head>
 
 <a

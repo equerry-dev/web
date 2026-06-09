@@ -9,15 +9,15 @@
 </script>
 
 <a href={resolve('/')} class="inline-flex items-center gap-2 {cls}" aria-label="Equerry — home">
-	<!-- Placeholder geometric mark (self-made stand-in until a real logo exists). -->
-	<svg class="h-7 w-7 text-primary" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-		<rect x="3" y="3" width="26" height="26" rx="8" stroke="currentColor" stroke-width="2.5" />
-		<path
-			d="M11 11h10M11 16h7M11 21h10"
-			stroke="currentColor"
-			stroke-width="2.5"
-			stroke-linecap="round"
-		/>
-	</svg>
+	<!-- Real logo; light/dark swap follows the in-app theme toggle (.dark class). alt="" — the
+	     wordmark + aria-label provide the accessible name, so the mark is decorative. -->
+	<img src="/equerry-mark.svg" alt="" width="28" height="28" class="h-7 w-7 dark:hidden" />
+	<img
+		src="/equerry-mark-dark.svg"
+		alt=""
+		width="28"
+		height="28"
+		class="hidden h-7 w-7 dark:block"
+	/>
 	<span class="font-display text-lg font-extrabold tracking-tight text-text">Equerry</span>
 </a>
