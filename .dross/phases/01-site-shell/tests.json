@@ -1,0 +1,95 @@
+{
+  "phase": "01-site-shell",
+  "generated_at": "2026-06-09T14:34:14.794799Z",
+  "languages": null,
+  "skipped": [
+    {
+      "file": "e2e/shell.e2e.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "e2e/theme.e2e.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "package.json",
+      "reason": "no mutation adapter for .json"
+    },
+    {
+      "file": "src/app.html",
+      "reason": "no mutation adapter for .html"
+    },
+    {
+      "file": "src/lib/components/BrandMark.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/BrandMark.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/Button.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/Button.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/Footer.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/Footer.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/Header.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/Header.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/MobileNav.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/MobileNav.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/ThemeToggle.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/ThemeToggle.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/theme.spec.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/theme.svelte.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/routes/+layout.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/routes/+page.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "svelte.config.js",
+      "reason": "no mutation adapter for .js"
+    },
+    {
+      "file": "vite.config.ts",
+      "reason": "no mutation adapter for .ts"
+    }
+  ]
+}

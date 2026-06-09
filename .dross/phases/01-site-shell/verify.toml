@@ -1,0 +1,83 @@
+[verify]
+  phase = "01-site-shell"
+  generated_at = 2026-06-09T14:34:14.794799Z
+  verdict = "pass"
+
+[summary]
+  mutation_status = "skipped"
+  mutation_score = 0.0
+  mutants_killed = 0
+  mutants_survived = 0
+  mutants_not_covered = 0
+  criteria_total = 6
+  criteria_covered = 6
+  criteria_uncovered = 0
+
+[[criterion]]
+  id = "c-1"
+  status = "covered"
+  tests = [
+    "e2e/shell.e2e.ts:'header and footer render on every route'",
+    "src/lib/components/Header.svelte.test.ts:'renders the primary nav items with their hrefs'",
+    "src/lib/components/Footer.svelte.test.ts:'renders the footer links and copyright'",
+  ]
+  notes = "Header + Footer asserted present on / and /demo; component tests pin their links."
+
+[[criterion]]
+  id = "c-2"
+  status = "covered"
+  tests = [
+    "src/lib/theme.spec.ts:'resolveInitialTheme'",
+    "e2e/theme.e2e.ts:'applies a stored dark theme on load and across reload'",
+    "e2e/theme.e2e.ts:'honors OS dark preference on first visit'",
+    "src/lib/components/ThemeToggle.svelte.test.ts:'clicking flips the theme store value and reflects it in aria-pressed'",
+  ]
+  notes = "Switch (ThemeToggle), persist-across-reload + no-flash (e2e stored-dark), OS first-visit (e2e + unit) all exercised."
+
+[[criterion]]
+  id = "c-3"
+  status = "covered"
+  tests = [
+    "src/lib/components/Header.svelte.test.ts:'renders the primary nav items with their hrefs'",
+    "src/lib/components/Header.svelte.test.ts:'hamburger toggles aria-expanded and Escape restores focus to it'",
+    "src/lib/components/MobileNav.svelte.test.ts:'traps focus: Tab on the last item wraps to the first and back'",
+    "e2e/shell.e2e.ts:'layout holds at 320px with no horizontal overflow'",
+  ]
+  notes = "Desktop links resolve by role at 1280px and the hamburger by role at 390px (breakpoint collapse); a 320px e2e asserts no horizontal overflow."
+
+[[criterion]]
+  id = "c-4"
+  status = "covered"
+  tests = ["e2e/shell.e2e.ts:'makes no third-party network requests'"]
+  notes = "Monitors every request on / and /demo; any non-same-origin asset (e.g. a CDN font) would fail it."
+
+[[criterion]]
+  id = "c-5"
+  status = "covered"
+  tests = [
+    "e2e/shell.e2e.ts:'skip-link is the first focusable element and moves focus to <main>'",
+    "e2e/shell.e2e.ts:'home page has no axe accessibility violations'",
+    "e2e/shell.e2e.ts:'home page has no axe violations in dark theme'",
+    "e2e/shell.e2e.ts:'a keyboard-focused element shows a visible focus ring'",
+    "src/lib/components/MobileNav.svelte.test.ts:'traps focus: Tab on the last item wraps to the first and back'",
+    "src/lib/components/Header.svelte.test.ts:'hamburger toggles aria-expanded and Escape restores focus to it'",
+  ]
+  notes = "Skip-link, keyboard nav (focus-trap, Esc restore), visible focus ring, and axe on both light and dark themes all asserted."
+
+[[criterion]]
+  id = "c-6"
+  status = "covered"
+  tests = [
+    "src/lib/components/Button.svelte.test.ts:'primary variant uses the primary fill, not the ghost border'",
+    "src/lib/components/Button.svelte.test.ts:'ghost variant uses the border, not the primary fill'",
+    "src/lib/components/BrandMark.svelte.test.ts:'renders the Equerry wordmark'",
+  ]
+  notes = "Button variant->class mapping and BrandMark wordmark pinned by component tests."
+
+[[finding]]
+  severity = "NOTE"
+  text = "Prior partial-verdict gaps (c-5 dark-theme contrast + focus ring, c-3 320px) closed by added e2e assertions; verdict upgraded to pass."
+
+[[finding]]
+  severity = "NOTE"
+  text = "Mutation testing skipped: this dross build has no mutation adapter for .svelte/.ts (legacy Stryker is broken on Node 24). Verdict based on criterion coverage alone."
