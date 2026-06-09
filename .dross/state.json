@@ -2,9 +2,9 @@
   "version": "0.1.0.1",
   "current_milestone": "v0.1",
   "current_phase": "02-landing-page",
-  "current_phase_status": "planned",
-  "last_activity": "2026-06-09T18:27:06.191811Z",
-  "last_action": "plan reviewed: 02-landing-page (0 blocking, 3 flags)",
+  "current_phase_status": "complete",
+  "last_activity": "2026-06-09T18:49:55.878533Z",
+  "last_action": "phase 02-landing-page executed (6/6 done)",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -129,6 +129,38 @@
     {
       "at": "2026-06-09T18:27:06.191811Z",
       "action": "plan reviewed: 02-landing-page (0 blocking, 3 flags)"
+    },
+    {
+      "at": "2026-06-09T18:36:35.215438Z",
+      "action": "executed t-1 (Store-URL config + self-hosted store badges)"
+    },
+    {
+      "at": "2026-06-09T18:38:45.221155Z",
+      "action": "executed t-2 (Hero section)"
+    },
+    {
+      "at": "2026-06-09T18:42:18.183726Z",
+      "action": "executed t-3 (Features section)"
+    },
+    {
+      "at": "2026-06-09T18:43:15.964331Z",
+      "action": "executed t-4 (Closing download CTA section)"
+    },
+    {
+      "at": "2026-06-09T18:44:50.967292Z",
+      "action": "executed t-5 (Assemble landing page)"
+    },
+    {
+      "at": "2026-06-09T18:49:49.127804Z",
+      "action": "executed t-6 (Landing e2e + AA contrast fix)"
+    },
+    {
+      "at": "2026-06-09T18:49:55.87071Z",
+      "action": "set current_phase_status=complete"
+    },
+    {
+      "at": "2026-06-09T18:49:55.878533Z",
+      "action": "phase 02-landing-page executed (6/6 done)"
     }
   ]
 }
