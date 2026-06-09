@@ -1,8 +1,8 @@
 {
-  "version": "0.1.0.0",
+  "version": "0.1.0.1",
   "current_milestone": "v0.1",
-  "last_activity": "2026-06-09T14:57:26.638235Z",
-  "last_action": "completed 01-site-shell",
+  "last_activity": "2026-06-09T15:03:17.990717Z",
+  "last_action": "quick: wire in real favicon/PWA icon set + logo (light + dark)",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -95,6 +95,14 @@
     {
       "at": "2026-06-09T14:57:26.638235Z",
       "action": "completed 01-site-shell"
+    },
+    {
+      "at": "2026-06-09T15:03:17.977352Z",
+      "action": "bump internal 0.1.0.0 → 0.1.0.1"
+    },
+    {
+      "at": "2026-06-09T15:03:17.990717Z",
+      "action": "quick: wire in real favicon/PWA icon set + logo (light + dark)"
     }
   ]
 }
