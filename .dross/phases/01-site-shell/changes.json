@@ -1,0 +1,69 @@
+{
+  "phase": "01-site-shell",
+  "tasks": {
+    "t-1": {
+      "files": [
+        "vite.config.ts",
+        "package.json"
+      ],
+      "commit": "bd26718",
+      "completed_at": "2026-06-09T14:03:59.561313Z"
+    },
+    "t-2": {
+      "files": [
+        "src/lib/theme.svelte.ts",
+        "src/lib/theme.spec.ts",
+        "src/app.html",
+        "e2e/theme.e2e.ts"
+      ],
+      "commit": "54cfde9",
+      "completed_at": "2026-06-09T14:07:33.572932Z"
+    },
+    "t-3": {
+      "files": [
+        "src/lib/components/Button.svelte",
+        "src/lib/components/Button.svelte.test.ts",
+        "src/lib/components/BrandMark.svelte",
+        "src/lib/components/BrandMark.svelte.test.ts"
+      ],
+      "commit": "572390e",
+      "completed_at": "2026-06-09T14:10:59.972539Z"
+    },
+    "t-4": {
+      "files": [
+        "src/lib/components/ThemeToggle.svelte",
+        "src/lib/components/ThemeToggle.svelte.test.ts"
+      ],
+      "commit": "9bd5f64",
+      "completed_at": "2026-06-09T14:12:11.305178Z"
+    },
+    "t-5": {
+      "files": [
+        "src/lib/components/Header.svelte",
+        "src/lib/components/Header.svelte.test.ts",
+        "src/lib/components/MobileNav.svelte",
+        "src/lib/components/MobileNav.svelte.test.ts"
+      ],
+      "commit": "fc28ecf",
+      "completed_at": "2026-06-09T14:21:31.539524Z"
+    },
+    "t-6": {
+      "files": [
+        "src/lib/components/Footer.svelte",
+        "src/lib/components/Footer.svelte.test.ts"
+      ],
+      "commit": "a8172c8",
+      "completed_at": "2026-06-09T14:22:48.759088Z"
+    },
+    "t-7": {
+      "files": [
+        "svelte.config.js",
+        "src/routes/+layout.svelte",
+        "src/routes/+page.svelte",
+        "e2e/shell.e2e.ts"
+      ],
+      "commit": "89060e9",
+      "completed_at": "2026-06-09T14:27:13.488325Z"
+    }
+  }
+}

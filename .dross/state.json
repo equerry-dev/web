@@ -2,9 +2,9 @@
   "version": "0.1.0.0",
   "current_milestone": "v0.1",
   "current_phase": "01-site-shell",
-  "current_phase_status": "planned",
-  "last_activity": "2026-06-09T13:51:22.673626Z",
-  "last_action": "plan reviewed: 01-site-shell (0 blocking, 3 flags)",
+  "current_phase_status": "complete",
+  "last_activity": "2026-06-09T14:27:21.616083Z",
+  "last_action": "phase 01-site-shell executed (7/7 done)",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -45,6 +45,42 @@
     {
       "at": "2026-06-09T13:51:22.673626Z",
       "action": "plan reviewed: 01-site-shell (0 blocking, 3 flags)"
+    },
+    {
+      "at": "2026-06-09T14:03:59.578104Z",
+      "action": "executed t-1 (Component test harness)"
+    },
+    {
+      "at": "2026-06-09T14:07:33.585912Z",
+      "action": "executed t-2 (Theme store + no-flash bootstrap)"
+    },
+    {
+      "at": "2026-06-09T14:10:59.983775Z",
+      "action": "executed t-3 (Base components: Button + BrandMark)"
+    },
+    {
+      "at": "2026-06-09T14:12:11.318923Z",
+      "action": "executed t-4 (ThemeToggle component)"
+    },
+    {
+      "at": "2026-06-09T14:21:31.553847Z",
+      "action": "executed t-5 (Header + mobile slide-over drawer)"
+    },
+    {
+      "at": "2026-06-09T14:22:48.774271Z",
+      "action": "executed t-6 (Footer: minimal row)"
+    },
+    {
+      "at": "2026-06-09T14:27:13.498368Z",
+      "action": "executed t-7 (Assemble shell in layout + privacy/a11y e2e)"
+    },
+    {
+      "at": "2026-06-09T14:27:21.608988Z",
+      "action": "set current_phase_status=complete"
+    },
+    {
+      "at": "2026-06-09T14:27:21.616083Z",
+      "action": "phase 01-site-shell executed (7/7 done)"
     }
   ]
 }
