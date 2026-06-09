@@ -7,6 +7,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<meta name="text-scale" content="scale" />
+		<script>
+			// Pre-paint: set the theme class before first paint to avoid a flash.
+			// Mirrors resolveInitialTheme() in src/lib/theme.svelte.ts.
+			(function () {
+				try {
+					var stored = localStorage.getItem('equerry-theme');
+					var dark =
+						stored === 'dark' ||
+						(stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+					if (dark) document.documentElement.classList.add('dark');
+				} catch (e) {
+					/* localStorage unavailable — fall back to light */
+				}
+			})();
+		</script>
 		%sveltekit.head%
 	</head>
 
