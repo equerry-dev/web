@@ -2,9 +2,9 @@
   "version": "0.1.0.1",
   "current_milestone": "v0.1",
   "current_phase": "02-landing-page",
-  "current_phase_status": "created",
-  "last_activity": "2026-06-09T18:14:33.192158Z",
-  "last_action": "spec locked: 02-landing-page",
+  "current_phase_status": "planned",
+  "last_activity": "2026-06-09T18:25:42.01563Z",
+  "last_action": "plan locked: 02-landing-page (6 tasks across 4 waves)",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -117,6 +117,14 @@
     {
       "at": "2026-06-09T18:14:33.192158Z",
       "action": "spec locked: 02-landing-page"
+    },
+    {
+      "at": "2026-06-09T18:25:42.009093Z",
+      "action": "set current_phase_status=planned"
+    },
+    {
+      "at": "2026-06-09T18:25:42.01563Z",
+      "action": "plan locked: 02-landing-page (6 tasks across 4 waves)"
     }
   ]
 }
