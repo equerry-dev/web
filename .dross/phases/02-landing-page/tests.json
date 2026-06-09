@@ -1,0 +1,75 @@
+{
+  "phase": "02-landing-page",
+  "generated_at": "2026-06-09T18:54:33.539384Z",
+  "languages": null,
+  "skipped": [
+    {
+      "file": "e2e/landing.e2e.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/DownloadCta.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/DownloadCta.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/FeatureRow.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/FeatureRow.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/Features.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/Features.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/Hero.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/Hero.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/StoreBadges.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/StoreBadges.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/config/site.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/routes/+page.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/routes/layout.css",
+      "reason": "no mutation adapter for .css"
+    },
+    {
+      "file": "static/badges/f-droid.svg",
+      "reason": "no mutation adapter for .svg"
+    },
+    {
+      "file": "static/badges/google-play.svg",
+      "reason": "no mutation adapter for .svg"
+    },
+    {
+      "file": "static/screenshots/app-placeholder.svg",
+      "reason": "no mutation adapter for .svg"
+    }
+  ]
+}

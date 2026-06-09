@@ -1,0 +1,79 @@
+[verify]
+  phase = "02-landing-page"
+  generated_at = 2026-06-09T18:54:33.539384Z
+  verdict = "pass"
+
+[summary]
+  mutation_status = "skipped"
+  mutation_score = 0.0
+  mutants_killed = 0
+  mutants_survived = 0
+  mutants_not_covered = 0
+  criteria_total = 6
+  criteria_covered = 6
+  criteria_uncovered = 0
+
+[[criterion]]
+  id = "c-1"
+  status = "covered"
+  tests = [
+    "src/lib/components/Hero.svelte.test.ts:test('hero renders the download CTA via store badges')",
+    "src/lib/components/Hero.svelte.test.ts:test('hero has a secondary link to the docs')",
+    "src/lib/components/Hero.svelte.test.ts:test('hero reserves an app-screenshot placeholder')",
+  ]
+  notes = "Hero's download CTA, secondary /docs link, and reserved screenshot placeholder are all asserted. The headline pitch is presentational copy and is not asserted (brittle to test); the behavioural surface is covered."
+
+[[criterion]]
+  id = "c-2"
+  status = "covered"
+  tests = [
+    "src/lib/components/Features.svelte.test.ts:test('renders exactly three feature rows in order Capability-Slot, Privacy, FOSS')",
+    "src/lib/components/Features.svelte.test.ts:test('the Capability-Slot row carries a concrete example and a /docs learn-more link')",
+    "e2e/landing.e2e.ts:test('shows all three differentiators and a download CTA at <viewport>')",
+  ]
+  notes = "All three differentiator headings asserted by name and order; e2e confirms they render at 320px and desktop."
+
+[[criterion]]
+  id = "c-3"
+  status = "covered"
+  tests = [
+    "src/lib/components/StoreBadges.svelte.test.ts:test('renders a link whose href is exactly the configured store URL')",
+    "src/lib/components/StoreBadges.svelte.test.ts:test('an unset store URL renders a coming-soon badge with no link')",
+    "src/lib/components/DownloadCta.svelte.test.ts:test('repeats both store badges via StoreBadges')",
+  ]
+  notes = "The never-a-dead-link contract is directly tested: unset URL renders a coming-soon badge whose img has no anchor; set URL links to exactly the configured URL."
+
+[[criterion]]
+  id = "c-4"
+  status = "covered"
+  tests = [
+    "e2e/landing.e2e.ts:test('shows all three differentiators and a download CTA at <viewport>')",
+    "e2e/landing.e2e.ts:test('has no axe AA violations in light theme')",
+    "e2e/landing.e2e.ts:test('has no axe AA violations in dark theme')",
+  ]
+  notes = "Responsiveness asserted at 320px and desktop. Axe tags pinned to wcag2a/wcag2aa so colour-contrast runs in both themes — this gate caught a real 4.43:1 failure during execution (fixed in --primary)."
+
+[[criterion]]
+  id = "c-5"
+  status = "covered"
+  tests = [
+    "e2e/landing.e2e.ts:test('makes no third-party network requests')",
+    "src/lib/components/StoreBadges.svelte.test.ts:test('badge image src is a self-hosted /badges path, never an external origin')",
+  ]
+  notes = "e2e fails if any runtime request hits a non-localhost origin; the unit test guards that badge images stay self-hosted."
+
+[[criterion]]
+  id = "c-6"
+  status = "covered"
+  tests = [
+    "e2e/landing.e2e.ts:test('exposes the #features and #download anchor targets')",
+  ]
+  notes = "Anchor reachability asserted explicitly. Static prerender is gated implicitly by the Playwright webServer (npm run build && npm run preview) — if / stops prerendering or the build breaks, the entire landing e2e suite fails to start. Build emitting a static build/index.html with both anchors was confirmed during t-5 execution."
+
+[[finding]]
+  severity = "NOTE"
+  text = "Mutation efficacy unverified: dross's legacy Stryker adapter is incompatible with Node 24 (missing 'rx' module) and has no .svelte/.ts mutator. Re-run with --skip-mutation; verdict is based on criterion-to-test coverage alone. Same limitation recorded in phase 01."
+
+[[finding]]
+  severity = "NOTE"
+  text = "c-1 headline pitch copy is not asserted by any test (presentational copy); the hero's CTAs and placeholder are covered."
