@@ -1,0 +1,74 @@
+[project]
+  name = "Equerry Web"
+  version = "0.1.0.0"
+  description = "Marketing + documentation site for Equerry: a landing page selling the privacy-first pitch plus a docs section covering setup, Capability-Slot config, and provider wiring."
+  created = "2026-06-09"
+
+[stack]
+
+  [[stack.locked]]
+    choice = "SvelteKit + adapter-static (fully prerendered static site)"
+    why = "Matches locked profile; a landing+docs site has no server needs (no accounts/DB per non-goals). Static output is trivially self-hostable and has no runtime attack surface — aligns with the privacy ethos."
+    locked_at = "2026-06-09"
+
+  [[stack.locked]]
+    choice = "MDsveX for docs authoring (markdown + Svelte components)"
+    why = "Ergonomic markdown authoring for the docs section while staying inside one SvelteKit toolchain — no second framework to maintain."
+    locked_at = "2026-06-09"
+
+  [[stack.locked]]
+    choice = "Tailwind CSS for styling"
+    why = "Fast to build both a marketing landing and docs layout; utility-first, no runtime cost, profile-aligned."
+    locked_at = "2026-06-09"
+
+  [[stack.locked]]
+    choice = "pnpm package manager"
+    why = "Profile default; consistent with the rest of the toolchain."
+    locked_at = "2026-06-09"
+
+  [[stack.locked]]
+    choice = "No third-party JS or trackers; analytics limited to self-hosted cookieless Umami"
+    why = "The site must embody the app's privacy promise. Self-hosted Umami is cookieless, first-party, aggregate, no-PII and needs no consent banner — privacy-respecting while still giving conversion insight. No other analytics/telemetry permitted."
+    locked_at = "2026-06-09"
+
+[runtime]
+  mode = "native"
+  dev_command = "pnpm dev"
+  test_command = "pnpm test:unit -- --run"
+  typecheck_command = "pnpm check"
+  lint_command = "pnpm lint"
+  format_command = "pnpm format"
+  build_command = "pnpm build"
+
+[repo]
+  layout = "single"
+  git_main_branch = "main"
+  squash_merge = false
+
+[remote]
+  url = "https://github.com/equerry-dev/equerry-web"
+  provider = "github"
+  public = true
+  api_base = "https://api.github.com"
+  log_api = true
+  auth_env = "GITHUB_TOKEN"
+
+[paths]
+
+[env]
+
+[goals]
+  core_value = "A prospective user can understand why Equerry is private and how it works, then download it and successfully configure their AI backends — without the app having to carry that explanation itself."
+  audience = "Privacy-conscious end users seeking an alternative to Gemini who care about no-telemetry and bring-your-own-keys; non-technical to semi-technical."
+  non_goals = ["No accounts, logins, third-party trackers, or personal-data/fingerprinting analytics — self-hosted cookieless aggregate counts (no PII) are the only exception.", "Not a web version of the assistant — no chat, no provider proxying; the site never touches user keys or AI backends.", "No blog, CMS, or community forum in v1 — strictly landing + docs."]
+  differentiators = ["BYO-backend control via the Capability-Slot system — wire different AI providers to different jobs.", "Privacy is the product: no accounts, no third-party trackers, and only self-hosted cookieless aggregate analytics (no PII) — the site lives the same ethos as the app.", "FOSS / GPL-3.0 on F-Droid — every fork stays open, so openness IS the privacy guarantee."]
+
+[[competition]]
+  name = "Signal"
+  url = "https://signal.org"
+  what_they_do = "Privacy-FOSS site exemplar: short bold slogan hero, ~5 feature blocks, nonprofit/no-ads angle with donate CTA, multi-platform downloads throughout, docs+support via footer/Developers nav."
+
+[[competition]]
+  name = "Bitwarden"
+  url = "https://bitwarden.com"
+  what_they_do = "Privacy-FOSS site exemplar: 'most trusted' hero with dual CTA + trust badges, zero-knowledge/open-source framing, features split by user type, heavy social proof, Help Center + Community + Developer docs in nav and footer."

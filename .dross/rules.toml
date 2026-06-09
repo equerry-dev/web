@@ -1,0 +1,17 @@
+[[rule]]
+  id = "r-01"
+  text = "Never add third-party scripts, trackers, CDN fonts, or external embeds — all assets self-hosted. The ONLY permitted analytics is a self-hosted, cookieless, aggregate, no-PII instance (e.g. Umami); no other analytics or telemetry."
+  severity = "hard"
+  created = "2026-06-09"
+
+[[rule]]
+  id = "r-02"
+  text = "Keep the site fully static (adapter-static, prerenderable) — no server-side runtime or API routes."
+  severity = "hard"
+  created = "2026-06-09"
+
+[[rule]]
+  id = "r-03"
+  text = "Docs claims must match actual app behaviour in the equerry/ repo — verify against the app, do not invent setup steps."
+  severity = "hard"
+  created = "2026-06-09"
