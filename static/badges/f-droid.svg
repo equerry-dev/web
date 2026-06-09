@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="53" viewBox="0 0 180 53" role="img" aria-label="Get it on F-Droid">
+	<rect width="180" height="53" rx="8" fill="#1f1f1f" />
+	<rect x="0.5" y="0.5" width="179" height="52" rx="7.5" fill="none" stroke="#a6a6a6" stroke-opacity="0.5" />
+	<g transform="translate(15 16)">
+		<rect x="0" y="6" width="5" height="15" rx="1.5" fill="#1976d2" />
+		<rect x="7" y="0" width="5" height="21" rx="1.5" fill="#5fa9e8" />
+		<rect x="14" y="6" width="5" height="15" rx="1.5" fill="#1976d2" />
+	</g>
+	<text x="46" y="21" fill="#ffffff" font-family="Roboto, Arial, sans-serif" font-size="8" letter-spacing="1">GET IT ON</text>
+	<text x="46" y="39" fill="#ffffff" font-family="Roboto, Arial, sans-serif" font-size="17" font-weight="600">F-Droid</text>
+</svg>
