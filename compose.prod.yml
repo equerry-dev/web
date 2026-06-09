@@ -1,17 +1,23 @@
 # Production: pull + run the published image on the server. No build.
 #
-#   # one-time, only if the GHCR package is private:
-#   echo "$GHCR_TOKEN" | docker login ghcr.io -u <user> --password-stdin
+# The GHCR package is PRIVATE, so the host must be logged in to ghcr.io with a
+# CLASSIC PAT that has `read:packages` (fine-grained PATs can't read GHCR):
 #
+#   echo "$GHCR_READ_TOKEN" | docker login ghcr.io -u <github-user> --password-stdin
+#
+# Then:
 #   docker compose -f compose.prod.yml pull
 #   docker compose -f compose.prod.yml up -d
 #
 # Put `web` behind your reverse proxy (it listens on :8080 by default).
 # Pin to a specific :sha tag instead of :latest for reproducible deploys.
 #
-# The `watchtower` service is optional pull-based CD: it polls GHCR every 5 min
-# and restarts ONLY containers labelled watchtower.enable=true (i.e. `web`),
-# leaving the rest of the host untouched. Drop it if you prefer manual deploys.
+# `watchtower` is optional pull-based CD: it polls GHCR every 5 min and restarts
+# ONLY containers labelled watchtower.enable=true (i.e. `web`), leaving the rest
+# of the host untouched. It reuses the host login via the mounted docker config.
+# NB: this needs the credentials stored *in* config.json (the default on a
+# headless host). If your host uses a credential helper (credsStore), either
+# remove it for this user or run watchtower with REPO_USER/REPO_PASS instead.
 services:
   web:
     image: ghcr.io/equerry-dev/web:latest
@@ -32,4 +38,5 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ${HOME}/.docker/config.json:/config.json:ro
     command: --interval 300 --cleanup --label-enable
