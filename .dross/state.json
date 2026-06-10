@@ -1,29 +1,11 @@
 {
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
-  "last_activity": "2026-06-10T07:20:55.336732Z",
-  "last_action": "completed 03-docs-system",
+  "current_phase": "04-setup-docs",
+  "current_phase_status": "created",
+  "last_activity": "2026-06-10T07:42:35.95292Z",
+  "last_action": "spec locked: 04-setup-docs",
   "history": [
-    {
-      "at": "2026-06-09T14:12:11.318923Z",
-      "action": "executed t-4 (ThemeToggle component)"
-    },
-    {
-      "at": "2026-06-09T14:21:31.553847Z",
-      "action": "executed t-5 (Header + mobile slide-over drawer)"
-    },
-    {
-      "at": "2026-06-09T14:22:48.774271Z",
-      "action": "executed t-6 (Footer: minimal row)"
-    },
-    {
-      "at": "2026-06-09T14:27:13.498368Z",
-      "action": "executed t-7 (Assemble shell in layout + privacy/a11y e2e)"
-    },
-    {
-      "at": "2026-06-09T14:27:21.608988Z",
-      "action": "set current_phase_status=complete"
-    },
     {
       "at": "2026-06-09T14:27:21.616083Z",
       "action": "phase 01-site-shell executed (7/7 done)"
@@ -203,6 +185,26 @@
     {
       "at": "2026-06-10T07:20:55.336732Z",
       "action": "completed 03-docs-system"
+    },
+    {
+      "at": "2026-06-10T07:30:13.482973Z",
+      "action": "created 04-04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T07:30:43.509216Z",
+      "action": "set current_phase=04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T07:30:43.516224Z",
+      "action": "corrected phase id 04-04-setup-docs → 04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T07:42:35.94646Z",
+      "action": "set current_phase=04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T07:42:35.95292Z",
+      "action": "spec locked: 04-setup-docs"
     }
   ]
 }

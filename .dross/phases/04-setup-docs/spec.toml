@@ -1,0 +1,72 @@
+[phase]
+id        = "04-setup-docs"
+title     = "Setup docs"
+milestone = "v0.1"
+
+[[criteria]]
+id   = "c-1"
+text = "An install/getting-started doc page documents the install method that actually works today (build-from-source / sideloaded APK for dev.equerry.app) and presents Google Play + F-Droid as not-yet-available (coming soon), never as working install steps (r-03)."
+
+[[criteria]]
+id   = "c-2"
+text = "A doc page walks the user through setting Equerry as the system default assistant via Android Settings > Default apps > Digital assistant > 'Equerry assistant', matching the real VoiceInteractionService flow — no invented in-app wizard."
+
+[[criteria]]
+id   = "c-3"
+text = "A doc page documents adding a provider profile: all four real provider types (Ollama, Anthropic, OpenAI-compatible, OpenRouter) and the actual form fields (Label, Type, Base URL, API key where required, Model), noting Ollama needs no key and keys are stored encrypted on-device."
+
+[[criteria]]
+id   = "c-4"
+text = "A doc page explains the Capability-Slot concept and walks the user through mapping a provider to the CHAT slot (the only active slot in v0.1), accurately marking Vision/STT/TTS/OCR/Embeddings as 'coming soon'."
+
+[[criteria]]
+id   = "c-5"
+text = "The setup pages form one ordered end-to-end path — install → set as default assistant → add a provider → map it to CHAT — reachable in sidebar order via the sidebar and prev/next, with no dead links."
+
+[[criteria]]
+id   = "c-6"
+text = "The phase-03 placeholder sample pages are replaced by the real setup content, and the /docs landing/index page orients a new user toward this setup walkthrough."
+
+[[decisions]]
+key    = "page_structure"
+choice = "Setup is a sequence of short focused pages under a 'Setup' sidebar group: install → default-assistant → add-a-provider → capability-slots, chained by prev/next."
+why    = "Matches the phase-03 grouped-sidebar + prev/next design, makes the c-5 ordered path natural, and keeps each step digestible for non-technical users; a single long page would underuse the TOC/prev/next system."
+locked = true
+
+[[decisions]]
+key    = "provider_example"
+choice = "Ollama is the primary worked happy-path example; the other three types (Anthropic, OpenAI-compatible, OpenRouter) are covered in a compact reference section, not full walkthroughs."
+why    = "Ollama is fully-local and needs no API key — the cleanest walkthrough and the strongest 'privacy is the product' story; still documents all four real types per c-3 without four full walkthroughs."
+locked = true
+
+[[decisions]]
+key    = "screenshots"
+choice = "Text-only steps for v0.1 — no app screenshots; instructions reference real screen and field names."
+why    = "The app UI is pre-release and will change; screenshots would drift out of sync and risk an r-03 mismatch plus asset upkeep, whereas text referencing real names stays accurate and cheap to maintain."
+locked = true
+
+[[decisions]]
+key    = "maturity_disclosure"
+choice = "One honest 'what works today' callout on the getting-started/index page (pre-release, build-from-source, only CHAT live), plus inline 'coming soon' markers where specific features aren't ready — not a banner repeated on every page."
+why    = "r-03 honesty and expectation-setting without deterring prospects with a scary repeated banner."
+locked = true
+
+[[deferred]]
+text = "App screenshots in the setup steps."
+why  = "App UI is pre-release; revisit once it stabilizes (text-only for v0.1)."
+
+[[deferred]]
+text = "Store-install instructions (Google Play / F-Droid)."
+why  = "No listings exist yet; document once distribution is live."
+
+[[deferred]]
+text = "Provider connection-test / troubleshooting page."
+why  = "The app has no connection-test feature yet (app's Phase 4); nothing real to document."
+
+[[deferred]]
+text = "Detailed docs for the inactive Capability-Slots (Vision/STT/TTS/OCR/Embeddings) beyond a 'coming soon' marker."
+why  = "Only CHAT is wired in v0.1; documenting unbuilt slots would violate r-03."
+
+[[deferred]]
+text = "Full per-provider deep-dives beyond the four-type reference."
+why  = "The Ollama happy-path plus a compact reference covers v0.1 setup; expand if providers gain provider-specific quirks."
