@@ -1,0 +1,97 @@
+[verify]
+  phase = "05-polish-deploy"
+  generated_at = 2026-06-10T13:08:21.609933Z
+  verdict = "partial"
+
+[summary]
+  mutation_status = "skipped"
+  mutation_score = 0.0
+  mutants_killed = 0
+  mutants_survived = 0
+  mutants_not_covered = 0
+  criteria_total = 8
+  criteria_covered = 8
+  criteria_uncovered = 0
+
+[[criterion]]
+  id = "c-1"
+  status = "covered"
+  tests = [
+    "e2e/theme.e2e.ts:'responsive — no horizontal overflow at 320px' (7 routes x light/dark)",
+    "e2e/a11y.e2e.ts:'no axe AA violations (light)/(dark)' (per route)",
+  ]
+  notes = "Overflow matrix across every route in both themes + axe in both themes catches layout/theme breakage. Visual correctness is proxied by overflow+axe (no pixel snapshots)."
+
+[[criterion]]
+  id = "c-2"
+  status = "covered"
+  tests = [
+    "e2e/a11y.e2e.ts:'no axe AA violations' + 'interactive elements stay keyboard-reachable' (per route, incl. 404)",
+    "e2e/shell.e2e.ts:'skip-link is the first focusable element' / 'visible focus ring'",
+  ]
+  notes = "axe AA (wcag2a+wcag2aa) over all 7 routes light+dark; keyboard reachability asserted per route."
+
+[[criterion]]
+  id = "c-3"
+  status = "covered"
+  tests = [
+    "e2e/build-output.e2e.ts:'<route> is prerendered to a static <file>' (per route)",
+    "e2e/build-output.e2e.ts:'sitemap.xml is emitted listing every route'",
+  ]
+  notes = "fs-asserts each route prerenders to its own static .html under build/; adapter-static guarantees no server runtime."
+
+[[criterion]]
+  id = "c-4"
+  status = "covered"
+  tests = [
+    "e2e/privacy.e2e.ts:'no off-origin requests beyond Umami, and sets no cookies' (per route)",
+    "e2e/shell.e2e.ts / landing.e2e.ts / docs.e2e.ts third-party-request checks (umami allowlist)",
+  ]
+  notes = "Dedicated guard fails on any request outside the umami.rivil.co.uk allowlist and on any document.cookie."
+
+[[criterion]]
+  id = "c-5"
+  status = "covered"
+  tests = [
+    "scripts/docker-smoke.sh (builds image, runs container, curls / and /docs/install -> 200, unknown -> 404; ran exit 0)",
+    ".github/workflows/docker-publish.yml: docker-smoke job gating build-and-push",
+  ]
+  notes = "Automated CI shell gate (not a unit/e2e runner test) — fails build-and-push if nginx serving breaks. Verified locally exit 0."
+
+[[criterion]]
+  id = "c-6"
+  status = "covered"
+  tests = [
+    "e2e/error.e2e.ts:'unknown path renders the branded error page inside the site shell'",
+  ]
+  notes = "Branded 404 (header/footer + home link) fully covered. Demo-route removal is a one-time deletion with no standing regression guard — see NOTE."
+
+[[criterion]]
+  id = "c-7"
+  status = "covered"
+  tests = [
+    "src/umami-tag.spec.ts:'loads the Umami tracker from the same origin (/umami.js)' + 'wires the configured website id and beacon host-url'",
+    "e2e/privacy.e2e.ts cookie assertion (cookieless)",
+  ]
+  notes = "Tag presence/config (same-origin script, website id, host-url) and cookieless are asserted. The 'records page views' clause (beacon actually firing to /api/send) is NOT positively asserted — see FLAG."
+
+[[criterion]]
+  id = "c-8"
+  status = "covered"
+  tests = [
+    "src/lib/components/Seo.svelte.test.ts:'renders the page title and meta description' / 'emits an absolute canonical link' / 'emits Open Graph and Twitter card tags'",
+    "src/routes/sitemap.xml/sitemap.spec.ts:'sitemap lists every public route as an absolute URL' / 'robots.txt references the sitemap'",
+  ]
+  notes = "Seo component test covers title/description/canonical/OG/Twitter; sitemap test covers the route list + robots Sitemap reference. Per-page unique titles also exercised via build-output.e2e.ts content markers."
+
+[[finding]]
+  severity = "FLAG"
+  text = "c-7: the 'records page views' clause is not positively asserted. Tests confirm the Umami tag is present, same-origin, correctly configured, and that no cookies are set — but no test asserts a page-view beacon is actually sent to umami.rivil.co.uk/api/send. The e2e privacy/shell checks merely allow umami requests, they don't require one. Consider asserting the beacon fires."
+
+[[finding]]
+  severity = "NOTE"
+  text = "c-6: demo/ scaffolding removal has no standing regression test (nothing fails if a /demo route is re-added). Low risk for a deletion; the substantive deliverable (branded 404) is covered by error.e2e.ts."
+
+[[finding]]
+  severity = "NOTE"
+  text = "Mutation testing skipped: dross invokes a broken legacy 'stryker' package (Cannot find module 'rx'); no adapter ran, score is a 0/0 artifact, so the verdict rests on criterion coverage alone (consistent with phases 02/03/04). Verify-time skip also listed every touched file as 'no mutation adapter' — those skeleton NOTEs are collapsed here as noise."

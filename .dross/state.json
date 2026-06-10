@@ -2,18 +2,10 @@
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
   "current_phase": "05-polish-deploy",
-  "current_phase_status": "complete",
-  "last_activity": "2026-06-10T12:55:21.7044Z",
-  "last_action": "phase 05-polish-deploy executed (9/9 done)",
+  "current_phase_status": "verified",
+  "last_activity": "2026-06-10T13:10:37.230894Z",
+  "last_action": "verified 05-polish-deploy: partial (8/8 covered, 1 flag c-7 beacon, mutation skipped)",
   "history": [
-    {
-      "at": "2026-06-10T05:41:02.583755Z",
-      "action": "executed t-1 (Docs nav config + adjacency helpers)"
-    },
-    {
-      "at": "2026-06-10T05:56:55.571094Z",
-      "action": "executed t-2 (MDsveX pipeline: dual-theme highlight + slugs + TOC metadata)"
-    },
     {
       "at": "2026-06-10T06:02:21.953804Z",
       "action": "executed t-3 (DocsSidebar: grouped nav, active page, responsive collapse)"
@@ -205,6 +197,14 @@
     {
       "at": "2026-06-10T12:55:21.7044Z",
       "action": "phase 05-polish-deploy executed (9/9 done)"
+    },
+    {
+      "at": "2026-06-10T13:10:37.225276Z",
+      "action": "set current_phase_status=verified"
+    },
+    {
+      "at": "2026-06-10T13:10:37.230894Z",
+      "action": "verified 05-polish-deploy: partial (8/8 covered, 1 flag c-7 beacon, mutation skipped)"
     }
   ]
 }
