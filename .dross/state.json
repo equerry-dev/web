@@ -2,42 +2,10 @@
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
   "current_phase": "04-setup-docs",
-  "current_phase_status": "planned",
-  "last_activity": "2026-06-10T08:19:59.436444Z",
-  "last_action": "plan reviewed: 04-setup-docs (0 blocking, 1 flag); amended t-5 to single Setup group per locked decision",
+  "current_phase_status": "complete",
+  "last_activity": "2026-06-10T08:31:15.10283Z",
+  "last_action": "phase 04-setup-docs executed (6/6 done)",
   "history": [
-    {
-      "at": "2026-06-09T14:39:53.064368Z",
-      "action": "re-verified 01-site-shell: pass (6/6 covered, gaps closed)"
-    },
-    {
-      "at": "2026-06-09T14:57:26.638235Z",
-      "action": "completed 01-site-shell"
-    },
-    {
-      "at": "2026-06-09T15:03:17.977352Z",
-      "action": "bump internal 0.1.0.0 → 0.1.0.1"
-    },
-    {
-      "at": "2026-06-09T15:03:17.990717Z",
-      "action": "quick: wire in real favicon/PWA icon set + logo (light + dark)"
-    },
-    {
-      "at": "2026-06-09T17:48:01.226017Z",
-      "action": "created 02-landing-page"
-    },
-    {
-      "at": "2026-06-09T18:14:33.186256Z",
-      "action": "set current_phase=02-landing-page"
-    },
-    {
-      "at": "2026-06-09T18:14:33.192158Z",
-      "action": "spec locked: 02-landing-page"
-    },
-    {
-      "at": "2026-06-09T18:25:42.009093Z",
-      "action": "set current_phase_status=planned"
-    },
     {
       "at": "2026-06-09T18:25:42.01563Z",
       "action": "plan locked: 02-landing-page (6 tasks across 4 waves)"
@@ -205,6 +173,38 @@
     {
       "at": "2026-06-10T08:19:59.436444Z",
       "action": "plan reviewed: 04-setup-docs (0 blocking, 1 flag); amended t-5 to single Setup group per locked decision"
+    },
+    {
+      "at": "2026-06-10T08:22:56.80957Z",
+      "action": "executed t-1 (Write Install doc page)"
+    },
+    {
+      "at": "2026-06-10T08:23:40.747297Z",
+      "action": "executed t-2 (Write Set-as-default-assistant page)"
+    },
+    {
+      "at": "2026-06-10T08:24:37.022852Z",
+      "action": "executed t-3 (Write Add-a-provider page)"
+    },
+    {
+      "at": "2026-06-10T08:25:11.728976Z",
+      "action": "executed t-4 (Write Capability-Slots page)"
+    },
+    {
+      "at": "2026-06-10T08:27:43.955641Z",
+      "action": "executed t-5 (Rewire docs nav + index orientation/maturity callout)"
+    },
+    {
+      "at": "2026-06-10T08:31:08.392977Z",
+      "action": "executed t-6 (Update docs e2e for the setup walkthrough)"
+    },
+    {
+      "at": "2026-06-10T08:31:15.09682Z",
+      "action": "set current_phase_status=complete"
+    },
+    {
+      "at": "2026-06-10T08:31:15.10283Z",
+      "action": "phase 04-setup-docs executed (6/6 done)"
     }
   ]
 }
