@@ -1,29 +1,11 @@
 {
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
-  "last_activity": "2026-06-10T09:15:46.873667Z",
-  "last_action": "completed 04-setup-docs",
+  "current_phase": "05-polish-deploy",
+  "current_phase_status": "created",
+  "last_activity": "2026-06-10T09:56:58.698447Z",
+  "last_action": "spec locked: 05-polish-deploy",
   "history": [
-    {
-      "at": "2026-06-09T18:38:45.221155Z",
-      "action": "executed t-2 (Hero section)"
-    },
-    {
-      "at": "2026-06-09T18:42:18.183726Z",
-      "action": "executed t-3 (Features section)"
-    },
-    {
-      "at": "2026-06-09T18:43:15.964331Z",
-      "action": "executed t-4 (Closing download CTA section)"
-    },
-    {
-      "at": "2026-06-09T18:44:50.967292Z",
-      "action": "executed t-5 (Assemble landing page)"
-    },
-    {
-      "at": "2026-06-09T18:49:49.127804Z",
-      "action": "executed t-6 (Landing e2e + AA contrast fix)"
-    },
     {
       "at": "2026-06-09T18:49:55.87071Z",
       "action": "set current_phase_status=complete"
@@ -203,6 +185,26 @@
     {
       "at": "2026-06-10T09:15:46.873667Z",
       "action": "completed 04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T09:17:12.450162Z",
+      "action": "created 05-05-polish-deploy"
+    },
+    {
+      "at": "2026-06-10T09:17:29.186962Z",
+      "action": "set current_phase=05-polish-deploy"
+    },
+    {
+      "at": "2026-06-10T09:17:29.194422Z",
+      "action": "created 05-polish-deploy (corrected id from 05-05-polish-deploy)"
+    },
+    {
+      "at": "2026-06-10T09:56:58.691728Z",
+      "action": "set current_phase=05-polish-deploy"
+    },
+    {
+      "at": "2026-06-10T09:56:58.698447Z",
+      "action": "spec locked: 05-polish-deploy"
     }
   ]
 }
