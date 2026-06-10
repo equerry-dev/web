@@ -3,8 +3,8 @@
   "current_milestone": "v0.1",
   "current_phase": "03-docs-system",
   "current_phase_status": "planned",
-  "last_activity": "2026-06-10T05:35:01.226063Z",
-  "last_action": "plan locked: 03-docs-system (6 tasks across 4 waves)",
+  "last_activity": "2026-06-10T05:36:51.495769Z",
+  "last_action": "plan reviewed: 03-docs-system (0 blocking, 4 flags)",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -201,6 +201,10 @@
     {
       "at": "2026-06-10T05:35:01.226063Z",
       "action": "plan locked: 03-docs-system (6 tasks across 4 waves)"
+    },
+    {
+      "at": "2026-06-10T05:36:51.495769Z",
+      "action": "plan reviewed: 03-docs-system (0 blocking, 4 flags)"
     }
   ]
 }
