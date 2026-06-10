@@ -35,3 +35,33 @@ test.describe('theme bootstrap (no-flash)', () => {
 		await context.close();
 	});
 });
+
+// Every public route, plus an unknown path that renders the branded 404.
+const ROUTES = [
+	'/',
+	'/docs',
+	'/docs/install',
+	'/docs/default-assistant',
+	'/docs/add-a-provider',
+	'/docs/capability-slots',
+	'/this-route-does-not-exist'
+];
+const MOBILE = { width: 320, height: 720 };
+
+test.describe('responsive — no horizontal overflow at 320px', () => {
+	for (const path of ROUTES) {
+		for (const theme of ['light', 'dark'] as const) {
+			test(`${path} (${theme}) holds at 320px`, async ({ page }) => {
+				await page.setViewportSize(MOBILE);
+				if (theme === 'dark') {
+					await page.addInitScript(() => localStorage.setItem('equerry-theme', 'dark'));
+				}
+				await page.goto(path);
+				const overflow = await page.evaluate(
+					() => document.documentElement.scrollWidth - document.documentElement.clientWidth
+				);
+				expect(overflow, `${path} (${theme})`).toBeLessThanOrEqual(1);
+			});
+		}
+	}
+});
