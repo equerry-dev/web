@@ -39,4 +39,15 @@ test.describe('privacy network guard', () => {
 			expect(cookies, `${path} document.cookie`).toBe('');
 		});
 	}
+
+	test('records a page view: the Umami beacon fires on load', async ({ page }) => {
+		// Resolves when the page-view POST is initiated; times out (fails) if the
+		// self-hosted Umami tracker never sends a beacon.
+		const beacon = page.waitForRequest(
+			(req) => req.url().startsWith('https://umami.rivil.co.uk/api/send') && req.method() === 'POST'
+		);
+		await page.goto('/');
+		const request = await beacon;
+		expect(request.url()).toContain('umami.rivil.co.uk/api/send');
+	});
 });
