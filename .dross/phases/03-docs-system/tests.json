@@ -1,0 +1,83 @@
+{
+  "phase": "03-docs-system",
+  "generated_at": "2026-06-10T06:35:44.746944Z",
+  "languages": null,
+  "skipped": [
+    {
+      "file": "e2e/docs.e2e.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/DocsPrevNext.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/DocsPrevNext.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/DocsSidebar.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/DocsSidebar.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/components/DocsToc.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/lib/components/DocsToc.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/docs/highlighter.js",
+      "reason": "no mutation adapter for .js"
+    },
+    {
+      "file": "src/lib/docs/highlighter.spec.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/docs/nav.spec.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/docs/nav.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/routes/docs/+layout.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/routes/docs/+layout.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/routes/docs/+page.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/routes/docs/code-theme.css",
+      "reason": "no mutation adapter for .css"
+    },
+    {
+      "file": "src/routes/docs/configuration/+page.svx",
+      "reason": "no mutation adapter for .svx"
+    },
+    {
+      "file": "src/routes/docs/getting-started/+page.svx",
+      "reason": "no mutation adapter for .svx"
+    },
+    {
+      "file": "src/routes/layout.css",
+      "reason": "no mutation adapter for .css"
+    },
+    {
+      "file": "svelte.config.js",
+      "reason": "no mutation adapter for .js"
+    }
+  ]
+}
