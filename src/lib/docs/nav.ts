@@ -27,12 +27,13 @@ export interface AdjacentPages {
 
 export const docsNav: DocGroup[] = [
 	{
-		title: 'Getting Started',
-		pages: [{ slug: 'getting-started', title: 'Getting Started' }]
-	},
-	{
-		title: 'Configuration',
-		pages: [{ slug: 'configuration', title: 'Configuration' }]
+		title: 'Setup',
+		pages: [
+			{ slug: 'install', title: 'Install' },
+			{ slug: 'default-assistant', title: 'Set as default assistant' },
+			{ slug: 'add-a-provider', title: 'Add a provider' },
+			{ slug: 'capability-slots', title: 'Capability Slots' }
+		]
 	}
 ];
 
