@@ -38,6 +38,14 @@
 		<link rel="icon" href="/favicon-dark.ico" media="(prefers-color-scheme: dark)" sizes="any" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="manifest" href="/site.webmanifest" />
+		<!-- Self-hosted, cookieless Umami: script served same-origin (/umami.js);
+		     only the aggregate page-view beacon goes to the Umami instance. -->
+		<script
+			defer
+			src="/umami.js"
+			data-website-id="1bfaf8df-b439-4711-ad6e-c49f00565980"
+			data-host-url="https://umami.rivil.co.uk"
+		></script>
 		%sveltekit.head%
 	</head>
 
