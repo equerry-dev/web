@@ -2,18 +2,10 @@
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
   "current_phase": "04-setup-docs",
-  "current_phase_status": "created",
-  "last_activity": "2026-06-10T07:42:35.95292Z",
-  "last_action": "spec locked: 04-setup-docs",
+  "current_phase_status": "planned",
+  "last_activity": "2026-06-10T08:16:34.333291Z",
+  "last_action": "plan locked: 04-setup-docs (6 tasks across 3 waves)",
   "history": [
-    {
-      "at": "2026-06-09T14:27:21.616083Z",
-      "action": "phase 01-site-shell executed (7/7 done)"
-    },
-    {
-      "at": "2026-06-09T14:36:51.120472Z",
-      "action": "set current_phase_status=verified"
-    },
     {
       "at": "2026-06-09T14:36:51.128018Z",
       "action": "verified 01-site-shell: partial (6/6 covered, mutation skipped)"
@@ -205,6 +197,14 @@
     {
       "at": "2026-06-10T07:42:35.95292Z",
       "action": "spec locked: 04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T08:16:34.325872Z",
+      "action": "set current_phase_status=planned"
+    },
+    {
+      "at": "2026-06-10T08:16:34.333291Z",
+      "action": "plan locked: 04-setup-docs (6 tasks across 3 waves)"
     }
   ]
 }
