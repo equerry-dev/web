@@ -91,13 +91,12 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  # Informational on PRs (non-blocking until the landing page + fonts land,
-  # since the shell still 404s the woff2 fonts which dings best-practices/perf).
+  # Blocking quality gate on push and PRs: accessibility = 100, best-practices &
+  # SEO >= 90, performance >= 80 (thresholds in lighthouserc.json). A regression
+  # below any threshold fails CI.
   lighthouse:
     needs: test
-    if: github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
-    continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
