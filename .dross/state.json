@@ -1,59 +1,11 @@
 {
-  "version": "0.1.0.1",
+  "version": "0.1.0.2",
   "current_milestone": "v0.1",
-  "current_phase": "02-landing-page",
+  "current_phase": "03-docs-system",
   "current_phase_status": "verified",
-  "last_activity": "2026-06-09T18:56:00.228055Z",
-  "last_action": "verified 02-landing-page: pass (6/6 covered, mutation skipped)",
+  "last_activity": "2026-06-10T07:03:31.268242Z",
+  "last_action": "re-verified 03-docs-system: pass (8/8 covered, c-4 gap closed, mutation skipped)",
   "history": [
-    {
-      "at": "2026-06-09T10:52:45.991459Z",
-      "action": "dross init"
-    },
-    {
-      "at": "2026-06-09T11:42:47.890414Z",
-      "action": "init complete"
-    },
-    {
-      "at": "2026-06-09T13:26:09.982011Z",
-      "action": "set current_milestone=v0.1"
-    },
-    {
-      "at": "2026-06-09T13:26:09.988962Z",
-      "action": "scoped milestone v0.1: 5 criteria, 5 phases"
-    },
-    {
-      "at": "2026-06-09T13:27:51.731191Z",
-      "action": "created 01-site-shell"
-    },
-    {
-      "at": "2026-06-09T13:39:01.155515Z",
-      "action": "set current_phase=01-site-shell"
-    },
-    {
-      "at": "2026-06-09T13:39:01.161522Z",
-      "action": "spec locked: 01-site-shell"
-    },
-    {
-      "at": "2026-06-09T13:43:23.278261Z",
-      "action": "set current_phase_status=planned"
-    },
-    {
-      "at": "2026-06-09T13:43:23.284577Z",
-      "action": "plan locked: 01-site-shell (6 tasks across 4 waves)"
-    },
-    {
-      "at": "2026-06-09T13:51:22.673626Z",
-      "action": "plan reviewed: 01-site-shell (0 blocking, 3 flags)"
-    },
-    {
-      "at": "2026-06-09T14:03:59.578104Z",
-      "action": "executed t-1 (Component test harness)"
-    },
-    {
-      "at": "2026-06-09T14:07:33.585912Z",
-      "action": "executed t-2 (Theme store + no-flash bootstrap)"
-    },
     {
       "at": "2026-06-09T14:10:59.983775Z",
       "action": "executed t-3 (Base components: Button + BrandMark)"
@@ -169,6 +121,90 @@
     {
       "at": "2026-06-09T18:56:00.228055Z",
       "action": "verified 02-landing-page: pass (6/6 covered, mutation skipped)"
+    },
+    {
+      "at": "2026-06-09T19:35:53.916347Z",
+      "action": "completed 02-landing-page"
+    },
+    {
+      "at": "2026-06-09T19:46:20.79247Z",
+      "action": "bump internal 0.1.0.1 → 0.1.0.2"
+    },
+    {
+      "at": "2026-06-09T19:46:20.8021Z",
+      "action": "quick: add self-hosted latin woff2 fonts"
+    },
+    {
+      "at": "2026-06-09T19:49:32.988681Z",
+      "action": "created 03-docs-system"
+    },
+    {
+      "at": "2026-06-10T05:30:24.63781Z",
+      "action": "set current_phase=03-docs-system"
+    },
+    {
+      "at": "2026-06-10T05:30:24.643548Z",
+      "action": "spec locked: 03-docs-system"
+    },
+    {
+      "at": "2026-06-10T05:35:01.219921Z",
+      "action": "set current_phase_status=planned"
+    },
+    {
+      "at": "2026-06-10T05:35:01.226063Z",
+      "action": "plan locked: 03-docs-system (6 tasks across 4 waves)"
+    },
+    {
+      "at": "2026-06-10T05:36:51.495769Z",
+      "action": "plan reviewed: 03-docs-system (0 blocking, 4 flags)"
+    },
+    {
+      "at": "2026-06-10T05:38:15.861172Z",
+      "action": "plan amended: 03-docs-system (folded review flags #1 e2e path, #2 axe theme-toggle)"
+    },
+    {
+      "at": "2026-06-10T05:41:02.583755Z",
+      "action": "executed t-1 (Docs nav config + adjacency helpers)"
+    },
+    {
+      "at": "2026-06-10T05:56:55.571094Z",
+      "action": "executed t-2 (MDsveX pipeline: dual-theme highlight + slugs + TOC metadata)"
+    },
+    {
+      "at": "2026-06-10T06:02:21.953804Z",
+      "action": "executed t-3 (DocsSidebar: grouped nav, active page, responsive collapse)"
+    },
+    {
+      "at": "2026-06-10T06:04:37.936528Z",
+      "action": "executed t-4 (DocsToc + DocsPrevNext components)"
+    },
+    {
+      "at": "2026-06-10T06:10:00.649629Z",
+      "action": "executed t-5 (Docs layout + /docs landing + sample doc pages)"
+    },
+    {
+      "at": "2026-06-10T06:17:54.339471Z",
+      "action": "executed t-6 (Docs e2e: a11y + keyboard + privacy + dual-theme)"
+    },
+    {
+      "at": "2026-06-10T06:18:00.84664Z",
+      "action": "set current_phase_status=complete"
+    },
+    {
+      "at": "2026-06-10T06:18:00.852928Z",
+      "action": "phase 03-docs-system executed (6/6 done)"
+    },
+    {
+      "at": "2026-06-10T06:38:21.606517Z",
+      "action": "set current_phase_status=verified"
+    },
+    {
+      "at": "2026-06-10T06:38:21.613816Z",
+      "action": "verified 03-docs-system: partial (7/8 covered, 1 weak, mutation skipped)"
+    },
+    {
+      "at": "2026-06-10T07:03:31.268242Z",
+      "action": "re-verified 03-docs-system: pass (8/8 covered, c-4 gap closed, mutation skipped)"
     }
   ]
 }

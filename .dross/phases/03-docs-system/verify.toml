@@ -1,0 +1,100 @@
+[verify]
+  phase = "03-docs-system"
+  generated_at = 2026-06-10T06:35:44.746944Z
+  verdict = "pass"
+
+[summary]
+  mutation_status = "skipped"
+  mutation_score = 0.0
+  mutants_killed = 0
+  mutants_survived = 0
+  mutants_not_covered = 0
+  criteria_total = 8
+  criteria_covered = 8
+  criteria_uncovered = 0
+
+[[criterion]]
+  id = "c-1"
+  status = "covered"
+  tests = [
+    "src/lib/docs/highlighter.spec.ts:'highlights fenced code blocks with Shiki dual-theme variables'",
+    "src/routes/docs/docs-index.svelte.test.ts:'lists every doc page from docsNav with its route href'",
+    "e2e/docs.e2e.ts:'sidebar marks the current page as aria-current'"
+  ]
+  notes = "MDsveX pipeline compiles md (code + slugged headings); landing renders; e2e loads the real .svx page through the docs layout nested in the shell."
+
+[[criterion]]
+  id = "c-2"
+  status = "covered"
+  tests = [
+    "src/lib/docs/nav.spec.ts:'flattenDocs'/'adjacent'",
+    "src/lib/components/DocsSidebar.svelte.test.ts:'marks the current page with aria-current and leaves others unmarked'",
+    "e2e/docs.e2e.ts:'sidebar marks the current page as aria-current'"
+  ]
+  notes = "Sidebar derives from single-source docsNav; current page marked aria-current at both unit and e2e level."
+
+[[criterion]]
+  id = "c-3"
+  status = "covered"
+  tests = [
+    "src/lib/docs/highlighter.spec.ts:'highlights fenced code blocks with Shiki dual-theme variables'",
+    "src/lib/docs/highlighter.spec.ts:'gives headings stable slug ids for the TOC (rehype-slug)'",
+    "e2e/docs.e2e.ts:'makes no third-party network requests across the docs section'"
+  ]
+  notes = "Build-time Shiki highlighting verified at the pipeline level; zero third-party requests verified in-browser (self-hosted)."
+
+[[criterion]]
+  id = "c-4"
+  status = "covered"
+  tests = [
+    "e2e/docs.e2e.ts:'has no axe AA violations in light, then dark after toggling the theme'",
+    "e2e/docs.e2e.ts:'sidebar collapses behind a toggle at 320px and expands on click'",
+    "src/lib/components/DocsSidebar.svelte.test.ts:'toggle collapses the list on mobile and the list stays shown at md+'"
+  ]
+  notes = "Light/dark AA contrast covered by axe (both themes, caught a real bug). Responsive mobile-collapse now covered by a 320px browser e2e: list is display:none behind the visible toggle, expands on click, and no horizontal overflow at 320px (real CSS, not just the class mechanism). Gap from the initial partial verdict closed in commit e1ef419."
+
+[[criterion]]
+  id = "c-5"
+  status = "covered"
+  tests = [
+    "e2e/docs.e2e.ts:'makes no third-party network requests across the docs section' (navigates /docs, /docs/getting-started, /docs/configuration)",
+    "playwright.config.ts:webServer 'npm run build && npm run preview' (e2e run gates on a successful static prerender build)"
+  ]
+  notes = "The e2e suite runs against the adapter-static build served by preview; if prerender broke or a docs route were unreachable, the build/webServer or the goto navigations would fail. Build + HTML inspection also confirmed flat static files during execution."
+
+[[criterion]]
+  id = "c-6"
+  status = "covered"
+  tests = [
+    "e2e/docs.e2e.ts:'keyboard focus shows a visible ring on sidebar, TOC and prev/next links'",
+    "src/lib/components/DocsToc.svelte.test.ts:'jump-links are keyboard-focusable'"
+  ]
+  notes = "e2e focuses a sidebar, TOC and prev/next link and asserts a solid focus outline on each."
+
+[[criterion]]
+  id = "c-7"
+  status = "covered"
+  tests = [
+    "src/lib/docs/nav.spec.ts:'adjacent' first/last cases",
+    "src/lib/components/DocsPrevNext.svelte.test.ts:'first page'/'last page'/'middle page'",
+    "e2e/docs.e2e.ts:'prev/next walks first -> last with no prev on first and no next on last'"
+  ]
+  notes = "Endpoint behaviour (no prev on first, no next on last) verified at nav-logic, component and e2e levels."
+
+[[criterion]]
+  id = "c-8"
+  status = "covered"
+  tests = [
+    "src/lib/docs/extract-headings.svelte.test.ts:'collects h2 and h3 ... with depth, id and text'",
+    "src/lib/components/DocsToc.svelte.test.ts:'renders one jump-link per heading, each targeting its slug id'",
+    "e2e/docs.e2e.ts:'a TOC jump-link scrolls its section into view'"
+  ]
+  notes = "Heading extraction, TOC rendering (one #slug link per heading), and the jump-to-section behaviour all covered."
+
+[[finding]]
+  severity = "NOTE"
+  text = "c-4 was initially weak (responsive collapse only mechanism-tested); closed by adding a 320px browser e2e in commit e1ef419, then re-verified to pass."
+
+[[finding]]
+  severity = "NOTE"
+  text = "Mutation efficacy unverified: dross verify invokes the deprecated legacy 'stryker' package (Cannot find module 'rx'); no mutation adapter ran. Verdict based on criterion coverage alone, consistent with phases 01 and 02 (both mutation-skipped). Modern setup would need @stryker-mutator/core."

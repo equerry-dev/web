@@ -1,0 +1,31 @@
+<svelte:head>
+	<title>Getting Started — Equerry Docs</title>
+</svelte:head>
+
+# Getting Started
+
+> Placeholder content. The real install-to-first-run walkthrough lands in a later
+> phase — this page exists to exercise the docs system (headings, code blocks,
+> navigation) end to end.
+
+## Install the app
+
+Equerry is distributed through Android app stores. Once the listings are live,
+the download links on the home page point to them.
+
+## Set as the default assistant
+
+After installing, you can choose Equerry as your device's assistant app. The exact
+steps depend on your Android version and will be documented here.
+
+### Confirm the setting
+
+You can inspect the current assistant from a shell:
+
+```bash
+adb shell settings get secure assistant
+```
+
+## What's next
+
+Once the app is set up, head to configuration to wire your providers.

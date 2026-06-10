@@ -1,0 +1,80 @@
+[phase]
+id        = "03-docs-system"
+title     = "Docs system"
+milestone = "v0.1"
+
+[[criteria]]
+id   = "c-1"
+text = "A /docs section renders MDsveX markdown inside a dedicated docs layout nested in the existing shell, with at least one real sample doc page proving the authoring pipeline end-to-end."
+
+[[criteria]]
+id   = "c-2"
+text = "A docs sidebar lists the doc pages and indicates the current page, driven by a single source-of-truth nav structure (not hand-maintained per page)."
+
+[[criteria]]
+id   = "c-3"
+text = "Long-form markdown renders with proper styling — headings, lists, links, and syntax-highlighted code blocks — with highlighting done at build time and self-hosted (no runtime third-party requests, per r-01)."
+
+[[criteria]]
+id   = "c-4"
+text = "The docs section is responsive from ~320px to desktop (sidebar collapses on mobile) and renders correctly in light and dark at WCAG AA contrast."
+
+[[criteria]]
+id   = "c-5"
+text = "Docs routes prerender to fully static HTML via pnpm build; every docs route and nav link is reachable with no server runtime."
+
+[[criteria]]
+id   = "c-6"
+text = "The docs section is keyboard-navigable (sidebar, in-page, prev/next, and TOC links) with visible focus states."
+
+[[criteria]]
+id   = "c-7"
+text = "Each doc page shows prev/next navigation linking to the adjacent pages in sidebar order; the first page has no prev and the last has no next."
+
+[[criteria]]
+id   = "c-8"
+text = "Long pages show an on-page table of contents generated from the page's headings, with jump-links to each section."
+
+[[decisions]]
+key    = "nav_source"
+choice = "Sidebar nav comes from a single hand-authored config module (e.g. src/lib/docs/nav.ts) listing pages with explicit title, order, and group."
+why    = "Full control over ordering and labels; nav stays explicit and predictable with no filesystem/frontmatter magic to reason about."
+locked = true
+
+[[decisions]]
+key    = "sidebar_structure"
+choice = "Pages are organized under labeled category sections (e.g. 'Getting Started', 'Configuration') rather than a flat list."
+why    = "Scales as the doc set grows and matches the grouped shape of the nav config; gives setup docs a clear home."
+locked = true
+
+[[decisions]]
+key    = "docs_entry"
+choice = "The bare /docs route renders a docs landing/index page (short intro + links into the main sections), not a redirect to the first page."
+why    = "Gives a stable /docs URL to link from the landing page and nav, and orients the reader before they dive in."
+locked = true
+
+[[decisions]]
+key    = "code_theming"
+choice = "Syntax-highlighted code blocks are dual-theme: a light palette in light mode and a dark palette in dark mode, following the site theme toggle. Both palettes are embedded at build time and switched via CSS."
+why    = "Avoids a clashing dark code block in light mode; staying build-time + CSS keeps it self-hosted with no runtime requests, per r-01."
+locked = true
+
+[[deferred]]
+text = "Docs search (client-side or otherwise)."
+why  = "Small v0.1 doc set is navigable via the sidebar; revisit once docs grow."
+
+[[deferred]]
+text = "Edit-this-page-on-GitHub link per doc page."
+why  = "Nice-to-have; not needed to ship setup docs in v0.1."
+
+[[deferred]]
+text = "Copy-to-clipboard button on code blocks."
+why  = "Polish; defer unless it proves needed for the setup walkthrough."
+
+[[deferred]]
+text = "Breadcrumbs above the page title."
+why  = "Sidebar + prev/next cover navigation for a shallow v0.1 doc tree."
+
+[[deferred]]
+text = "Versioned docs (multiple doc versions)."
+why  = "Single current version suffices for v0.1."

@@ -1,0 +1,61 @@
+{
+  "phase": "03-docs-system",
+  "tasks": {
+    "t-1": {
+      "files": [
+        "src/lib/docs/nav.ts",
+        "src/lib/docs/nav.spec.ts"
+      ],
+      "commit": "a2c1fb3",
+      "completed_at": "2026-06-10T05:41:02.564695Z"
+    },
+    "t-2": {
+      "files": [
+        "svelte.config.js",
+        "src/lib/docs/highlighter.js",
+        "src/routes/docs/code-theme.css",
+        "src/lib/docs/highlighter.spec.ts"
+      ],
+      "commit": "187a00d",
+      "completed_at": "2026-06-10T05:56:55.558296Z"
+    },
+    "t-3": {
+      "files": [
+        "src/lib/components/DocsSidebar.svelte",
+        "src/lib/components/DocsSidebar.svelte.test.ts"
+      ],
+      "commit": "4fef3ae",
+      "completed_at": "2026-06-10T06:02:21.940247Z"
+    },
+    "t-4": {
+      "files": [
+        "src/lib/components/DocsToc.svelte",
+        "src/lib/components/DocsToc.svelte.test.ts",
+        "src/lib/components/DocsPrevNext.svelte",
+        "src/lib/components/DocsPrevNext.svelte.test.ts"
+      ],
+      "commit": "ecd8a9c",
+      "completed_at": "2026-06-10T06:04:37.923874Z"
+    },
+    "t-5": {
+      "files": [
+        "svelte.config.js",
+        "src/routes/docs/+layout.svelte",
+        "src/routes/docs/+layout.ts",
+        "src/routes/docs/+page.svelte",
+        "src/routes/docs/getting-started/+page.svx",
+        "src/routes/docs/configuration/+page.svx"
+      ],
+      "commit": "ea8ff89",
+      "completed_at": "2026-06-10T06:10:00.636Z"
+    },
+    "t-6": {
+      "files": [
+        "e2e/docs.e2e.ts",
+        "src/routes/layout.css"
+      ],
+      "commit": "ee5f16d",
+      "completed_at": "2026-06-10T06:17:54.325487Z"
+    }
+  }
+}
