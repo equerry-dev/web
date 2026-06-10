@@ -1,15 +1,9 @@
 {
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
-  "current_phase": "05-polish-deploy",
-  "current_phase_status": "verified",
-  "last_activity": "2026-06-10T13:37:11.658821Z",
-  "last_action": "re-verified 05-polish-deploy: pass (8/8 covered, c-7 flag closed, mutation skipped)",
+  "last_activity": "2026-06-10T14:26:48.062503Z",
+  "last_action": "completed 05-polish-deploy",
   "history": [
-    {
-      "at": "2026-06-10T06:18:00.852928Z",
-      "action": "phase 03-docs-system executed (6/6 done)"
-    },
     {
       "at": "2026-06-10T06:38:21.606517Z",
       "action": "set current_phase_status=verified"
@@ -205,6 +199,10 @@
     {
       "at": "2026-06-10T13:37:11.658821Z",
       "action": "re-verified 05-polish-deploy: pass (8/8 covered, c-7 flag closed, mutation skipped)"
+    },
+    {
+      "at": "2026-06-10T14:26:48.062503Z",
+      "action": "completed 05-polish-deploy"
     }
   ]
 }
