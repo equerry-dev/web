@@ -1,6 +1,6 @@
 {
   "phase": "05-polish-deploy",
-  "generated_at": "2026-06-10T13:08:21.609933Z",
+  "generated_at": "2026-06-10T13:36:35.165892Z",
   "languages": null,
   "skipped": [
     {
@@ -166,10 +166,6 @@
     {
       "file": "svelte.config.js",
       "reason": "no mutation adapter for .js"
-    },
-    {
-      "file": "vite.config.ts",
-      "reason": "no mutation adapter for .ts"
     }
   ]
 }

@@ -2,18 +2,10 @@
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
   "current_phase": "05-polish-deploy",
-  "current_phase_status": "complete",
-  "last_activity": "2026-06-10T13:35:09.471811Z",
-  "last_action": "phase 05-polish-deploy re-executed (t-6 amendment); verify verdict stale, re-verify recommended",
+  "current_phase_status": "verified",
+  "last_activity": "2026-06-10T13:37:11.658821Z",
+  "last_action": "re-verified 05-polish-deploy: pass (8/8 covered, c-7 flag closed, mutation skipped)",
   "history": [
-    {
-      "at": "2026-06-10T06:17:54.339471Z",
-      "action": "executed t-6 (Docs e2e: a11y + keyboard + privacy + dual-theme)"
-    },
-    {
-      "at": "2026-06-10T06:18:00.84664Z",
-      "action": "set current_phase_status=complete"
-    },
     {
       "at": "2026-06-10T06:18:00.852928Z",
       "action": "phase 03-docs-system executed (6/6 done)"
@@ -205,6 +197,14 @@
     {
       "at": "2026-06-10T13:35:09.471811Z",
       "action": "phase 05-polish-deploy re-executed (t-6 amendment); verify verdict stale, re-verify recommended"
+    },
+    {
+      "at": "2026-06-10T13:37:11.652951Z",
+      "action": "set current_phase_status=verified"
+    },
+    {
+      "at": "2026-06-10T13:37:11.658821Z",
+      "action": "re-verified 05-polish-deploy: pass (8/8 covered, c-7 flag closed, mutation skipped)"
     }
   ]
 }

@@ -1,7 +1,7 @@
 [verify]
   phase = "05-polish-deploy"
-  generated_at = 2026-06-10T13:08:21.609933Z
-  verdict = "partial"
+  generated_at = 2026-06-10T13:36:35.165892Z
+  verdict = "pass"
 
 [summary]
   mutation_status = "skipped"
@@ -20,7 +20,7 @@
     "e2e/theme.e2e.ts:'responsive — no horizontal overflow at 320px' (7 routes x light/dark)",
     "e2e/a11y.e2e.ts:'no axe AA violations (light)/(dark)' (per route)",
   ]
-  notes = "Overflow matrix across every route in both themes + axe in both themes catches layout/theme breakage. Visual correctness is proxied by overflow+axe (no pixel snapshots)."
+  notes = "Overflow matrix across every route in both themes + axe in both themes catches layout/theme breakage. Visual correctness proxied by overflow+axe (no pixel snapshots)."
 
 [[criterion]]
   id = "c-2"
@@ -71,9 +71,10 @@
   status = "covered"
   tests = [
     "src/umami-tag.spec.ts:'loads the Umami tracker from the same origin (/umami.js)' + 'wires the configured website id and beacon host-url'",
+    "e2e/privacy.e2e.ts:'records a page view: the Umami beacon fires on load'",
     "e2e/privacy.e2e.ts cookie assertion (cookieless)",
   ]
-  notes = "Tag presence/config (same-origin script, website id, host-url) and cookieless are asserted. The 'records page views' clause (beacon actually firing to /api/send) is NOT positively asserted — see FLAG."
+  notes = "Tag presence/config (same-origin script, website id, host-url), cookieless, AND the page-view beacon actually firing to umami.rivil.co.uk/api/send are all asserted. Prior verify FLAG (beacon not positively asserted) closed by the t-6 amendment."
 
 [[criterion]]
   id = "c-8"
@@ -85,13 +86,9 @@
   notes = "Seo component test covers title/description/canonical/OG/Twitter; sitemap test covers the route list + robots Sitemap reference. Per-page unique titles also exercised via build-output.e2e.ts content markers."
 
 [[finding]]
-  severity = "FLAG"
-  text = "c-7: the 'records page views' clause is not positively asserted. Tests confirm the Umami tag is present, same-origin, correctly configured, and that no cookies are set — but no test asserts a page-view beacon is actually sent to umami.rivil.co.uk/api/send. The e2e privacy/shell checks merely allow umami requests, they don't require one. Consider asserting the beacon fires."
-
-[[finding]]
   severity = "NOTE"
   text = "c-6: demo/ scaffolding removal has no standing regression test (nothing fails if a /demo route is re-added). Low risk for a deletion; the substantive deliverable (branded 404) is covered by error.e2e.ts."
 
 [[finding]]
   severity = "NOTE"
-  text = "Mutation testing skipped: dross invokes a broken legacy 'stryker' package (Cannot find module 'rx'); no adapter ran, score is a 0/0 artifact, so the verdict rests on criterion coverage alone (consistent with phases 02/03/04). Verify-time skip also listed every touched file as 'no mutation adapter' — those skeleton NOTEs are collapsed here as noise."
+  text = "Mutation testing skipped: dross invokes a broken legacy 'stryker' package (Cannot find module 'rx'); no adapter ran, score is a 0/0 artifact, so the verdict rests on criterion coverage alone (consistent with phases 02/03/04). The skeleton's per-file 'no mutation adapter' NOTEs are collapsed here as noise."
