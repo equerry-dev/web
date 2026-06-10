@@ -1,0 +1,51 @@
+<svelte:head>
+	<title>Set as default assistant — Equerry Docs</title>
+	<meta
+		name="description"
+		content="Make Equerry your device's default digital assistant through Android Settings so the assist gesture invokes it."
+	/>
+</svelte:head>
+
+# Set as the default assistant
+
+Equerry registers itself as a system **digital assistant**. Once you select it as
+your default, Android routes the assist gesture — the power-button long-press or
+corner swipe on most devices — to Equerry instead of Gemini. You make that choice
+in Android's own settings; there is no in-app wizard for it.
+
+## Choose Equerry in Settings
+
+The exact wording differs a little between Android versions and manufacturers,
+but the path is:
+
+**Settings › Apps › Default apps › Digital assistant app**
+
+Open that screen and pick **"Equerry assistant"** from the list of available
+assistant apps. On some devices the same setting lives under **Settings › Apps ›
+Assistant & voice input**, or you can search your system settings for
+*"assistant"* to jump straight to it.
+
+If Equerry does not appear in the list, make sure the app is installed and open it
+once first.
+
+## Confirm it took effect
+
+You can verify which assistant is active over adb:
+
+```sh
+adb shell settings get secure assistant
+```
+
+The output should reference `dev.equerry.app` once Equerry is selected.
+
+## What works today
+
+Equerry is in an early phase: setting it as your assistant and granting the role
+works now, and the assist gesture invokes the app. The full on-screen assistant
+experience is still being built out, so expect the interaction itself to grow over
+the coming releases.
+
+## Next
+
+With Equerry holding the assistant role, the remaining setup is connecting an AI
+backend — [add a provider](/docs/add-a-provider).

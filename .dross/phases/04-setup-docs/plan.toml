@@ -1,0 +1,64 @@
+[phase]
+  id = "04-setup-docs"
+
+[[task]]
+  id = "t-1"
+  wave = 1
+  title = "Write Install doc page"
+  files = ["src/routes/docs/install/+page.svx"]
+  description = "New /docs/install page documenting the install method that works today\n(build-from-source / sideloaded APK for dev.equerry.app); Google Play + F-Droid\nshown as 'coming soon', never as working steps (r-03).\n"
+  covers = ["c-1"]
+  test_contract = ["if the page lists Google Play or F-Droid as a working install method instead of 'coming soon', the install content e2e (t-6) fails", "if the build-from-source / sideloaded-APK instructions are removed, the install content e2e (t-6) fails"]
+  status = "done"
+
+[[task]]
+  id = "t-2"
+  wave = 1
+  title = "Write Set-as-default-assistant page"
+  files = ["src/routes/docs/default-assistant/+page.svx"]
+  description = "New /docs/default-assistant page walking the user through Android Settings >\nDefault apps > Digital assistant > 'Equerry assistant', matching the real\nVoiceInteractionService flow — no invented in-app wizard.\n"
+  covers = ["c-2"]
+  test_contract = ["if the Settings > Default apps > Digital assistant > 'Equerry assistant' path is missing from the page, the default-assistant content e2e (t-6) fails"]
+  status = "done"
+
+[[task]]
+  id = "t-3"
+  wave = 1
+  title = "Write Add-a-provider page"
+  files = ["src/routes/docs/add-a-provider/+page.svx"]
+  description = "New /docs/add-a-provider page: Ollama-first worked example plus a compact\nreference for the other three types. Documents the real form fields (Label, Type,\nBase URL, API key where required, Model), that Ollama needs no key, and that keys\nare stored encrypted on-device.\n"
+  covers = ["c-3"]
+  test_contract = ["if any of Ollama / Anthropic / OpenAI-compatible / OpenRouter is dropped from the page, the provider content e2e (t-6) fails", "if the page stops noting Ollama needs no API key or that keys are stored encrypted on-device, the provider content e2e (t-6) fails"]
+  status = "done"
+
+[[task]]
+  id = "t-4"
+  wave = 1
+  title = "Write Capability-Slots page"
+  files = ["src/routes/docs/capability-slots/+page.svx"]
+  description = "New /docs/capability-slots page: explains the slot concept and walks through\nmapping a provider to the CHAT slot (the only active slot in v0.1), marking\nVision/STT/TTS/OCR/Embeddings as 'coming soon'.\n"
+  covers = ["c-4"]
+  test_contract = ["if the page shows a non-CHAT slot as active, the slots content e2e (t-6) fails", "if 'coming soon' is dropped from Vision/STT/TTS/OCR/Embeddings, the slots content e2e (t-6) fails"]
+  status = "done"
+
+[[task]]
+  id = "t-5"
+  wave = 2
+  title = "Rewire docs nav + index orientation/maturity callout"
+  files = ["src/lib/docs/nav.ts", "src/routes/docs/+page.svelte", "src/routes/docs/docs-index.svelte.test.ts", "src/routes/docs/getting-started/+page.svx", "src/routes/docs/configuration/+page.svx"]
+  description = "Replace the two placeholder pages in docsNav with the four real pages under a\nsingle 'Setup' group (per the locked page_structure decision), in reading order\ninstall -> default-assistant -> add-a-provider -> capability-slots. Add the 'what\nworks today' maturity callout + orientation to the /docs index. Delete the old\ngetting-started and configuration .svx routes. Update the docs-index unit test to\nassert the maturity callout renders and that the nav links appear in the expected\nslug order.\n"
+  covers = ["c-5", "c-6"]
+  depends_on = ["t-1", "t-2", "t-3", "t-4"]
+  test_contract = ["if docsNav's flattened slug order isn't install -> default-assistant -> add-a-provider -> capability-slots, the new order assertion in docs-index.svelte.test.ts fails (t-6's prev/next e2e guards it at integration level)", "if the four pages aren't all under one 'Setup' sidebar group, the docs-index unit test (asserting the single group heading) fails", "if the /docs 'what works today' maturity callout is removed, the docs-index unit test fails"]
+  status = "done"
+
+[[task]]
+  id = "t-6"
+  wave = 3
+  title = "Update docs e2e for the setup walkthrough"
+  files = ["e2e/docs.e2e.ts"]
+  description = "Rewrite the docs e2e for the new page set (the old slugs and headings are gone):\nassert the ordered install -> ... -> capability-slots walkthrough via sidebar and\nprev/next with no dead links, the index maturity callout, and the per-page content\nassertions backing c-1..c-4 (store=coming-soon, assistant settings path, four\nprovider types + Ollama-no-key, CHAT-only/coming-soon slots).\n"
+  covers = ["c-5", "c-6"]
+  depends_on = ["t-5"]
+  test_contract = ["if any setup page 404s or a sidebar/prev-next link is dead, the docs walkthrough e2e fails", "if prev/next doesn't traverse all four setup pages in reading order, the ordering e2e fails", "if a per-page content assertion (store=coming-soon, assistant path, four provider types, CHAT-only) regresses, its e2e check fails"]
+  status = "done"

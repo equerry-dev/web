@@ -1,0 +1,77 @@
+<svelte:head>
+	<title>Add a provider — Equerry Docs</title>
+	<meta
+		name="description"
+		content="Create a provider profile in Equerry — Ollama, Anthropic, OpenAI-compatible, or OpenRouter — with your own endpoint, key, and model."
+	/>
+</svelte:head>
+
+# Add a provider
+
+A **provider** is one AI backend you want Equerry to talk to — a local Ollama
+server, an Anthropic account, an OpenAI-compatible endpoint, and so on. You create
+a provider *profile* for each backend, and later you point Equerry's jobs at those
+profiles through [Capability Slots](/docs/capability-slots).
+
+Equerry never proxies your traffic. Requests go straight from your device to the
+endpoint you configure, and your API keys are stored **encrypted** on the device —
+never uploaded, never logged.
+
+## Open the provider form
+
+In the app, open the **Providers** screen. If you have not added one yet, tap
+**"Add your first provider"**; otherwise use **Add provider**. The form adapts to
+the provider type you choose, showing only the fields that type needs.
+
+## The fields
+
+- **Label** — a name for this profile, e.g. *"Home Ollama"* or *"Work Claude"*.
+- **Type** — one of the four provider types below. Choosing a type prefills the
+  sensible defaults for it.
+- **Base URL** — the endpoint Equerry calls. It is prefilled per type and you can
+  edit it (except for OpenRouter, whose URL is fixed).
+- **API key** — required for the hosted providers; hidden entirely for Ollama.
+  It is masked, with a reveal toggle. When editing an existing profile, leave it
+  blank to keep the key you already saved.
+- **Model** — the model id to use. Type it freely, or tap one of the preset chips
+  shown for the selected type.
+
+## Add Ollama (a good first provider)
+
+Ollama is the most private option: it runs models **locally**, so nothing leaves
+your own network, and it needs **no API key**. It is the recommended place to
+start.
+
+1. Set **Type** to **Ollama**. The key field disappears — Ollama runs locally, so
+   no API key is required.
+2. **Base URL** defaults to `http://localhost:11434`. On a phone, `localhost` means
+   the phone itself, so if Ollama runs on your computer set this to that machine's
+   address on your network, e.g. `http://192.168.1.20:11434`.
+3. Pick a **Model** — preset chips include `llama3.2`, `qwen2.5`, `mistral`, and
+   `phi3`. Use any model you have pulled in Ollama.
+4. Give it a **Label** and save.
+
+## The other provider types
+
+The hosted types all need an **API key**, which you create in that provider's own
+dashboard. Otherwise the form is the same shape.
+
+- **Anthropic** — base URL `https://api.anthropic.com`; model presets include
+  `claude-sonnet-4-6`, `claude-opus-4-8`, and `claude-haiku-4-5`.
+- **OpenAI-compatible** — for OpenAI itself or any API-compatible server. There is
+  no default base URL, so enter the endpoint yourself; model presets include
+  `gpt-4o`, `gpt-4o-mini`, and `o3-mini`.
+- **OpenRouter** — base URL is fixed at `https://openrouter.ai/api/v1` (not
+  editable); model presets include `anthropic/claude-sonnet-4.6`, `openai/gpt-4o`,
+  and `google/gemini-2.0-flash`.
+
+## Where your keys live
+
+API keys are held in Android's Keystore-backed encrypted storage, separate from
+the rest of the profile. They are never written to logs and never leave the device
+except in the requests you make to the provider you entered them for.
+
+## Next
+
+With at least one provider saved, the final step is routing a job to it —
+[map it to a Capability Slot](/docs/capability-slots).

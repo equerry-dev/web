@@ -1,0 +1,50 @@
+<svelte:head>
+	<title>Capability Slots — Equerry Docs</title>
+	<meta
+		name="description"
+		content="Route Equerry's jobs to the providers you choose with Capability Slots — map a provider to the Chat slot to finish setup."
+	/>
+</svelte:head>
+
+# Capability Slots
+
+A **Capability Slot** is a job Equerry can do — holding a conversation, reading an
+image, transcribing speech — and you decide which [provider](/docs/add-a-provider)
+fills each one. This is the heart of the bring-your-own-backend idea: instead of a
+single fixed model, you wire a local Ollama to chat and, in time, a strong
+multimodal model to vision, on-device speech to transcription, and so on. Each slot
+points at exactly one provider profile, and one profile can fill more than one
+slot.
+
+## The slots
+
+In v0.1 only the **Chat** slot is wired and ready to use. The remaining slots are
+visible in the app but marked **coming soon** — they are part of the design and
+will light up in later releases:
+
+- **Chat** — conversational replies. **Available now.**
+- **Vision** — image understanding. *Coming soon.*
+- **Speech-to-text** — speech to text. *Coming soon.*
+- **Text-to-speech** — text to speech. *Coming soon.*
+- **OCR** — text from images. *Coming soon.*
+- **Embeddings** — vector indexing. *Coming soon.*
+
+## Map a provider to Chat
+
+Open the **Capability slots** screen. If nothing is mapped yet, the **Chat** slot
+shows a banner prompting you to **"Map a provider to CHAT"**.
+
+1. Tap the **Chat** slot.
+2. A picker lists every provider profile you have saved. Select the one you want
+   Chat to use.
+3. Tap **Map provider**.
+
+The Chat slot now shows the provider and model it is mapped to. To change it later,
+tap the slot again and pick a different profile. That is the whole setup loop:
+install Equerry, set it as your assistant, add a provider, and route Chat to it.
+
+## What's next
+
+The other slots will become available as Equerry grows. When they do, mapping them
+works exactly like Chat — open the slot, pick a provider, map it — so the workflow
+you just learned carries straight over.

@@ -1,81 +1,11 @@
 {
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
-  "last_activity": "2026-06-10T07:20:55.336732Z",
-  "last_action": "completed 03-docs-system",
+  "current_phase": "04-setup-docs",
+  "current_phase_status": "verified",
+  "last_activity": "2026-06-10T08:42:07.248689Z",
+  "last_action": "verified 04-setup-docs: pass (6/6 covered, mutation skipped)",
   "history": [
-    {
-      "at": "2026-06-09T14:12:11.318923Z",
-      "action": "executed t-4 (ThemeToggle component)"
-    },
-    {
-      "at": "2026-06-09T14:21:31.553847Z",
-      "action": "executed t-5 (Header + mobile slide-over drawer)"
-    },
-    {
-      "at": "2026-06-09T14:22:48.774271Z",
-      "action": "executed t-6 (Footer: minimal row)"
-    },
-    {
-      "at": "2026-06-09T14:27:13.498368Z",
-      "action": "executed t-7 (Assemble shell in layout + privacy/a11y e2e)"
-    },
-    {
-      "at": "2026-06-09T14:27:21.608988Z",
-      "action": "set current_phase_status=complete"
-    },
-    {
-      "at": "2026-06-09T14:27:21.616083Z",
-      "action": "phase 01-site-shell executed (7/7 done)"
-    },
-    {
-      "at": "2026-06-09T14:36:51.120472Z",
-      "action": "set current_phase_status=verified"
-    },
-    {
-      "at": "2026-06-09T14:36:51.128018Z",
-      "action": "verified 01-site-shell: partial (6/6 covered, mutation skipped)"
-    },
-    {
-      "at": "2026-06-09T14:39:53.064368Z",
-      "action": "re-verified 01-site-shell: pass (6/6 covered, gaps closed)"
-    },
-    {
-      "at": "2026-06-09T14:57:26.638235Z",
-      "action": "completed 01-site-shell"
-    },
-    {
-      "at": "2026-06-09T15:03:17.977352Z",
-      "action": "bump internal 0.1.0.0 → 0.1.0.1"
-    },
-    {
-      "at": "2026-06-09T15:03:17.990717Z",
-      "action": "quick: wire in real favicon/PWA icon set + logo (light + dark)"
-    },
-    {
-      "at": "2026-06-09T17:48:01.226017Z",
-      "action": "created 02-landing-page"
-    },
-    {
-      "at": "2026-06-09T18:14:33.186256Z",
-      "action": "set current_phase=02-landing-page"
-    },
-    {
-      "at": "2026-06-09T18:14:33.192158Z",
-      "action": "spec locked: 02-landing-page"
-    },
-    {
-      "at": "2026-06-09T18:25:42.009093Z",
-      "action": "set current_phase_status=planned"
-    },
-    {
-      "at": "2026-06-09T18:25:42.01563Z",
-      "action": "plan locked: 02-landing-page (6 tasks across 4 waves)"
-    },
-    {
-      "at": "2026-06-09T18:27:06.191811Z",
-      "action": "plan reviewed: 02-landing-page (0 blocking, 3 flags)"
-    },
     {
       "at": "2026-06-09T18:36:35.215438Z",
       "action": "executed t-1 (Store-URL config + self-hosted store badges)"
@@ -203,6 +133,78 @@
     {
       "at": "2026-06-10T07:20:55.336732Z",
       "action": "completed 03-docs-system"
+    },
+    {
+      "at": "2026-06-10T07:30:13.482973Z",
+      "action": "created 04-04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T07:30:43.509216Z",
+      "action": "set current_phase=04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T07:30:43.516224Z",
+      "action": "corrected phase id 04-04-setup-docs → 04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T07:42:35.94646Z",
+      "action": "set current_phase=04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T07:42:35.95292Z",
+      "action": "spec locked: 04-setup-docs"
+    },
+    {
+      "at": "2026-06-10T08:16:34.325872Z",
+      "action": "set current_phase_status=planned"
+    },
+    {
+      "at": "2026-06-10T08:16:34.333291Z",
+      "action": "plan locked: 04-setup-docs (6 tasks across 3 waves)"
+    },
+    {
+      "at": "2026-06-10T08:19:59.436444Z",
+      "action": "plan reviewed: 04-setup-docs (0 blocking, 1 flag); amended t-5 to single Setup group per locked decision"
+    },
+    {
+      "at": "2026-06-10T08:22:56.80957Z",
+      "action": "executed t-1 (Write Install doc page)"
+    },
+    {
+      "at": "2026-06-10T08:23:40.747297Z",
+      "action": "executed t-2 (Write Set-as-default-assistant page)"
+    },
+    {
+      "at": "2026-06-10T08:24:37.022852Z",
+      "action": "executed t-3 (Write Add-a-provider page)"
+    },
+    {
+      "at": "2026-06-10T08:25:11.728976Z",
+      "action": "executed t-4 (Write Capability-Slots page)"
+    },
+    {
+      "at": "2026-06-10T08:27:43.955641Z",
+      "action": "executed t-5 (Rewire docs nav + index orientation/maturity callout)"
+    },
+    {
+      "at": "2026-06-10T08:31:08.392977Z",
+      "action": "executed t-6 (Update docs e2e for the setup walkthrough)"
+    },
+    {
+      "at": "2026-06-10T08:31:15.09682Z",
+      "action": "set current_phase_status=complete"
+    },
+    {
+      "at": "2026-06-10T08:31:15.10283Z",
+      "action": "phase 04-setup-docs executed (6/6 done)"
+    },
+    {
+      "at": "2026-06-10T08:42:07.243039Z",
+      "action": "set current_phase_status=verified"
+    },
+    {
+      "at": "2026-06-10T08:42:07.248689Z",
+      "action": "verified 04-setup-docs: pass (6/6 covered, mutation skipped)"
     }
   ]
 }

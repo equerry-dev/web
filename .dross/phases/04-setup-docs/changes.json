@@ -1,0 +1,51 @@
+{
+  "phase": "04-setup-docs",
+  "tasks": {
+    "t-1": {
+      "files": [
+        "src/routes/docs/install/+page.svx"
+      ],
+      "commit": "deba6ac",
+      "completed_at": "2026-06-10T08:22:56.798966Z"
+    },
+    "t-2": {
+      "files": [
+        "src/routes/docs/default-assistant/+page.svx"
+      ],
+      "commit": "88d8dfb",
+      "completed_at": "2026-06-10T08:23:40.735101Z"
+    },
+    "t-3": {
+      "files": [
+        "src/routes/docs/add-a-provider/+page.svx"
+      ],
+      "commit": "71df4d4",
+      "completed_at": "2026-06-10T08:24:37.010957Z"
+    },
+    "t-4": {
+      "files": [
+        "src/routes/docs/capability-slots/+page.svx"
+      ],
+      "commit": "8ccf230",
+      "completed_at": "2026-06-10T08:25:11.714637Z"
+    },
+    "t-5": {
+      "files": [
+        "src/lib/docs/nav.ts",
+        "src/routes/docs/+page.svelte",
+        "src/routes/docs/docs-index.svelte.test.ts",
+        "src/routes/docs/getting-started/+page.svx",
+        "src/routes/docs/configuration/+page.svx"
+      ],
+      "commit": "e33b46f",
+      "completed_at": "2026-06-10T08:27:43.943652Z"
+    },
+    "t-6": {
+      "files": [
+        "e2e/docs.e2e.ts"
+      ],
+      "commit": "6946633",
+      "completed_at": "2026-06-10T08:31:08.378999Z"
+    }
+  }
+}

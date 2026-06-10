@@ -1,0 +1,66 @@
+[verify]
+  phase = "04-setup-docs"
+  generated_at = 2026-06-10T08:40:59.183128Z
+  verdict = "pass"
+
+[summary]
+  mutation_status = "skipped"
+  mutation_score = 0.0
+  mutants_killed = 0
+  mutants_survived = 0
+  mutants_not_covered = 0
+  criteria_total = 6
+  criteria_covered = 6
+  criteria_uncovered = 0
+
+[[criterion]]
+  id = "c-1"
+  status = "covered"
+  tests = ["e2e/docs.e2e.ts:test('install page documents build-from-source, with stores marked coming soon')"]
+  notes = "Asserts the build-from-source method (assembleDebug) is present and that Google Play / F-Droid sit under a 'coming soon' heading rather than as working steps (r-03)."
+
+[[criterion]]
+  id = "c-2"
+  status = "covered"
+  tests = ["e2e/docs.e2e.ts:test('default-assistant page documents the Android settings path')"]
+  notes = "Asserts the real Settings > Default apps > Digital assistant path and the 'Equerry assistant' label; no in-app wizard claimed."
+
+[[criterion]]
+  id = "c-3"
+  status = "covered"
+  tests = ["e2e/docs.e2e.ts:test('add-a-provider page lists all four provider types and key handling')"]
+  notes = "Asserts all four provider types (Ollama/Anthropic/OpenAI-compatible/OpenRouter), the 'no API key' Ollama note, and that keys are 'encrypted'."
+
+[[criterion]]
+  id = "c-4"
+  status = "covered"
+  tests = ["e2e/docs.e2e.ts:test('capability-slots page wires Chat and marks the rest coming soon')"]
+  notes = "Asserts Chat is 'Available now', the five inactive slots are listed, 'coming soon' is present, and the CHAT mapping step ('Map provider')."
+
+[[criterion]]
+  id = "c-5"
+  status = "covered"
+  tests = [
+    "e2e/docs.e2e.ts:test('prev/next walks the setup pages in order with no prev on first, no next on last')",
+    "e2e/docs.e2e.ts:test('sidebar marks the current page as aria-current')",
+    "src/routes/docs/docs-index.svelte.test.ts:test('renders a single \"Setup\" group covering the pages in walkthrough order')"
+  ]
+  notes = "prev/next traverses install -> default-assistant -> add-a-provider -> capability-slots; unit test pins the flattened slug order. The static build (Playwright webServer) crawls every nav/prev-next link, so a dead link fails the build."
+
+[[criterion]]
+  id = "c-6"
+  status = "covered"
+  tests = [
+    "src/routes/docs/docs-index.svelte.test.ts:test('shows the \"what works today\" maturity callout')",
+    "src/routes/docs/docs-index.svelte.test.ts:test('renders a single \"Setup\" group covering the pages in walkthrough order')",
+    "e2e/docs.e2e.ts:test('index shows the \"what works today\" maturity callout')"
+  ]
+  notes = "Maturity callout + orientation on /docs is asserted in both unit and e2e. The order test pins docsNav to exactly the four new pages, so the placeholder routes are gone from the nav (their .svx files were deleted in t-5)."
+
+[[finding]]
+  severity = "NOTE"
+  text = "Mutation efficacy unmeasured: the npx-resolved 'stryker' package is broken (missing 'rx' module) and there is no adapter for .svx/.svelte/.ts in this setup, so all 10 touched files were skipped. Consistent with phases 01-03, verdict rests on criterion coverage. To enable mutation later: pnpm add -D @stryker-mutator/core."
+
+[[finding]]
+  severity = "NOTE"
+  text = "Content phase: the deliverables are .svx docs whose fidelity to the real app (r-03) was grounded against ../equerry source during execute. Tests assert the documented facts are present; they cannot themselves prove the app still behaves that way — re-check against the app before each release."

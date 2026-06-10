@@ -1,0 +1,47 @@
+{
+  "phase": "04-setup-docs",
+  "generated_at": "2026-06-10T08:40:59.183128Z",
+  "languages": null,
+  "skipped": [
+    {
+      "file": "e2e/docs.e2e.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/lib/docs/nav.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/routes/docs/+page.svelte",
+      "reason": "no mutation adapter for .svelte"
+    },
+    {
+      "file": "src/routes/docs/add-a-provider/+page.svx",
+      "reason": "no mutation adapter for .svx"
+    },
+    {
+      "file": "src/routes/docs/capability-slots/+page.svx",
+      "reason": "no mutation adapter for .svx"
+    },
+    {
+      "file": "src/routes/docs/configuration/+page.svx",
+      "reason": "no mutation adapter for .svx"
+    },
+    {
+      "file": "src/routes/docs/default-assistant/+page.svx",
+      "reason": "no mutation adapter for .svx"
+    },
+    {
+      "file": "src/routes/docs/docs-index.svelte.test.ts",
+      "reason": "no mutation adapter for .ts"
+    },
+    {
+      "file": "src/routes/docs/getting-started/+page.svx",
+      "reason": "no mutation adapter for .svx"
+    },
+    {
+      "file": "src/routes/docs/install/+page.svx",
+      "reason": "no mutation adapter for .svx"
+    }
+  ]
+}
