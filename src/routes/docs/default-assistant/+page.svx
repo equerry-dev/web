@@ -1,10 +1,11 @@
-<svelte:head>
-	<title>Set as default assistant — Equerry Docs</title>
-	<meta
-		name="description"
-		content="Make Equerry your device's default digital assistant through Android Settings so the assist gesture invokes it."
-	/>
-</svelte:head>
+<script>
+	import Seo from '$lib/components/Seo.svelte';
+</script>
+
+<Seo
+	title="Set as default assistant — Equerry Docs"
+	description="Make Equerry your device's default digital assistant through Android Settings so the assist gesture invokes it."
+/>
 
 # Set as the default assistant
 

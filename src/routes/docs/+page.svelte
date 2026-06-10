@@ -1,14 +1,12 @@
 <script lang="ts">
+	import Seo from '$lib/components/Seo.svelte';
 	import { docsNav, docHref } from '$lib/docs/nav';
 </script>
 
-<svelte:head>
-	<title>Docs — Equerry</title>
-	<meta
-		name="description"
-		content="Set up Equerry and wire your AI backends — install, set as default, and configure providers via Capability Slots."
-	/>
-</svelte:head>
+<Seo
+	title="Docs — Equerry"
+	description="Set up Equerry and wire your AI backends — install, set as default, and configure providers via Capability Slots."
+/>
 
 <h1>Equerry Docs</h1>
 <p>

@@ -1,10 +1,11 @@
-<svelte:head>
-	<title>Install Equerry — Equerry Docs</title>
-	<meta
-		name="description"
-		content="Install Equerry today by building the app from source — Google Play and F-Droid listings are coming soon."
-	/>
-</svelte:head>
+<script>
+	import Seo from '$lib/components/Seo.svelte';
+</script>
+
+<Seo
+	title="Install Equerry — Equerry Docs"
+	description="Install Equerry today by building the app from source — Google Play and F-Droid listings are coming soon."
+/>
 
 # Install Equerry
 

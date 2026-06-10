@@ -1,10 +1,11 @@
-<svelte:head>
-	<title>Capability Slots — Equerry Docs</title>
-	<meta
-		name="description"
-		content="Route Equerry's jobs to the providers you choose with Capability Slots — map a provider to the Chat slot to finish setup."
-	/>
-</svelte:head>
+<script>
+	import Seo from '$lib/components/Seo.svelte';
+</script>
+
+<Seo
+	title="Capability Slots — Equerry Docs"
+	description="Route Equerry's jobs to the providers you choose with Capability Slots — map a provider to the Chat slot to finish setup."
+/>
 
 # Capability Slots
 
