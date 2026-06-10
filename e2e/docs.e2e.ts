@@ -110,4 +110,28 @@ test.describe('docs system', () => {
 		await page.goto('/docs/configuration');
 		expect(thirdParty).toEqual([]);
 	});
+
+	test('sidebar collapses behind a toggle at 320px and expands on click', async ({ page }) => {
+		await page.setViewportSize({ width: 320, height: 720 });
+		await page.goto('/docs/getting-started');
+
+		const toggle = page.getByRole('button', { name: 'Documentation' });
+		// includeHidden so the locator resolves while the list is display:none.
+		const navLink = page
+			.getByRole('navigation', { name: 'Docs' })
+			.getByRole('link', { name: 'Configuration', includeHidden: true });
+
+		// Below md the list is collapsed behind the visible toggle (real CSS, not just the class).
+		await expect(toggle).toBeVisible();
+		await expect(navLink).toBeHidden();
+
+		await toggle.click();
+		await expect(navLink).toBeVisible();
+
+		// The docs layout holds at 320px with no horizontal overflow.
+		const overflow = await page.evaluate(
+			() => document.documentElement.scrollWidth - document.documentElement.clientWidth
+		);
+		expect(overflow).toBeLessThanOrEqual(1);
+	});
 });
