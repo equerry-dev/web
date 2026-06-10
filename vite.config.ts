@@ -8,7 +8,13 @@ export default defineConfig({
 	plugins: [
 		tailwindcss(),
 		sveltekit(),
-		paraglideVitePlugin({ project: './project.inlang', outdir: './src/lib/paraglide' })
+		// strategy without 'cookie': the site is URL-localized and must set no
+		// cookies (privacy criterion c-4). Locale comes from the URL, else baseLocale.
+		paraglideVitePlugin({
+			project: './project.inlang',
+			outdir: './src/lib/paraglide',
+			strategy: ['url', 'baseLocale']
+		})
 	],
 	test: {
 		expect: { requireAssertions: true },

@@ -121,11 +121,13 @@ test.describe('docs system', () => {
 		baseURL
 	}) => {
 		const host = new URL(baseURL ?? 'http://localhost:4173').host;
+		// Only the self-hosted, cookieless Umami beacon may leave our origin (r-01).
+		const allowed = new Set([host, 'umami.rivil.co.uk']);
 		const thirdParty: string[] = [];
 		page.on('request', (req) => {
 			const url = new URL(req.url());
 			if (url.protocol === 'data:') return;
-			if (url.host !== host) thirdParty.push(req.url());
+			if (!allowed.has(url.host)) thirdParty.push(req.url());
 		});
 
 		await page.goto('/docs');

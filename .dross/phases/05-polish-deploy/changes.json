@@ -1,0 +1,101 @@
+{
+  "phase": "05-polish-deploy",
+  "tasks": {
+    "t-1": {
+      "files": [
+        "src/lib/components/Seo.svelte",
+        "src/lib/components/Seo.svelte.test.ts",
+        "src/lib/config/site.ts",
+        "src/routes/+layout.svelte",
+        "src/routes/+page.svelte",
+        "src/routes/docs/+page.svelte",
+        "src/routes/docs/install/+page.svx",
+        "src/routes/docs/default-assistant/+page.svx",
+        "src/routes/docs/add-a-provider/+page.svx",
+        "src/routes/docs/capability-slots/+page.svx",
+        "static/og-default.png"
+      ],
+      "commit": "ed28417",
+      "completed_at": "2026-06-10T12:18:30.320773Z"
+    },
+    "t-2": {
+      "files": [
+        "src/routes/sitemap.xml/+server.ts",
+        "src/routes/sitemap.xml/sitemap.spec.ts",
+        "static/robots.txt"
+      ],
+      "commit": "bbe879d",
+      "completed_at": "2026-06-10T12:28:20.495263Z"
+    },
+    "t-3": {
+      "files": [
+        "static/umami.js",
+        "src/app.html",
+        "src/umami-tag.spec.ts",
+        "eslint.config.js"
+      ],
+      "commit": "adc2f00",
+      "completed_at": "2026-06-10T12:21:24.971895Z"
+    },
+    "t-4": {
+      "files": [
+        "src/routes/+error.svelte",
+        "svelte.config.js",
+        "nginx.conf",
+        "e2e/error.e2e.ts",
+        "e2e/shell.e2e.ts",
+        "src/routes/demo/+page.svelte",
+        "src/routes/demo/playwright/+page.svelte",
+        "src/routes/demo/playwright/page.svelte.e2e.ts",
+        "src/lib/vitest-examples/greet.ts",
+        "src/lib/vitest-examples/greet.spec.ts"
+      ],
+      "commit": "632a15a",
+      "completed_at": "2026-06-10T12:26:07.014328Z"
+    },
+    "t-5": {
+      "files": [
+        "e2e/a11y.e2e.ts",
+        "e2e/theme.e2e.ts",
+        "e2e/landing.e2e.ts",
+        "e2e/docs.e2e.ts",
+        "src/lib/docs/highlighter.js",
+        "src/routes/layout.css"
+      ],
+      "commit": "f1aa294",
+      "completed_at": "2026-06-10T12:34:42.29681Z"
+    },
+    "t-6": {
+      "files": [
+        "e2e/privacy.e2e.ts"
+      ],
+      "commit": "9dc3947",
+      "completed_at": "2026-06-10T13:34:55.134041Z"
+    },
+    "t-7": {
+      "files": [
+        "e2e/build-output.e2e.ts"
+      ],
+      "commit": "a07f32a",
+      "completed_at": "2026-06-10T12:40:30.972905Z"
+    },
+    "t-8": {
+      "files": [
+        "lighthouserc.json",
+        ".github/workflows/docker-publish.yml",
+        ".gitignore",
+        ".prettierignore"
+      ],
+      "commit": "53246ca",
+      "completed_at": "2026-06-10T12:52:26.296704Z"
+    },
+    "t-9": {
+      "files": [
+        "scripts/docker-smoke.sh",
+        ".github/workflows/docker-publish.yml"
+      ],
+      "commit": "1dfdb2e",
+      "completed_at": "2026-06-10T12:54:48.251334Z"
+    }
+  }
+}

@@ -1,0 +1,102 @@
+[phase]
+id        = "05-polish-deploy"
+title     = "Polish & static deploy"
+milestone = "v0.1"
+
+# ---- Acceptance criteria ----------------------------------------------------
+
+[[criteria]]
+id   = "c-1"
+text = "Every route (landing, /docs + all doc pages, 404) renders correctly in light and dark across mobile and desktop, with no layout breakage."
+
+[[criteria]]
+id   = "c-2"
+text = "The full site is keyboard-navigable and passes automated WCAG AA (axe) with zero violations on every route."
+
+[[criteria]]
+id   = "c-3"
+text = "A production `pnpm build` emits a fully static bundle where every route resolves to a prerendered .html, with no server runtime."
+
+[[criteria]]
+id   = "c-4"
+text = "Loading any page issues no requests to third-party origins except the self-hosted Umami beacon (umami.rivil.co.uk), and the site sets no cookies."
+
+[[criteria]]
+id   = "c-5"
+text = "The Docker image builds and, when run, serves every route correctly through nginx (clean URLs resolve, assets load) — a verified-deployable artifact."
+
+[[criteria]]
+id   = "c-6"
+text = "Leftover demo/ scaffolding routes are removed, and a custom branded 404 page is served for unknown paths."
+
+[[criteria]]
+id   = "c-7"
+text = "Self-hosted Umami is loaded on every page (url umami.rivil.co.uk, website id 1bfaf8df-b439-4711-ad6e-c49f00565980), records page views, and is cookieless."
+
+[[criteria]]
+id   = "c-8"
+text = "Each page exposes SEO metadata (unique title + meta description, canonical, Open Graph/Twitter card tags), and the site serves a valid sitemap.xml and robots.txt."
+
+# ---- Locked decisions -------------------------------------------------------
+
+[[decisions]]
+key    = "analytics"
+choice = "Wire self-hosted Umami now — url umami.rivil.co.uk, website id 1bfaf8df-b439-4711-ad6e-c49f00565980, cookieless, aggregate."
+why    = "User-provided production config; the one analytics permitted under rule r-01 (self-hosted, cookieless, no PII)."
+locked = true
+
+[[decisions]]
+key    = "umami_delivery"
+choice = "Self-host the Umami script.js on equerry.dev (vendored into static/); only the page-view beacon hits umami.rivil.co.uk."
+why    = "Rule r-01 requires all assets self-hosted — keeps the cross-origin surface to the beacon alone, not a loaded script."
+locked = true
+
+[[decisions]]
+key    = "privacy_guard"
+choice = "Add an automated e2e/CI guard that fails the build if any page requests an origin outside the allowlist (umami only) or sets a cookie."
+why    = "Makes c-4 a regression-proof gate rather than a one-time manual devtools check."
+locked = true
+
+[[decisions]]
+key    = "lighthouse_gate"
+choice = "Make the CI Lighthouse job blocking with minimums: perf >= 90, accessibility = 100, best-practices >= 90, SEO >= 90."
+why    = "A static site clears these easily; a11y=100 backs c-2 and the gate catches perf/SEO regressions hard."
+locked = true
+
+[[decisions]]
+key    = "error_page"
+choice = "Custom 404 is branded — header/footer site shell, friendly message, links back to home and /docs."
+why    = "Consistent with the site-wide polish in c-1; minimal text-only would read as unfinished."
+locked = true
+
+[[decisions]]
+key    = "download_links"
+choice = "Keep store CTAs in coming-soon/disabled state (site.ts links stay null); CTAs must never emit a dead link."
+why    = "Play/F-Droid listings are not live yet; flipping to real URLs is a trivial later change in site.ts."
+locked = true
+
+[[decisions]]
+key    = "deploy_target"
+choice = "Ship as the existing Docker image (Dockerfile -> nginx) to the user's docker stack; the phase only verifies the image serves all routes. Going live at equerry.dev is manual ops the user performs."
+why    = "User will run it live on their own docker stack once everything is confirmed; the phase stays self-contained and verifiable."
+locked = true
+
+[[decisions]]
+key    = "placeholder_images"
+choice = "Where an image asset is needed (e.g. OG/social preview cards), ship a generic self-hosted placeholder; final art is populated before go-live."
+why    = "Unblocks shipping the SEO/structure now; placeholders stay self-hosted per r-01."
+locked = true
+
+# ---- Deferred ideas ---------------------------------------------------------
+
+[[deferred]]
+text = "Flip download CTAs to the real Google Play and F-Droid listing URLs."
+why  = "Listings are not live yet — a quick task in site.ts once they publish."
+
+[[deferred]]
+text = "Point equerry.dev DNS at the running Docker image / actual go-live."
+why  = "Out-of-band ops the user performs on their docker stack after the phase."
+
+[[deferred]]
+text = "Replace generic placeholder images (OG/social cards, etc.) with final art."
+why  = "User populates real imagery before go-live."

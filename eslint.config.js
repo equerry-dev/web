@@ -12,6 +12,8 @@ const gitignorePath = path.resolve(import.meta.dirname, '.gitignore');
 
 export default defineConfig(
 	includeIgnoreFile(gitignorePath),
+	// Vendored third-party asset (self-hosted Umami tracker) — not our source.
+	{ ignores: ['static/umami.js'] },
 	js.configs.recommended,
 	ts.configs.recommended,
 	svelte.configs.recommended,

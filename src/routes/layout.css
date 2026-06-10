@@ -224,6 +224,8 @@
 	padding: 0.15em 0.4em;
 	border-radius: 6px;
 	font-size: 0.9em;
+	/* Long URLs/paths in inline code must wrap rather than overflow on mobile. */
+	overflow-wrap: anywhere;
 }
 .prose :where(code):not(pre code)::before,
 .prose :where(code):not(pre code)::after {

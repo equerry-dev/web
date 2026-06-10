@@ -17,3 +17,9 @@ export const storeLinks: StoreLinks = {
 	playStore: null,
 	fdroid: null
 };
+
+/**
+ * Canonical origin the site is served from. Used to build absolute canonical
+ * and Open Graph URLs. No trailing slash.
+ */
+export const siteUrl = 'https://equerry.dev';

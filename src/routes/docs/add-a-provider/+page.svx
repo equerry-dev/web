@@ -1,10 +1,11 @@
-<svelte:head>
-	<title>Add a provider — Equerry Docs</title>
-	<meta
-		name="description"
-		content="Create a provider profile in Equerry — Ollama, Anthropic, OpenAI-compatible, or OpenRouter — with your own endpoint, key, and model."
-	/>
-</svelte:head>
+<script>
+	import Seo from '$lib/components/Seo.svelte';
+</script>
+
+<Seo
+	title="Add a provider — Equerry Docs"
+	description="Create a provider profile in Equerry — Ollama, Anthropic, OpenAI-compatible, or OpenRouter — with your own endpoint, key, and model."
+/>
 
 # Add a provider
 
