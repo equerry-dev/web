@@ -9,14 +9,7 @@ const config = {
 		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
 	},
 	kit: {
-		adapter: adapter(),
-		prerender: {
-			handleHttpError: ({ status, path, message }) => {
-				// /docs is built in a later phase; its nav link 404s until then. Ignore only that.
-				if (status === 404 && path === '/docs') return;
-				throw new Error(message);
-			}
-		}
+		adapter: adapter()
 	},
 	preprocess: [mdsvex(mdsvexOptions)],
 	extensions: ['.svelte', '.svx', '.md']
