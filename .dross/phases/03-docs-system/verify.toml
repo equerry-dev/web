@@ -1,7 +1,7 @@
 [verify]
   phase = "03-docs-system"
   generated_at = 2026-06-10T06:35:44.746944Z
-  verdict = "partial"
+  verdict = "pass"
 
 [summary]
   mutation_status = "skipped"
@@ -10,8 +10,8 @@
   mutants_survived = 0
   mutants_not_covered = 0
   criteria_total = 8
-  criteria_covered = 7
-  criteria_uncovered = 1
+  criteria_covered = 8
+  criteria_uncovered = 0
 
 [[criterion]]
   id = "c-1"
@@ -45,12 +45,13 @@
 
 [[criterion]]
   id = "c-4"
-  status = "weak"
+  status = "covered"
   tests = [
     "e2e/docs.e2e.ts:'has no axe AA violations in light, then dark after toggling the theme'",
+    "e2e/docs.e2e.ts:'sidebar collapses behind a toggle at 320px and expands on click'",
     "src/lib/components/DocsSidebar.svelte.test.ts:'toggle collapses the list on mobile and the list stays shown at md+'"
   ]
-  notes = "Light/dark AA contrast is strongly covered (axe both themes, caught a real bug). The responsive mobile-collapse half is only verified at the class/aria MECHANISM level in the unit test — no browser assertion of the sidebar actually collapsing at a ~320px viewport with CSS applied, so a pure CSS-breakpoint regression would go uncaught. See FLAG."
+  notes = "Light/dark AA contrast covered by axe (both themes, caught a real bug). Responsive mobile-collapse now covered by a 320px browser e2e: list is display:none behind the visible toggle, expands on click, and no horizontal overflow at 320px (real CSS, not just the class mechanism). Gap from the initial partial verdict closed in commit e1ef419."
 
 [[criterion]]
   id = "c-5"
@@ -91,8 +92,8 @@
   notes = "Heading extraction, TOC rendering (one #slug link per heading), and the jump-to-section behaviour all covered."
 
 [[finding]]
-  severity = "FLAG"
-  text = "c-4: the responsive sidebar-collapse is verified only at the class/aria mechanism level (DocsSidebar unit test); no browser test asserts the sidebar actually collapsing/showing at a ~320px-vs-desktop viewport with CSS applied. A CSS-breakpoint regression would go uncaught. Consider a mobile-width docs e2e (the docs e2e currently runs at 1440 only). Contrast (light+dark) is well covered."
+  severity = "NOTE"
+  text = "c-4 was initially weak (responsive collapse only mechanism-tested); closed by adding a 320px browser e2e in commit e1ef419, then re-verified to pass."
 
 [[finding]]
   severity = "NOTE"
