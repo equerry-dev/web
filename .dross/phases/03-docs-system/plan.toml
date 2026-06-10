@@ -105,7 +105,7 @@ id            = "t-6"
 wave          = 4
 depends_on    = ["t-5"]
 title         = "Docs e2e: a11y + keyboard + privacy + dual-theme"
-files         = ["src/routes/docs/docs.e2e.ts"]
+files         = ["e2e/docs.e2e.ts"]
 description   = """
 Integration sweep over the assembled docs section.
 """
@@ -113,6 +113,6 @@ covers        = ["c-3", "c-4", "c-5", "c-6", "c-7", "c-8"]
 test_contract = [
   "tabbing through the sidebar, TOC, and prev/next shows a visible focus ring on each; a TOC link scrolls to its section",
   "prev/next walks first->last with no prev on the first page and no next on the last",
-  "axe reports no AA contrast violations on a docs page in both light and dark; the docs page makes zero third-party network requests",
+  "axe reports no AA contrast violations on a docs page in light, then again after toggling to dark (theme actually flipped, not asserted once); the docs page makes zero third-party network requests",
 ]
 status        = "pending"

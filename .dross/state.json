@@ -3,13 +3,9 @@
   "current_milestone": "v0.1",
   "current_phase": "03-docs-system",
   "current_phase_status": "planned",
-  "last_activity": "2026-06-10T05:36:51.495769Z",
-  "last_action": "plan reviewed: 03-docs-system (0 blocking, 4 flags)",
+  "last_activity": "2026-06-10T05:38:15.861172Z",
+  "last_action": "plan amended: 03-docs-system (folded review flags #1 e2e path, #2 axe theme-toggle)",
   "history": [
-    {
-      "at": "2026-06-09T10:52:45.991459Z",
-      "action": "dross init"
-    },
     {
       "at": "2026-06-09T11:42:47.890414Z",
       "action": "init complete"
@@ -205,6 +201,10 @@
     {
       "at": "2026-06-10T05:36:51.495769Z",
       "action": "plan reviewed: 03-docs-system (0 blocking, 4 flags)"
+    },
+    {
+      "at": "2026-06-10T05:38:15.861172Z",
+      "action": "plan amended: 03-docs-system (folded review flags #1 e2e path, #2 axe theme-toggle)"
     }
   ]
 }
