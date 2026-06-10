@@ -67,11 +67,10 @@
     },
     "t-6": {
       "files": [
-        "e2e/privacy.e2e.ts",
-        "vite.config.ts"
+        "e2e/privacy.e2e.ts"
       ],
-      "commit": "199dbed",
-      "completed_at": "2026-06-10T12:38:00.787445Z"
+      "commit": "9dc3947",
+      "completed_at": "2026-06-10T13:34:55.134041Z"
     },
     "t-7": {
       "files": [

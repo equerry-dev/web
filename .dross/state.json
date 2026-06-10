@@ -2,22 +2,10 @@
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
   "current_phase": "05-polish-deploy",
-  "current_phase_status": "verified",
-  "last_activity": "2026-06-10T13:10:37.230894Z",
-  "last_action": "verified 05-polish-deploy: partial (8/8 covered, 1 flag c-7 beacon, mutation skipped)",
+  "current_phase_status": "complete",
+  "last_activity": "2026-06-10T13:35:09.471811Z",
+  "last_action": "phase 05-polish-deploy re-executed (t-6 amendment); verify verdict stale, re-verify recommended",
   "history": [
-    {
-      "at": "2026-06-10T06:02:21.953804Z",
-      "action": "executed t-3 (DocsSidebar: grouped nav, active page, responsive collapse)"
-    },
-    {
-      "at": "2026-06-10T06:04:37.936528Z",
-      "action": "executed t-4 (DocsToc + DocsPrevNext components)"
-    },
-    {
-      "at": "2026-06-10T06:10:00.649629Z",
-      "action": "executed t-5 (Docs layout + /docs landing + sample doc pages)"
-    },
     {
       "at": "2026-06-10T06:17:54.339471Z",
       "action": "executed t-6 (Docs e2e: a11y + keyboard + privacy + dual-theme)"
@@ -205,6 +193,18 @@
     {
       "at": "2026-06-10T13:10:37.230894Z",
       "action": "verified 05-polish-deploy: partial (8/8 covered, 1 flag c-7 beacon, mutation skipped)"
+    },
+    {
+      "at": "2026-06-10T13:34:55.146406Z",
+      "action": "amended t-6 (assert Umami beacon fires; closes c-7 verify flag)"
+    },
+    {
+      "at": "2026-06-10T13:35:09.465207Z",
+      "action": "set current_phase_status=complete"
+    },
+    {
+      "at": "2026-06-10T13:35:09.471811Z",
+      "action": "phase 05-polish-deploy re-executed (t-6 amendment); verify verdict stale, re-verify recommended"
     }
   ]
 }
