@@ -1,8 +1,10 @@
 {
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
-  "last_activity": "2026-06-09T19:46:20.8021Z",
-  "last_action": "quick: add self-hosted latin woff2 fonts",
+  "current_phase": "03-docs-system",
+  "current_phase_status": "created",
+  "last_activity": "2026-06-10T05:30:24.643548Z",
+  "last_action": "spec locked: 03-docs-system",
   "history": [
     {
       "at": "2026-06-09T10:52:45.991459Z",
@@ -179,6 +181,18 @@
     {
       "at": "2026-06-09T19:46:20.8021Z",
       "action": "quick: add self-hosted latin woff2 fonts"
+    },
+    {
+      "at": "2026-06-09T19:49:32.988681Z",
+      "action": "created 03-docs-system"
+    },
+    {
+      "at": "2026-06-10T05:30:24.63781Z",
+      "action": "set current_phase=03-docs-system"
+    },
+    {
+      "at": "2026-06-10T05:30:24.643548Z",
+      "action": "spec locked: 03-docs-system"
     }
   ]
 }
