@@ -1,15 +1,9 @@
 {
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
-  "current_phase": "04-setup-docs",
-  "current_phase_status": "verified",
-  "last_activity": "2026-06-10T08:42:07.248689Z",
-  "last_action": "verified 04-setup-docs: pass (6/6 covered, mutation skipped)",
+  "last_activity": "2026-06-10T09:15:46.873667Z",
+  "last_action": "completed 04-setup-docs",
   "history": [
-    {
-      "at": "2026-06-09T18:36:35.215438Z",
-      "action": "executed t-1 (Store-URL config + self-hosted store badges)"
-    },
     {
       "at": "2026-06-09T18:38:45.221155Z",
       "action": "executed t-2 (Hero section)"
@@ -205,6 +199,10 @@
     {
       "at": "2026-06-10T08:42:07.248689Z",
       "action": "verified 04-setup-docs: pass (6/6 covered, mutation skipped)"
+    },
+    {
+      "at": "2026-06-10T09:15:46.873667Z",
+      "action": "completed 04-setup-docs"
     }
   ]
 }
