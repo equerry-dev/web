@@ -2,22 +2,10 @@
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
   "current_phase": "05-polish-deploy",
-  "current_phase_status": "created",
-  "last_activity": "2026-06-10T09:56:58.698447Z",
-  "last_action": "spec locked: 05-polish-deploy",
+  "current_phase_status": "planned",
+  "last_activity": "2026-06-10T11:18:26.384169Z",
+  "last_action": "plan reviewed: 05-polish-deploy (0 blocking, 2 flags folded in; 9 tasks/3 waves)",
   "history": [
-    {
-      "at": "2026-06-09T18:49:55.87071Z",
-      "action": "set current_phase_status=complete"
-    },
-    {
-      "at": "2026-06-09T18:49:55.878533Z",
-      "action": "phase 02-landing-page executed (6/6 done)"
-    },
-    {
-      "at": "2026-06-09T18:56:00.220651Z",
-      "action": "set current_phase_status=verified"
-    },
     {
       "at": "2026-06-09T18:56:00.228055Z",
       "action": "verified 02-landing-page: pass (6/6 covered, mutation skipped)"
@@ -205,6 +193,18 @@
     {
       "at": "2026-06-10T09:56:58.698447Z",
       "action": "spec locked: 05-polish-deploy"
+    },
+    {
+      "at": "2026-06-10T10:15:47.316451Z",
+      "action": "set current_phase_status=planned"
+    },
+    {
+      "at": "2026-06-10T10:15:47.322586Z",
+      "action": "plan locked: 05-polish-deploy (7 tasks across 3 waves)"
+    },
+    {
+      "at": "2026-06-10T11:18:26.384169Z",
+      "action": "plan reviewed: 05-polish-deploy (0 blocking, 2 flags folded in; 9 tasks/3 waves)"
     }
   ]
 }
