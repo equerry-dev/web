@@ -2,42 +2,10 @@
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
   "current_phase": "03-docs-system",
-  "current_phase_status": "planned",
-  "last_activity": "2026-06-10T05:38:15.861172Z",
-  "last_action": "plan amended: 03-docs-system (folded review flags #1 e2e path, #2 axe theme-toggle)",
+  "current_phase_status": "complete",
+  "last_activity": "2026-06-10T06:18:00.852928Z",
+  "last_action": "phase 03-docs-system executed (6/6 done)",
   "history": [
-    {
-      "at": "2026-06-09T11:42:47.890414Z",
-      "action": "init complete"
-    },
-    {
-      "at": "2026-06-09T13:26:09.982011Z",
-      "action": "set current_milestone=v0.1"
-    },
-    {
-      "at": "2026-06-09T13:26:09.988962Z",
-      "action": "scoped milestone v0.1: 5 criteria, 5 phases"
-    },
-    {
-      "at": "2026-06-09T13:27:51.731191Z",
-      "action": "created 01-site-shell"
-    },
-    {
-      "at": "2026-06-09T13:39:01.155515Z",
-      "action": "set current_phase=01-site-shell"
-    },
-    {
-      "at": "2026-06-09T13:39:01.161522Z",
-      "action": "spec locked: 01-site-shell"
-    },
-    {
-      "at": "2026-06-09T13:43:23.278261Z",
-      "action": "set current_phase_status=planned"
-    },
-    {
-      "at": "2026-06-09T13:43:23.284577Z",
-      "action": "plan locked: 01-site-shell (6 tasks across 4 waves)"
-    },
     {
       "at": "2026-06-09T13:51:22.673626Z",
       "action": "plan reviewed: 01-site-shell (0 blocking, 3 flags)"
@@ -205,6 +173,38 @@
     {
       "at": "2026-06-10T05:38:15.861172Z",
       "action": "plan amended: 03-docs-system (folded review flags #1 e2e path, #2 axe theme-toggle)"
+    },
+    {
+      "at": "2026-06-10T05:41:02.583755Z",
+      "action": "executed t-1 (Docs nav config + adjacency helpers)"
+    },
+    {
+      "at": "2026-06-10T05:56:55.571094Z",
+      "action": "executed t-2 (MDsveX pipeline: dual-theme highlight + slugs + TOC metadata)"
+    },
+    {
+      "at": "2026-06-10T06:02:21.953804Z",
+      "action": "executed t-3 (DocsSidebar: grouped nav, active page, responsive collapse)"
+    },
+    {
+      "at": "2026-06-10T06:04:37.936528Z",
+      "action": "executed t-4 (DocsToc + DocsPrevNext components)"
+    },
+    {
+      "at": "2026-06-10T06:10:00.649629Z",
+      "action": "executed t-5 (Docs layout + /docs landing + sample doc pages)"
+    },
+    {
+      "at": "2026-06-10T06:17:54.339471Z",
+      "action": "executed t-6 (Docs e2e: a11y + keyboard + privacy + dual-theme)"
+    },
+    {
+      "at": "2026-06-10T06:18:00.84664Z",
+      "action": "set current_phase_status=complete"
+    },
+    {
+      "at": "2026-06-10T06:18:00.852928Z",
+      "action": "phase 03-docs-system executed (6/6 done)"
     }
   ]
 }

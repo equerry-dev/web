@@ -1,118 +1,66 @@
 [phase]
-id = "03-docs-system"
+  id = "03-docs-system"
 
 [[task]]
-id            = "t-1"
-wave          = 1
-title         = "Docs nav config + adjacency helpers"
-files         = ["src/lib/docs/nav.ts", "src/lib/docs/nav.spec.ts"]
-description   = """
-Single source-of-truth docs nav: grouped sections with explicit title + order.
-Export helpers to flatten the tree to ordered pages and resolve prev/next.
-"""
-covers        = ["c-2", "c-7"]
-test_contract = [
-  "adjacent(firstSlug) returns null prev and the next page in nav order; adjacent(lastSlug) returns null next",
-  "flattenDocs() yields pages in group-then-order sequence matching the config",
-]
-status        = "pending"
+  id = "t-1"
+  wave = 1
+  title = "Docs nav config + adjacency helpers"
+  files = ["src/lib/docs/nav.ts", "src/lib/docs/nav.spec.ts"]
+  description = "Single source-of-truth docs nav: grouped sections with explicit title + order.\nExport helpers to flatten the tree to ordered pages and resolve prev/next.\n"
+  covers = ["c-2", "c-7"]
+  test_contract = ["adjacent(firstSlug) returns null prev and the next page in nav order; adjacent(lastSlug) returns null next", "flattenDocs() yields pages in group-then-order sequence matching the config"]
+  status = "done"
 
 [[task]]
-id            = "t-2"
-wave          = 1
-title         = "MDsveX pipeline: dual-theme highlight + slugs + TOC metadata"
-files         = ["svelte.config.js", "src/lib/docs/highlighter.ts", "src/routes/docs/code-theme.css"]
-description   = """
-Wire a build-time Shiki highlighter into the mdsvex highlight hook with light+dark
-themes switched via CSS (self-hosted, no runtime requests). Add rehype-slug for
-heading ids and expose each page's headings as metadata for the TOC. Adds shiki
-and rehype-slug deps.
-"""
-covers        = ["c-3", "c-8"]
-test_contract = [
-  "a fenced code block renders Shiki token spans (not raw text), with both light and dark theme styles present so toggling theme recolors it",
-  "a '## Foo' heading renders with id='foo'; the page's headings are exposed as metadata for the TOC",
-]
-status        = "pending"
+  id = "t-2"
+  wave = 1
+  title = "MDsveX pipeline: dual-theme highlight + slugs + TOC metadata"
+  files = ["svelte.config.js", "src/lib/docs/highlighter.ts", "src/routes/docs/code-theme.css"]
+  description = "Wire a build-time Shiki highlighter into the mdsvex highlight hook with light+dark\nthemes switched via CSS (self-hosted, no runtime requests). Add rehype-slug for\nheading ids and expose each page's headings as metadata for the TOC. Adds shiki\nand rehype-slug deps.\n"
+  covers = ["c-3", "c-8"]
+  test_contract = ["a fenced code block renders Shiki token spans (not raw text), with both light and dark theme styles present so toggling theme recolors it", "a '## Foo' heading renders with id='foo'; the page's headings are exposed as metadata for the TOC"]
+  status = "done"
 
 [[task]]
-id            = "t-3"
-wave          = 2
-depends_on    = ["t-1"]
-title         = "DocsSidebar: grouped nav, active page, responsive collapse"
-files         = ["src/lib/components/DocsSidebar.svelte", "src/lib/components/DocsSidebar.svelte.test.ts"]
-description   = """
-Sidebar rendering the grouped nav from t-1, marking the current page, and
-collapsing behind a toggle below the mobile breakpoint.
-"""
-covers        = ["c-2", "c-4"]
-test_contract = [
-  "the current route's link gets aria-current=\"page\"; a non-current link does not",
-  "below the mobile breakpoint the sidebar is collapsed behind a toggle; above it the sidebar is visible",
-]
-status        = "pending"
+  id = "t-3"
+  wave = 2
+  title = "DocsSidebar: grouped nav, active page, responsive collapse"
+  files = ["src/lib/components/DocsSidebar.svelte", "src/lib/components/DocsSidebar.svelte.test.ts"]
+  description = "Sidebar rendering the grouped nav from t-1, marking the current page, and\ncollapsing behind a toggle below the mobile breakpoint.\n"
+  covers = ["c-2", "c-4"]
+  depends_on = ["t-1"]
+  test_contract = ["the current route's link gets aria-current=\"page\"; a non-current link does not", "below the mobile breakpoint the sidebar is collapsed behind a toggle; above it the sidebar is visible"]
+  status = "done"
 
 [[task]]
-id            = "t-4"
-wave          = 2
-depends_on    = ["t-1", "t-2"]
-title         = "DocsToc + DocsPrevNext components"
-files         = [
-  "src/lib/components/DocsToc.svelte",
-  "src/lib/components/DocsToc.svelte.test.ts",
-  "src/lib/components/DocsPrevNext.svelte",
-  "src/lib/components/DocsPrevNext.svelte.test.ts",
-]
-description   = """
-On-page TOC built from the page's heading metadata (jump-links to slug ids), and
-prev/next navigation derived from t-1's adjacency helper.
-"""
-covers        = ["c-6", "c-7", "c-8"]
-test_contract = [
-  "DocsPrevNext on the first page renders no prev link and a next link to the 2nd page",
-  "DocsToc lists one keyboard-focusable jump-link per h2/h3, each href targeting the heading's slug id",
-]
-status        = "pending"
+  id = "t-4"
+  wave = 2
+  title = "DocsToc + DocsPrevNext components"
+  files = ["src/lib/components/DocsToc.svelte", "src/lib/components/DocsToc.svelte.test.ts", "src/lib/components/DocsPrevNext.svelte", "src/lib/components/DocsPrevNext.svelte.test.ts"]
+  description = "On-page TOC built from the page's heading metadata (jump-links to slug ids), and\nprev/next navigation derived from t-1's adjacency helper.\n"
+  covers = ["c-6", "c-7", "c-8"]
+  depends_on = ["t-1", "t-2"]
+  test_contract = ["DocsPrevNext on the first page renders no prev link and a next link to the 2nd page", "DocsToc lists one keyboard-focusable jump-link per h2/h3, each href targeting the heading's slug id"]
+  status = "done"
 
 [[task]]
-id            = "t-5"
-wave          = 3
-depends_on    = ["t-2", "t-3", "t-4"]
-title         = "Docs layout + /docs landing + sample doc pages"
-files         = [
-  "src/routes/docs/+layout.svelte",
-  "src/routes/docs/+layout.ts",
-  "src/routes/docs/+page.svelte",
-  "src/routes/docs/getting-started/+page.svx",
-  "src/routes/docs/configuration/+page.svx",
-  "svelte.config.js",
-]
-description   = """
-Two-column docs layout nested in the shell: sidebar + prose content with TOC and
-prev/next wired in. Landing index at /docs linking into each group. Ship >=2
-placeholder sample pages (real setup copy is phase 04) so groups + prev/next are
-exercisable. Remove the temporary /docs 404 handleHttpError exception.
-"""
-covers        = ["c-1", "c-3", "c-4", "c-5"]
-test_contract = [
-  "GET /docs renders the landing index with links into each group; GET /docs/<sample> renders the doc body wrapped in prose styling with working code + headings",
-  "removing the /docs 404 handleHttpError exception no longer fails prerender; every docs route is reachable in the static build",
-]
-status        = "pending"
+  id = "t-5"
+  wave = 3
+  title = "Docs layout + /docs landing + sample doc pages"
+  files = ["src/routes/docs/+layout.svelte", "src/routes/docs/+layout.ts", "src/routes/docs/+page.svelte", "src/routes/docs/getting-started/+page.svx", "src/routes/docs/configuration/+page.svx", "svelte.config.js"]
+  description = "Two-column docs layout nested in the shell: sidebar + prose content with TOC and\nprev/next wired in. Landing index at /docs linking into each group. Ship >=2\nplaceholder sample pages (real setup copy is phase 04) so groups + prev/next are\nexercisable. Remove the temporary /docs 404 handleHttpError exception.\n"
+  covers = ["c-1", "c-3", "c-4", "c-5"]
+  depends_on = ["t-2", "t-3", "t-4"]
+  test_contract = ["GET /docs renders the landing index with links into each group; GET /docs/<sample> renders the doc body wrapped in prose styling with working code + headings", "removing the /docs 404 handleHttpError exception no longer fails prerender; every docs route is reachable in the static build"]
+  status = "done"
 
 [[task]]
-id            = "t-6"
-wave          = 4
-depends_on    = ["t-5"]
-title         = "Docs e2e: a11y + keyboard + privacy + dual-theme"
-files         = ["e2e/docs.e2e.ts"]
-description   = """
-Integration sweep over the assembled docs section.
-"""
-covers        = ["c-3", "c-4", "c-5", "c-6", "c-7", "c-8"]
-test_contract = [
-  "tabbing through the sidebar, TOC, and prev/next shows a visible focus ring on each; a TOC link scrolls to its section",
-  "prev/next walks first->last with no prev on the first page and no next on the last",
-  "axe reports no AA contrast violations on a docs page in light, then again after toggling to dark (theme actually flipped, not asserted once); the docs page makes zero third-party network requests",
-]
-status        = "pending"
+  id = "t-6"
+  wave = 4
+  title = "Docs e2e: a11y + keyboard + privacy + dual-theme"
+  files = ["e2e/docs.e2e.ts"]
+  description = "Integration sweep over the assembled docs section.\n"
+  covers = ["c-3", "c-4", "c-5", "c-6", "c-7", "c-8"]
+  depends_on = ["t-5"]
+  test_contract = ["tabbing through the sidebar, TOC, and prev/next shows a visible focus ring on each; a TOC link scrolls to its section", "prev/next walks first->last with no prev on the first page and no next on the last", "axe reports no AA contrast violations on a docs page in light, then again after toggling to dark (theme actually flipped, not asserted once); the docs page makes zero third-party network requests"]
+  status = "done"
