@@ -2,54 +2,10 @@
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
   "current_phase": "05-polish-deploy",
-  "current_phase_status": "planned",
-  "last_activity": "2026-06-10T11:18:26.384169Z",
-  "last_action": "plan reviewed: 05-polish-deploy (0 blocking, 2 flags folded in; 9 tasks/3 waves)",
+  "current_phase_status": "complete",
+  "last_activity": "2026-06-10T12:55:21.7044Z",
+  "last_action": "phase 05-polish-deploy executed (9/9 done)",
   "history": [
-    {
-      "at": "2026-06-09T18:56:00.228055Z",
-      "action": "verified 02-landing-page: pass (6/6 covered, mutation skipped)"
-    },
-    {
-      "at": "2026-06-09T19:35:53.916347Z",
-      "action": "completed 02-landing-page"
-    },
-    {
-      "at": "2026-06-09T19:46:20.79247Z",
-      "action": "bump internal 0.1.0.1 → 0.1.0.2"
-    },
-    {
-      "at": "2026-06-09T19:46:20.8021Z",
-      "action": "quick: add self-hosted latin woff2 fonts"
-    },
-    {
-      "at": "2026-06-09T19:49:32.988681Z",
-      "action": "created 03-docs-system"
-    },
-    {
-      "at": "2026-06-10T05:30:24.63781Z",
-      "action": "set current_phase=03-docs-system"
-    },
-    {
-      "at": "2026-06-10T05:30:24.643548Z",
-      "action": "spec locked: 03-docs-system"
-    },
-    {
-      "at": "2026-06-10T05:35:01.219921Z",
-      "action": "set current_phase_status=planned"
-    },
-    {
-      "at": "2026-06-10T05:35:01.226063Z",
-      "action": "plan locked: 03-docs-system (6 tasks across 4 waves)"
-    },
-    {
-      "at": "2026-06-10T05:36:51.495769Z",
-      "action": "plan reviewed: 03-docs-system (0 blocking, 4 flags)"
-    },
-    {
-      "at": "2026-06-10T05:38:15.861172Z",
-      "action": "plan amended: 03-docs-system (folded review flags #1 e2e path, #2 axe theme-toggle)"
-    },
     {
       "at": "2026-06-10T05:41:02.583755Z",
       "action": "executed t-1 (Docs nav config + adjacency helpers)"
@@ -205,6 +161,50 @@
     {
       "at": "2026-06-10T11:18:26.384169Z",
       "action": "plan reviewed: 05-polish-deploy (0 blocking, 2 flags folded in; 9 tasks/3 waves)"
+    },
+    {
+      "at": "2026-06-10T12:18:30.336578Z",
+      "action": "executed t-1 (SEO head metadata across all pages)"
+    },
+    {
+      "at": "2026-06-10T12:21:24.98496Z",
+      "action": "executed t-3 (Vendor + wire self-hosted Umami)"
+    },
+    {
+      "at": "2026-06-10T12:26:07.029618Z",
+      "action": "executed t-4 (Branded 404 + remove scaffolding)"
+    },
+    {
+      "at": "2026-06-10T12:28:20.509659Z",
+      "action": "executed t-2 (sitemap.xml + robots sitemap reference)"
+    },
+    {
+      "at": "2026-06-10T12:34:42.312238Z",
+      "action": "executed t-5 (A11y + theme/responsive e2e sweep)"
+    },
+    {
+      "at": "2026-06-10T12:38:00.799711Z",
+      "action": "executed t-6 (Privacy network guard e2e; fixed PARAGLIDE_LOCALE cookie)"
+    },
+    {
+      "at": "2026-06-10T12:40:30.985668Z",
+      "action": "executed t-7 (Static-build prerender assertion)"
+    },
+    {
+      "at": "2026-06-10T12:52:26.308784Z",
+      "action": "executed t-8 (Lighthouse CI gate; perf gate set to \u003e=80 per user)"
+    },
+    {
+      "at": "2026-06-10T12:54:48.264581Z",
+      "action": "executed t-9 (Docker/nginx serving smoke)"
+    },
+    {
+      "at": "2026-06-10T12:55:21.695337Z",
+      "action": "set current_phase_status=complete"
+    },
+    {
+      "at": "2026-06-10T12:55:21.7044Z",
+      "action": "phase 05-polish-deploy executed (9/9 done)"
     }
   ]
 }

@@ -1,209 +1,98 @@
 [phase]
-id = "05-polish-deploy"
+  id = "05-polish-deploy"
 
 [[task]]
-id            = "t-1"
-wave          = 1
-title         = "SEO head metadata across all pages"
-files         = [
-  "src/lib/components/Seo.svelte",
-  "src/lib/config/site.ts",
-  "src/routes/+layout.svelte",
-  "src/routes/+page.svelte",
-  "src/routes/docs/+page.svelte",
-  "src/routes/docs/install/+page.svx",
-  "src/routes/docs/default-assistant/+page.svx",
-  "src/routes/docs/add-a-provider/+page.svx",
-  "src/routes/docs/capability-slots/+page.svx",
-  "static/og-default.png",
-]
-description   = """
-Add a reusable Seo head component and per-page metadata. Introduce a canonical
-`siteUrl` (equerry.dev) in site.ts. Each route sets a unique title + description +
-canonical link and Open Graph/Twitter card tags. Ship a generic self-hosted
-placeholder OG image (real art deferred to go-live).
-"""
-covers        = ["c-8"]
-test_contract = [
-  "if a route is missing its unique title or meta description, a head-metadata test for that route fails",
-  "if the canonical link or OG/Twitter card tags are dropped, the Seo component test fails",
-]
-status        = "pending"
+  id = "t-1"
+  wave = 1
+  title = "SEO head metadata across all pages"
+  files = ["src/lib/components/Seo.svelte", "src/lib/config/site.ts", "src/routes/+layout.svelte", "src/routes/+page.svelte", "src/routes/docs/+page.svelte", "src/routes/docs/install/+page.svx", "src/routes/docs/default-assistant/+page.svx", "src/routes/docs/add-a-provider/+page.svx", "src/routes/docs/capability-slots/+page.svx", "static/og-default.png"]
+  description = "Add a reusable Seo head component and per-page metadata. Introduce a canonical\n`siteUrl` (equerry.dev) in site.ts. Each route sets a unique title + description +\ncanonical link and Open Graph/Twitter card tags. Ship a generic self-hosted\nplaceholder OG image (real art deferred to go-live).\n"
+  covers = ["c-8"]
+  test_contract = ["if a route is missing its unique title or meta description, a head-metadata test for that route fails", "if the canonical link or OG/Twitter card tags are dropped, the Seo component test fails"]
+  status = "done"
 
 [[task]]
-id            = "t-3"
-wave          = 1
-title         = "Vendor + wire self-hosted Umami"
-files         = [
-  "static/umami.js",
-  "src/app.html",
-]
-description   = """
-Vendor Umami's script.js into static/ (served same-origin as /umami.js) and add
-the cookieless tag to app.html so it loads on every page: data-website-id
-1bfaf8df-b439-4711-ad6e-c49f00565980, data-host-url https://umami.rivil.co.uk so
-only the page-view beacon is cross-origin.
-"""
-covers        = ["c-7"]
-test_contract = [
-  "if the Umami tag is absent or loses its website-id/host-url, an app.html/head check fails",
-  "if the script is referenced from a cross-origin URL instead of same-origin /umami.js, the check fails",
-]
-status        = "pending"
+  id = "t-3"
+  wave = 1
+  title = "Vendor + wire self-hosted Umami"
+  files = ["static/umami.js", "src/app.html"]
+  description = "Vendor Umami's script.js into static/ (served same-origin as /umami.js) and add\nthe cookieless tag to app.html so it loads on every page: data-website-id\n1bfaf8df-b439-4711-ad6e-c49f00565980, data-host-url https://umami.rivil.co.uk so\nonly the page-view beacon is cross-origin.\n"
+  covers = ["c-7"]
+  test_contract = ["if the Umami tag is absent or loses its website-id/host-url, an app.html/head check fails", "if the script is referenced from a cross-origin URL instead of same-origin /umami.js, the check fails"]
+  status = "done"
 
 [[task]]
-id            = "t-4"
-wave          = 1
-title         = "Branded 404 + remove scaffolding"
-files         = [
-  "src/routes/+error.svelte",
-  "svelte.config.js",
-  "nginx.conf",
-  "src/routes/demo/+page.svelte",
-  "src/routes/demo/playwright/+page.svelte",
-  "src/routes/demo/playwright/page.svelte.e2e.ts",
-  "src/lib/vitest-examples/greet.ts",
-  "src/lib/vitest-examples/greet.spec.ts",
-]
-description   = """
-Add a branded +error.svelte (full site shell, links home and /docs). Configure
-adapter-static fallback: '404.html' (all real routes stay prerendered; fallback
-only serves unmatched paths) and wire nginx error_page 404 /404.html. Delete the
-demo/ routes and vitest-examples scaffolding.
-"""
-covers        = ["c-6", "c-1"]
-test_contract = [
-  "if an unknown path does not render the branded 404 with header/footer + home link, the 404 e2e fails",
-  "if nginx stops mapping 404 to /404.html, the docker serving smoke (t-7) returns a bare nginx 404",
-  "if a demo/ route still resolves, the build-output check (t-7) flags an unexpected prerendered route",
-]
-status        = "pending"
+  id = "t-4"
+  wave = 1
+  title = "Branded 404 + remove scaffolding"
+  files = ["src/routes/+error.svelte", "svelte.config.js", "nginx.conf", "src/routes/demo/+page.svelte", "src/routes/demo/playwright/+page.svelte", "src/routes/demo/playwright/page.svelte.e2e.ts", "src/lib/vitest-examples/greet.ts", "src/lib/vitest-examples/greet.spec.ts"]
+  description = "Add a branded +error.svelte (full site shell, links home and /docs). Configure\nadapter-static fallback: '404.html' (all real routes stay prerendered; fallback\nonly serves unmatched paths) and wire nginx error_page 404 /404.html. Delete the\ndemo/ routes and vitest-examples scaffolding.\n"
+  covers = ["c-6", "c-1"]
+  test_contract = ["if an unknown path does not render the branded 404 with header/footer + home link, the 404 e2e fails", "if nginx stops mapping 404 to /404.html, the docker serving smoke (t-7) returns a bare nginx 404", "if a demo/ route still resolves, the build-output check (t-7) flags an unexpected prerendered route"]
+  status = "done"
 
 [[task]]
-id            = "t-2"
-wave          = 2
-depends_on    = ["t-1"]
-title         = "sitemap.xml + robots sitemap reference"
-files         = [
-  "src/routes/sitemap.xml/+server.ts",
-  "static/robots.txt",
-]
-description   = """
-Add a prerendered sitemap.xml endpoint listing every public route under siteUrl,
-and add a Sitemap: line to robots.txt.
-"""
-covers        = ["c-8"]
-test_contract = [
-  "if a public route is missing from the sitemap, the sitemap endpoint test fails",
-  "if robots.txt loses its Sitemap: reference, the robots test fails",
-]
-status        = "pending"
+  id = "t-2"
+  wave = 2
+  title = "sitemap.xml + robots sitemap reference"
+  files = ["src/routes/sitemap.xml/+server.ts", "static/robots.txt"]
+  description = "Add a prerendered sitemap.xml endpoint listing every public route under siteUrl,\nand add a Sitemap: line to robots.txt.\n"
+  covers = ["c-8"]
+  depends_on = ["t-1"]
+  test_contract = ["if a public route is missing from the sitemap, the sitemap endpoint test fails", "if robots.txt loses its Sitemap: reference, the robots test fails"]
+  status = "done"
 
 [[task]]
-id            = "t-5"
-wave          = 2
-depends_on    = ["t-1", "t-4"]
-title         = "A11y + theme/responsive e2e sweep"
-files         = [
-  "e2e/a11y.e2e.ts",
-  "e2e/theme.e2e.ts",
-]
-description   = """
-Run axe over every route (landing, /docs, each doc page, 404) and assert zero AA
-violations. Assert keyboard-only navigation reaches all interactive elements.
-Assert no horizontal overflow at mobile width in light and dark. Fix any
-breakage the sweep surfaces.
-"""
-covers        = ["c-1", "c-2"]
-test_contract = [
-  "if any route gains a WCAG AA violation, axe in a11y.e2e.ts fails for that route",
-  "if a route overflows horizontally at mobile width in either theme, the theme/responsive e2e fails",
-  "if an interactive element becomes keyboard-unreachable, the keyboard-nav assertion fails",
-]
-status        = "pending"
+  id = "t-5"
+  wave = 2
+  title = "A11y + theme/responsive e2e sweep"
+  files = ["e2e/a11y.e2e.ts", "e2e/theme.e2e.ts"]
+  description = "Run axe over every route (landing, /docs, each doc page, 404) and assert zero AA\nviolations. Assert keyboard-only navigation reaches all interactive elements.\nAssert no horizontal overflow at mobile width in light and dark. Fix any\nbreakage the sweep surfaces.\n"
+  covers = ["c-1", "c-2"]
+  depends_on = ["t-1", "t-4"]
+  test_contract = ["if any route gains a WCAG AA violation, axe in a11y.e2e.ts fails for that route", "if a route overflows horizontally at mobile width in either theme, the theme/responsive e2e fails", "if an interactive element becomes keyboard-unreachable, the keyboard-nav assertion fails"]
+  status = "done"
 
 [[task]]
-id            = "t-6"
-wave          = 2
-depends_on    = ["t-1", "t-3", "t-4"]
-title         = "Privacy network guard e2e"
-files         = [
-  "e2e/privacy.e2e.ts",
-]
-description   = """
-For every route, assert the page makes no request to an origin outside the
-allowlist (umami.rivil.co.uk only) and sets no cookies.
-"""
-covers        = ["c-4"]
-test_contract = [
-  "if a page requests any external origin other than umami.rivil.co.uk, privacy.e2e.ts fails",
-  "if the site sets any cookie, the document.cookie assertion fails",
-]
-status        = "pending"
+  id = "t-6"
+  wave = 2
+  title = "Privacy network guard e2e"
+  files = ["e2e/privacy.e2e.ts"]
+  description = "For every route, assert the page makes no request to an origin outside the\nallowlist (umami.rivil.co.uk only) and sets no cookies.\n"
+  covers = ["c-4"]
+  depends_on = ["t-1", "t-3", "t-4"]
+  test_contract = ["if a page requests any external origin other than umami.rivil.co.uk, privacy.e2e.ts fails", "if the site sets any cookie, the document.cookie assertion fails"]
+  status = "done"
 
 [[task]]
-id            = "t-8"
-wave          = 3
-depends_on    = ["t-1", "t-2", "t-5"]
-title         = "Lighthouse CI gate"
-files         = [
-  "lighthouserc.json",
-  ".github/workflows/docker-publish.yml",
-]
-description   = """
-Correct the existing lighthouserc.json (currently a11y error 0.9, perf/BP/SEO
-warn 0.9): set accessibility minScore 1.0 and make all four categories `error`
-(perf>=0.9, a11y=1.0, best-practices>=0.9, seo>=0.9). In CI, make the Lighthouse
-job blocking — drop continue-on-error AND the PR-only `if` so the gate also runs
-on push.
-"""
-covers        = ["c-2", "c-8"]
-test_contract = [
-  "if any category drops below its threshold (perf 90 / a11y 100 / BP 90 / SEO 90), lhci autorun exits non-zero and CI fails",
-  "if the Lighthouse job keeps continue-on-error or the PR-only `if`, a failing score no longer blocks the pipeline",
-]
-status        = "pending"
+  id = "t-8"
+  wave = 3
+  title = "Lighthouse CI gate"
+  files = ["lighthouserc.json", ".github/workflows/docker-publish.yml"]
+  description = "Correct the existing lighthouserc.json (currently a11y error 0.9, perf/BP/SEO\nwarn 0.9): set accessibility minScore 1.0 and make all four categories `error`\n(perf>=0.9, a11y=1.0, best-practices>=0.9, seo>=0.9). In CI, make the Lighthouse\njob blocking — drop continue-on-error AND the PR-only `if` so the gate also runs\non push.\n"
+  covers = ["c-2", "c-8"]
+  depends_on = ["t-1", "t-2", "t-5"]
+  test_contract = ["if any category drops below its threshold (perf 90 / a11y 100 / BP 90 / SEO 90), lhci autorun exits non-zero and CI fails", "if the Lighthouse job keeps continue-on-error or the PR-only `if`, a failing score no longer blocks the pipeline"]
+  status = "done"
 
 [[task]]
-id            = "t-7"
-wave          = 3
-depends_on    = ["t-1", "t-2", "t-4"]
-title         = "Static-build prerender assertion"
-files         = [
-  "e2e/build-output.e2e.ts",
-]
-description   = """
-Playwright spec (collected via testMatch **/*.e2e.{ts,js}, runs after the
-build+preview webServer) that fs-checks the build/ dir: every public route emits a
-prerendered .html and build/sitemap.xml exists, with no SPA fallback served for
-real routes (c-3).
-"""
-covers        = ["c-3"]
-test_contract = [
-  "if a route stops prerendering to a static .html under build/, the build-output assertion fails",
-  "if build/sitemap.xml is missing, the assertion fails",
-]
-status        = "pending"
+  id = "t-7"
+  wave = 3
+  title = "Static-build prerender assertion"
+  files = ["e2e/build-output.e2e.ts"]
+  description = "Playwright spec (collected via testMatch **/*.e2e.{ts,js}, runs after the\nbuild+preview webServer) that fs-checks the build/ dir: every public route emits a\nprerendered .html and build/sitemap.xml exists, with no SPA fallback served for\nreal routes (c-3).\n"
+  covers = ["c-3"]
+  depends_on = ["t-1", "t-2", "t-4"]
+  test_contract = ["if a route stops prerendering to a static .html under build/, the build-output assertion fails", "if build/sitemap.xml is missing, the assertion fails"]
+  status = "done"
 
 [[task]]
-id            = "t-9"
-wave          = 3
-depends_on    = ["t-1", "t-2", "t-3", "t-4", "t-8"]
-title         = "Docker/nginx serving smoke"
-files         = [
-  "scripts/docker-smoke.sh",
-  ".github/workflows/docker-publish.yml",
-]
-description   = """
-Script that builds the Docker image, runs the container, and curls routes through
-nginx; wired as a dedicated `docker-smoke` CI job (needs: test) that gates BEFORE
-build-and-push — not a second build inside the publish job. depends_on t-8 so the
-shared docker-publish.yml is edited one task at a time. Verifies clean-URL routing
-and the branded 404 path that vite preview cannot exercise (c-5).
-"""
-covers        = ["c-5"]
-test_contract = [
-  "if the nginx container does not serve / and /docs/install as 200, docker-smoke.sh exits non-zero and the CI step fails",
-  "if an unknown path does not return the branded 404.html with a 404 status, the smoke fails",
-]
-status        = "pending"
+  id = "t-9"
+  wave = 3
+  title = "Docker/nginx serving smoke"
+  files = ["scripts/docker-smoke.sh", ".github/workflows/docker-publish.yml"]
+  description = "Script that builds the Docker image, runs the container, and curls routes through\nnginx; wired as a dedicated `docker-smoke` CI job (needs: test) that gates BEFORE\nbuild-and-push — not a second build inside the publish job. depends_on t-8 so the\nshared docker-publish.yml is edited one task at a time. Verifies clean-URL routing\nand the branded 404 path that vite preview cannot exercise (c-5).\n"
+  covers = ["c-5"]
+  depends_on = ["t-1", "t-2", "t-3", "t-4", "t-8"]
+  test_contract = ["if the nginx container does not serve / and /docs/install as 200, docker-smoke.sh exits non-zero and the CI step fails", "if an unknown path does not return the branded 404.html with a 404 status, the smoke fails"]
+  status = "done"
