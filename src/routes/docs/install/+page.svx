@@ -1,0 +1,68 @@
+<svelte:head>
+	<title>Install Equerry — Equerry Docs</title>
+	<meta
+		name="description"
+		content="Install Equerry today by building the app from source — Google Play and F-Droid listings are coming soon."
+	/>
+</svelte:head>
+
+# Install Equerry
+
+Equerry is in early development, and there is no Google Play or F-Droid listing
+yet — those are **coming soon**. For now, the way to get Equerry onto your device
+is to build it from source and install the resulting APK. It is open source
+(GPL-3.0), so nothing stops you doing exactly that.
+
+## What you'll need
+
+- An Android phone or emulator running **Android 10 (API 29) or newer**.
+- The **Android SDK** with `platforms;android-36` and `build-tools;36.0.0`.
+- A **JDK between 17 and 21**. The pinned Gradle (8.13) will not run on JDK 22+.
+- **adb** (part of the Android SDK platform-tools) to install the build onto your
+  device.
+
+## Build from source
+
+Clone the repository:
+
+```sh
+git clone https://github.com/equerry-dev/equerry.git
+cd equerry
+```
+
+Point Gradle at a compatible JDK and build the debug APK:
+
+```sh
+export JAVA_HOME="$(/usr/libexec/java_home -v 21)"   # or your JDK 17–21 path
+./gradlew :app:assembleDebug
+```
+
+Gradle needs to know where your Android SDK lives. Create a `local.properties`
+file in the project root (it is gitignored) containing:
+
+```
+sdk.dir=/path/to/your/Android/sdk
+```
+
+## Install the APK
+
+The build produces a debug APK under `app/build/outputs/`. With your device
+connected and USB debugging enabled, install it with adb:
+
+```sh
+adb install -r app/build/outputs/apk/debug/app-debug.apk
+```
+
+Equerry (`dev.equerry.app`) now appears in your app drawer.
+
+## Coming soon: Google Play and F-Droid
+
+Store distribution is planned but not live yet. Once the **Google Play** and
+**F-Droid** listings go up, you'll be able to install Equerry with a single tap
+and get updates automatically — and this page will document that route. Until
+then, building from source is the supported path.
+
+## Next
+
+With Equerry installed, the next step is to
+[set it as your device's default assistant](/docs/default-assistant).
