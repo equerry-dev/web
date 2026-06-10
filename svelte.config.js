@@ -9,7 +9,9 @@ const config = {
 		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
 	},
 	kit: {
-		adapter: adapter()
+		// Fallback page for unmatched paths, served by nginx as the branded 404.
+		// All real routes are still prerendered; the fallback is never used for them.
+		adapter: adapter({ fallback: '404.html' })
 	},
 	preprocess: [mdsvex(mdsvexOptions)],
 	extensions: ['.svelte', '.svx', '.md']

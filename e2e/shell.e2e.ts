@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-const ROUTES = ['/', '/demo'];
+const ROUTES = ['/', '/docs'];
 
 test.describe('site shell', () => {
 	test('header and footer render on every route', async ({ page }) => {
@@ -21,13 +21,19 @@ test.describe('site shell', () => {
 		await expect(page.locator('main#main')).toBeFocused();
 	});
 
-	test('makes no third-party network requests', async ({ page, baseURL }) => {
+	test('makes no third-party network requests beyond the self-hosted Umami beacon', async ({
+		page,
+		baseURL
+	}) => {
 		const host = new URL(baseURL ?? 'http://localhost:4173').host;
+		// The only permitted off-origin request is the self-hosted, cookieless
+		// Umami page-view beacon (rule r-01 sanctioned exception).
+		const allowed = new Set([host, 'umami.rivil.co.uk']);
 		const thirdParty: string[] = [];
 		page.on('request', (req) => {
 			const url = new URL(req.url());
 			if (url.protocol === 'data:') return;
-			if (url.host !== host) thirdParty.push(req.url());
+			if (!allowed.has(url.host)) thirdParty.push(req.url());
 		});
 		for (const path of ROUTES) {
 			await page.goto(path);
