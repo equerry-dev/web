@@ -1,5 +1,6 @@
 import { mdsvex } from 'mdsvex';
 import adapter from '@sveltejs/adapter-static';
+import { mdsvexOptions } from './src/lib/docs/highlighter.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -17,7 +18,7 @@ const config = {
 			}
 		}
 	},
-	preprocess: [mdsvex({ extensions: ['.svx', '.md'] })],
+	preprocess: [mdsvex(mdsvexOptions)],
 	extensions: ['.svelte', '.svx', '.md']
 };
 

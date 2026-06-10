@@ -1,0 +1,31 @@
+/*
+ * Shiki dual-theme switching.
+ *
+ * The highlighter (src/lib/docs/highlighter.js) emits both palettes as CSS
+ * variables on every token with defaultColor: false. Here we bind the active
+ * palette to the site theme: light by default, dark under `html.dark` — the
+ * same class the theme toggle flips. No runtime highlighting, no requests.
+ */
+
+.shiki,
+.shiki span {
+	color: var(--shiki-light);
+	background-color: var(--shiki-light-bg);
+}
+
+:where(html.dark) .shiki,
+:where(html.dark) .shiki span {
+	color: var(--shiki-dark);
+	background-color: var(--shiki-dark-bg);
+}
+
+/* The <pre> carries the surface colour; tokens keep transparent backgrounds. */
+.shiki {
+	overflow-x: auto;
+	border-radius: 0.5rem;
+	padding: 1rem;
+}
+
+.shiki span {
+	background-color: transparent;
+}
