@@ -82,16 +82,18 @@ files         = [
   "src/routes/docs/configuration/+page.svx",
 ]
 description   = """
-Replace the two placeholder pages in docsNav with the four real pages, grouped
-'Getting Started' (install, default-assistant) and 'Configuration'
-(add-a-provider, capability-slots), in that reading order. Add the 'what works
-today' maturity callout + orientation to the /docs index. Delete the old
+Replace the two placeholder pages in docsNav with the four real pages under a
+single 'Setup' group (per the locked page_structure decision), in reading order
+install -> default-assistant -> add-a-provider -> capability-slots. Add the 'what
+works today' maturity callout + orientation to the /docs index. Delete the old
 getting-started and configuration .svx routes. Update the docs-index unit test to
-assert the maturity callout renders.
+assert the maturity callout renders and that the nav links appear in the expected
+slug order.
 """
 covers        = ["c-5", "c-6"]
 test_contract = [
-  "if the four pages aren't ordered install -> default-assistant -> add-a-provider -> capability-slots in docsNav, the nav flatten/adjacent specs fail",
+  "if docsNav's flattened slug order isn't install -> default-assistant -> add-a-provider -> capability-slots, the new order assertion in docs-index.svelte.test.ts fails (t-6's prev/next e2e guards it at integration level)",
+  "if the four pages aren't all under one 'Setup' sidebar group, the docs-index unit test (asserting the single group heading) fails",
   "if the /docs 'what works today' maturity callout is removed, the docs-index unit test fails",
 ]
 status        = "pending"
