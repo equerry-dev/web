@@ -2,18 +2,10 @@
   "version": "0.1.0.2",
   "current_milestone": "v0.1",
   "current_phase": "04-setup-docs",
-  "current_phase_status": "complete",
-  "last_activity": "2026-06-10T08:31:15.10283Z",
-  "last_action": "phase 04-setup-docs executed (6/6 done)",
+  "current_phase_status": "verified",
+  "last_activity": "2026-06-10T08:42:07.248689Z",
+  "last_action": "verified 04-setup-docs: pass (6/6 covered, mutation skipped)",
   "history": [
-    {
-      "at": "2026-06-09T18:25:42.01563Z",
-      "action": "plan locked: 02-landing-page (6 tasks across 4 waves)"
-    },
-    {
-      "at": "2026-06-09T18:27:06.191811Z",
-      "action": "plan reviewed: 02-landing-page (0 blocking, 3 flags)"
-    },
     {
       "at": "2026-06-09T18:36:35.215438Z",
       "action": "executed t-1 (Store-URL config + self-hosted store badges)"
@@ -205,6 +197,14 @@
     {
       "at": "2026-06-10T08:31:15.10283Z",
       "action": "phase 04-setup-docs executed (6/6 done)"
+    },
+    {
+      "at": "2026-06-10T08:42:07.243039Z",
+      "action": "set current_phase_status=verified"
+    },
+    {
+      "at": "2026-06-10T08:42:07.248689Z",
+      "action": "verified 04-setup-docs: pass (6/6 covered, mutation skipped)"
     }
   ]
 }
