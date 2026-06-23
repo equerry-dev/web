@@ -16,7 +16,7 @@ COPY . .
 RUN pnpm exec svelte-kit sync && pnpm build
 
 # ---- Serve with nginx -------------------------------------------------------
-FROM nginx:1.31-alpine@sha256:8b1e78743a03dbb2c95171cc58639fef29abc8816598e27fb910ed2e621e589a AS runtime
+FROM nginx:1.31-alpine@sha256:1a8724a52d432501548a8d8681bb1554c2d09778f8b9ed0882fc3442549980b7 AS runtime
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
